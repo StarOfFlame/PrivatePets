@@ -14,8 +14,8 @@ function Game:load()
         return
     end
     
-    self.event = self:newInstance('app.manager.Event')
-    self.timer = self:newInstance('app.manager.Timer')
+    self.event = self:newInstance('entry.system.Event')
+    self.timer = self:newInstance('entry.system.Timer')
     
     
     self.loaded_ = true
