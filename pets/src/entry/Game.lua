@@ -24,6 +24,7 @@ function Game:newInstance(classpath, ...)
 end
 
 function Game:load()
+    loadSrc('Global')
     cc.exports.EventEnum = loadSrc('EventEnum')
     cc.exports.UserEnum  = loadSrc('UserEnum')
     cc.exports.ColorEnum = loadSrc('ColorEnum')

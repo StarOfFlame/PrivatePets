@@ -8,6 +8,7 @@ local sources = {
 	Prop = 'entry.nodes.Prop',
 	Npc = 'entry.nodes.Npc',
 	Player = 'entry.nodes.Player',
+	Global = 'entry.utils.Global',
 	SecurityNumber = 'entry.utils.SecurityNumber',
 	Colorify = 'entry.utils.Colorify',
 	Extends = 'entry.utils.Extends',
