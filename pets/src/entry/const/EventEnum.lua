@@ -1,5 +1,5 @@
 return {
-    AppDidEnterBackground  = 'ApplicationDidEnterBackground',
-    AppWillEnterForeground = 'ApplicationWillEnterForeground',
-    
+    AppDidEnterBackground      = 'ApplicationDidEnterBackground',
+    AppWillEnterForeground     = 'ApplicationWillEnterForeground',
+    AppDidReceiveMemoryWarning = 'ApplicationDidReceiveMemoryWarning',
 }
