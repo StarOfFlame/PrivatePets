@@ -23,8 +23,8 @@ function Game:load()
 end
 
 function Game:registerSystemEvent()
-    self.event:add(EventEnum.ApplicationDidEnterBackground,  handler(self, self.enterBackground))
-    self.event:add(EventEnum.ApplicationWillEnterForeground, handler(self, self.enterForeground))
+    self.event:add(EventEnum.AppDidEnterBackground,  handler(self, self.enterBackground))
+    self.event:add(EventEnum.AppWillEnterForeground, handler(self, self.enterForeground))
 end
 
 function Game:enterBackground()

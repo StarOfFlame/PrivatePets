@@ -1,5 +1,5 @@
 return {
-    ApplicationDidEnterBackground  = 'ApplicationDidEnterBackground',
-    ApplicationWillEnterForeground = 'ApplicationWillEnterForeground',
+    AppDidEnterBackground  = 'ApplicationDidEnterBackground',
+    AppWillEnterForeground = 'ApplicationWillEnterForeground',
     
 }
