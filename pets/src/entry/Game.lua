@@ -1,3 +1,10 @@
+------------------------------------------------------------------------------------------
+---- Name   : Game
+---- Desc   : 游戏核心类
+---- Date   : 2018/03/18
+---- Author : Reyn - jl88744653@gmail.com
+------------------------------------------------------------------------------------------
+
 local Game = class('Game')
 
 function Game:ctor()
@@ -18,8 +25,13 @@ end
 
 function Game:load()
     cc.exports.EventEnum = loadSrc('EventEnum')
+    cc.exports.UserEnum  = loadSrc('UserEnum')
+    cc.exports.utils     = loadSrc('Utils')
+    
     self.event = self:newInstance('Event')
     self.timer = self:newInstance('Timer')
+    self.audio = self:newInstance('Audio')
+    self.net   = self:newInstance('Net')
 end
 
 function Game:registerSystemEvent()
