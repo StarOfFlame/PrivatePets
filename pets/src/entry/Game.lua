@@ -28,10 +28,14 @@ function Game:load()
     cc.exports.UserEnum  = loadSrc('UserEnum')
     cc.exports.utils     = loadSrc('Utils')
     
-    self.event = self:newInstance('Event')
-    self.timer = self:newInstance('Timer')
-    self.audio = self:newInstance('Audio')
-    self.net   = self:newInstance('Net')
+    self.platform = self:newInstance('Platform')
+    self.event    = self:newInstance('Event')
+    self.timer    = self:newInstance('Timer')
+    self.audio    = self:newInstance('Audio')
+    self.net      = self:newInstance('Net')
+
+    self:tag(self.platform:getTargetOSname())
+    self:tag(self.platform:getLanguageName())
 end
 
 function Game:registerSystemEvent()
