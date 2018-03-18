@@ -242,6 +242,9 @@ function class(classname, ...)
     cls.create = function(_, ...)
         return cls.new(...)
     end
+    cls.tag = function(_, ...)
+        print(string.format('[%s]', classname), ...)
+    end
 
     return cls
 end
