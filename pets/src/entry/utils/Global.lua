@@ -5,6 +5,15 @@
 ---- Author : Reyn - jl88744653@gmail.com
 ------------------------------------------------------------------------------------------
 
+--------------------------
+cc.exports.pass = function() end
+dump       = CC_OPEN_OUT and dump or pass
+print      = CC_OPEN_OUT and print or pass
+printf     = CC_OPEN_OUT and printf or pass
+printLog   = CC_OPEN_OUT and printLog or pass
+printInfo  = CC_OPEN_OUT and printInfo or pass
+printError = CC_OPEN_OUT and printError or pass
+
 cc.exports.newInstance = function (classpath, ...)
     return loadSrc(classpath).new(...)
 end
