@@ -26,6 +26,7 @@ end
 function Game:load()
     cc.exports.EventEnum = loadSrc('EventEnum')
     cc.exports.UserEnum  = loadSrc('UserEnum')
+    cc.exports.ColorEnum = loadSrc('ColorEnum')
     cc.exports.utils     = loadSrc('Utils')
     
     self.platform = self:newInstance('Platform')
