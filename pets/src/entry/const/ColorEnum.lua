@@ -1,14 +1,16 @@
-cc.exports.ColorEnum = {
-    Black  = cc.BLACK,
-    White  = cc.WHITE,
-    Red    = cc.RED,
-    Green  = cc.GREEN,
-    Yellow = cc.YELLOW,
-    Blue   = cc.BLUE,
+local COLORENUM = {
+    BLACK  = cc.BLACK,
+    WHITE  = cc.WHITE,
+    RED    = cc.RED,
+    GREEN  = cc.GREEN,
+    YELLOW = cc.YELLOW,
+    BLUE   = cc.BLUE,
 }
 
-ColorEnum.RoleName = {
-    Player = ColorEnum.Red,
-    Npc    = ColorEnum.Green,
-    Masses = ColorEnum.White,
+COLORENUM.ROLE_NAME = {
+    PLAYER = COLORENUM.RED,
+    COSTAR = COLORENUM.GREEN,
+    MASSES = COLORENUM.WHITE,
 }
+
+return COLORENUM

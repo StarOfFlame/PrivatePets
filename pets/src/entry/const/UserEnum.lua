@@ -1,6 +1,6 @@
-cc.exports.UserEnum = {
-    ENABLE_EFFECT = 'effect_enable',
-    ENABLE_MUSIC  = 'music_enable',
-    VOLOME_EFFECT = 'effect_volume',
-    VOLOME_MUSIC  = 'music_volume',
+return {
+    EFFECT_ENABLE = 'effect_enable',
+    MUSIC_ENABLE  = 'music_enable',
+    EFFECT_VOLOME = 'effect_volume',
+    MUSIC_VOLOME  = 'music_volume',
 }

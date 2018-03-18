@@ -24,11 +24,8 @@ function Game:newInstance(classpath, ...)
 end
 
 function Game:load()
-    loadSrc('Global')
-    loadSrc('EventEnum')
-    loadSrc('UserEnum')
-    loadSrc('ColorEnum')
-    loadSrc('Utils')
+    cc.exports.CONST = loadSrc('Const')
+    cc.exports.utils = loadSrc('Utils')
     
     self.platform = self:newInstance('Platform')
     self.event    = self:newInstance('Event')
@@ -41,9 +38,9 @@ function Game:load()
 end
 
 function Game:registerSystemEvent()
-    self.event:add(EventEnum.AppDidEnterBackground, handler(self, self.enterBackground))
-    self.event:add(EventEnum.AppWillEnterForeground, handler(self, self.enterForeground))
-    self.event:add(EventEnum.AppDidReceiveMemoryWarning, handler(self, self.reveiceMemoryWarning))
+    self.event:add(CONST.EVENT.APP_ENTER_BG, handler(self, self.enterBackground))
+    self.event:add(CONST.EVENT.APP_ENTER_FG, handler(self, self.enterForeground))
+    self.event:add(CONST.EVENT.APP_RECV_MEM_WARNING, handler(self, self.reveiceMemoryWarning))
 end
 
 function Game:enterBackground()

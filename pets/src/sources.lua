@@ -14,6 +14,7 @@ local sources = {
 	Extends = 'entry.utils.Extends',
 	UIHelper = 'entry.utils.UIHelper',
 	Utils = 'entry.utils.Utils',
+	Const = 'entry.const.Const',
 	EventEnum = 'entry.const.EventEnum',
 	ColorEnum = 'entry.const.ColorEnum',
 	UserEnum = 'entry.const.UserEnum',

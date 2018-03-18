@@ -21,10 +21,10 @@ function Audio:ctor()
     self.effect       = {}
     self.effectId     = -1
     self.musicId      = -1
-    self.musicVol     = UserXml:getIntegerForKey(UserEnum.VOLUME_MUSIC,  60)
-    self.effectVol    = UserXml:getIntegerForKey(UserEnum.VOLUME_EFFECT, 60)
-    self.isPlayMusic  = UserXml:getBoolForKey(UserEnum.ENABLE_MUSIC,  true)
-    self.isPlayEffect = UserXml:getBoolForKey(UserEnum.ENABLE_EFFECT, true)
+    self.musicVol     = UserXml:getIntegerForKey(CONST.USERXML.MUSIC_VOLUME,  60)
+    self.effectVol    = UserXml:getIntegerForKey(CONST.USERXML.EFFECT_VOLUME, 60)
+    self.isPlayMusic  = UserXml:getBoolForKey(CONST.USERXML.MUSIC_ENABLE,  true)
+    self.isPlayEffect = UserXml:getBoolForKey(CONST.USERXML.EFFECT_ENABLE, true)
 end
 
 ------------------------------------------
@@ -48,7 +48,7 @@ end
 function Audio:setMusicVolume(vol)
     if self.musicVol == vol then return end
     self.musicVol = min(100, max(0, vol))
-    UserXml:setIntegerForKey(UserEnum.VOLUME_MUSIC, self.musicVol)
+    UserXml:setIntegerForKey(CONST.USERXML.MUSIC_VOLUME, self.musicVol)
     self:tag('setMusicVolume : ' .. vol)
 end
 
@@ -59,7 +59,7 @@ end
 function Audio:setEffectVolume(vol)
     if self.effectVol == vol then return end
     self.effectVol = min(100, max(0, vol))
-    UserXml:setIntegerForKey(UserEnum.VOLUME_EFFECT, self.effectVol)
+    UserXml:setIntegerForKey(CONST.USERXML.EFFECT_VOLUME, self.effectVol)
     self:tag('setEffectVolume : ' .. vol)
 end
 
@@ -213,7 +213,7 @@ function Audio:enableEffect(isenable)
         self:stopEffect()
     end
     self.isPlayEffect = isenable
-    UserXml:setBoolForKey(UserEnum.ENABLE_EFFECT, self.isPlayEffect)
+    UserXml:setBoolForKey(CONST.USERXML.EFFECT_ENABLE, self.isPlayEffect)
     self:tag('enableEffect : ' .. tostring(self.isPlayEffect))
 end
 
@@ -229,7 +229,7 @@ function Audio:enableMusic(isenable)
         self:stopMusic()
     end
     self.isPlayMusic = isenable
-    UserXml:setBoolForKey(UserEnum.ENABLE_MUSIC, self.isPlayMusic)
+    UserXml:setBoolForKey(CONST.USERXML.MUSIC_ENABLE, self.isPlayMusic)
     self:tag('enableMusic : ' .. tostring(self.isPlayMusic))
 end
 

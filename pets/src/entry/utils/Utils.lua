@@ -5,8 +5,10 @@
 ---- Author : Reyn - jl88744653@gmail.com
 ------------------------------------------------------------------------------------------
 
-cc.exports.utils = {}
+local Utils = {}
 
-utils.Colorify       = loadSrc('Colorify')
-utils.SecurityNumber = loadSrc('SecurityNumber')
+loadSrc('Global')
+Utils.colorify       = loadSrc('Colorify')
+Utils.securityNumber = loadSrc('SecurityNumber')
 
+return Utils
