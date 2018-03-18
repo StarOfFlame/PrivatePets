@@ -9,7 +9,7 @@ local Event  = class('Event')
 local Dispatcher = cc.Director:getInstance():getEventDispatcher()
 
 function Event:ctor()
-    self._listenerRecords = {}
+    self.listenerRecords_ = {}
 end
 
 ----------------------------------------------------
@@ -32,12 +32,12 @@ end
 -- @param : eventHandler - 事件处理回调
 --
 function Event:add(eventName, eventHandler)
-    if self._listenerRecords[eventName] then
+    if self.listenerRecords_[eventName] then
         self:del(eventName)
     end
     local listener = cc.EventListenerCustom:create(eventName, eventHandler)
     Dispatcher:addEventListenerWithFixedPriority(listener, 1)
-    self._listenerRecords[eventName] = listener
+    self.listenerRecords_[eventName] = listener
 end
 
 ----------------------------------------------------
@@ -45,10 +45,10 @@ end
 -- @param : eventName - 事件名称
 --
 function Event:del(eventName)
-    local listener = self._listenerRecords[eventName]
+    local listener = self.listenerRecords_[eventName]
     if not listener then return end
     Dispatcher:removeEventListener(listener)
-    self._listenerRecords[eventName] = nil
+    self.listenerRecords_[eventName] = nil
 end
 
 ----------------------------------------------------
@@ -66,7 +66,7 @@ end
 -- @desc : 清理事件池子
 --
 function Event:cleanup()
-    table.foreach(self._listenerRecords, handler(self, self.del))
+    table.foreach(self.listenerRecords_, handler(self, self.del))
 end
 
 return Event
