@@ -41,6 +41,7 @@ local sources = {
 	JsonReader = 'entry.manager.JsonReader',
 	Event = 'entry.system.Event',
 	Platform = 'entry.system.Platform',
+	System = 'entry.system.System',
 	Timer = 'entry.system.Timer',
 	Net = 'entry.system.Net',
 	Audio = 'entry.system.Audio',

@@ -19,28 +19,21 @@ function Game:initEnv()
     end
 end
 
-function Game:newInstance(classpath, ...)
-    return loadSrc(classpath).new(...)
-end
-
 function Game:load()
-    cc.exports.CONST = loadSrc('Const')
-    cc.exports.utils = loadSrc('Utils')
+    loadSrc('Global')
     
-    self.platform = self:newInstance('Platform')
-    self.event    = self:newInstance('Event')
-    self.timer    = self:newInstance('Timer')
-    self.audio    = self:newInstance('Audio')
-    self.net      = self:newInstance('Net')
+    cc.exports.CONST  = loadSrc('Const')
+    cc.exports.utils  = loadSrc('Utils')
+    cc.exports.system = loadSrc('System')
 
-    self:tag(self.platform:getTargetOSname())
-    self:tag(self.platform:getLanguageName())
+    self:tag(system.platform:getTargetOSname())
+    self:tag(system.platform:getLanguageName())
 end
 
 function Game:registerSystemEvent()
-    self.event:add(CONST.EVENT.APP_ENTER_BG, handler(self, self.enterBackground))
-    self.event:add(CONST.EVENT.APP_ENTER_FG, handler(self, self.enterForeground))
-    self.event:add(CONST.EVENT.APP_RECV_MEM_WARNING, handler(self, self.reveiceMemoryWarning))
+    system.event:add(CONST.EVENT.APP_ENTER_BG, handler(self, self.enterBackground))
+    system.event:add(CONST.EVENT.APP_ENTER_FG, handler(self, self.enterForeground))
+    system.event:add(CONST.EVENT.APP_RECV_MEM_WARNING, handler(self, self.reveiceMemoryWarning))
 end
 
 function Game:enterBackground()

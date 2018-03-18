@@ -5,6 +5,10 @@
 ---- Author : Reyn - jl88744653@gmail.com
 ------------------------------------------------------------------------------------------
 
+cc.exports.newInstance = function (classpath, ...)
+    return loadSrc(classpath).new(...)
+end
+
 cc.exports.unpack = unpack or table.unpack
 
 cc.exports.max = function(a,b,...)

@@ -7,7 +7,6 @@
 
 local Utils = {}
 
-loadSrc('Global')
 Utils.colorify       = loadSrc('Colorify')
 Utils.securityNumber = loadSrc('SecurityNumber')
 
