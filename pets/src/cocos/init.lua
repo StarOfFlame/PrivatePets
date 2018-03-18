@@ -26,11 +26,11 @@ require "cocos.cocos2d.Cocos2d"
 require "cocos.cocos2d.Cocos2dConstants"
 require "cocos.cocos2d.functions"
 
-__G__TRACKBACK__ = function(msg)
-    local msg = debug.traceback(msg, 3)
-    print(msg)
-    return msg
-end
+-- __G__TRACKBACK__ = function(msg)
+--     local msg = debug.traceback(msg, 3)
+--     print(msg)
+--     return msg
+-- end
 
 -- opengl
 require "cocos.cocos2d.Opengl"
@@ -63,46 +63,46 @@ require "cocos.cocos2d.DrawPrimitives"
 require "cocos.cocos2d.bitExtend"
 
 -- CCLuaEngine
-require "cocos.cocos2d.DeprecatedCocos2dClass"
-require "cocos.cocos2d.DeprecatedCocos2dEnum"
-require "cocos.cocos2d.DeprecatedCocos2dFunc"
-require "cocos.cocos2d.DeprecatedOpenglEnum"
+-- require "cocos.cocos2d.DeprecatedCocos2dClass"
+-- require "cocos.cocos2d.DeprecatedCocos2dEnum"
+-- require "cocos.cocos2d.DeprecatedCocos2dFunc"
+-- require "cocos.cocos2d.DeprecatedOpenglEnum"
 
 -- register_cocostudio_module
-if nil ~= ccs then
-    require "cocos.cocostudio.DeprecatedCocoStudioClass"
-    require "cocos.cocostudio.DeprecatedCocoStudioFunc"
-end
+-- if nil ~= ccs then
+--     require "cocos.cocostudio.DeprecatedCocoStudioClass"
+--     require "cocos.cocostudio.DeprecatedCocoStudioFunc"
+-- end
 
 
 -- register_cocosbuilder_module
-require "cocos.cocosbuilder.DeprecatedCocosBuilderClass"
+-- require "cocos.cocosbuilder.DeprecatedCocosBuilderClass"
 
 -- register_cocosdenshion_module
-require "cocos.cocosdenshion.DeprecatedCocosDenshionClass"
-require "cocos.cocosdenshion.DeprecatedCocosDenshionFunc"
+-- require "cocos.cocosdenshion.DeprecatedCocosDenshionClass"
+-- require "cocos.cocosdenshion.DeprecatedCocosDenshionFunc"
 
 -- register_extension_module
-require "cocos.extension.DeprecatedExtensionClass"
-require "cocos.extension.DeprecatedExtensionEnum"
-require "cocos.extension.DeprecatedExtensionFunc"
+-- require "cocos.extension.DeprecatedExtensionClass"
+-- require "cocos.extension.DeprecatedExtensionEnum"
+-- require "cocos.extension.DeprecatedExtensionFunc"
 
 -- register_network_module
-require "cocos.network.DeprecatedNetworkClass"
-require "cocos.network.DeprecatedNetworkEnum"
-require "cocos.network.DeprecatedNetworkFunc"
+-- require "cocos.network.DeprecatedNetworkClass"
+-- require "cocos.network.DeprecatedNetworkEnum"
+-- require "cocos.network.DeprecatedNetworkFunc"
 
 -- register_ui_module
-if nil ~= ccui then
-    require "cocos.ui.DeprecatedUIEnum"
-    require "cocos.ui.DeprecatedUIFunc"
-end
+-- if nil ~= ccui then
+--     require "cocos.ui.DeprecatedUIEnum"
+--     require "cocos.ui.DeprecatedUIFunc"
+-- end
 
 -- cocosbuilder
-require "cocos.cocosbuilder.CCBReaderLoad"
+-- require "cocos.cocosbuilder.CCBReaderLoad"
 
 -- physics3d
-require "cocos.physics3d.physics3d-constants"
+-- require "cocos.physics3d.physics3d-constants"
 
 if CC_USE_FRAMEWORK then
     require "cocos.framework.init"
