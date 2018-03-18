@@ -25,10 +25,10 @@ end
 
 function Game:load()
     loadSrc('Global')
-    cc.exports.EventEnum = loadSrc('EventEnum')
-    cc.exports.UserEnum  = loadSrc('UserEnum')
-    cc.exports.ColorEnum = loadSrc('ColorEnum')
-    cc.exports.utils     = loadSrc('Utils')
+    loadSrc('EventEnum')
+    loadSrc('UserEnum')
+    loadSrc('ColorEnum')
+    loadSrc('Utils')
     
     self.platform = self:newInstance('Platform')
     self.event    = self:newInstance('Event')
