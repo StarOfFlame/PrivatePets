@@ -1,0 +1,282 @@
+{
+	"sources.lua" : {
+		"md5" : "a2367022565126d381ac2203b823746f",
+		"size" : 2539
+	},
+	"config.lua" : {
+		"md5" : "45f11be10ba1670e7ff9d960d9ce87b8",
+		"size" : 654
+	},
+	"update/UpdateUI.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/Game.lua" : {
+		"md5" : "c01706199ca8da8f9733e94029c4d0eb",
+		"size" : 445
+	},
+	"entry/MyApp.lua" : {
+		"md5" : "6b2e36fddbad045c2b36b459b71ec32b",
+		"size" : 130
+	},
+	"entry/ui/scenes/MainScene.lua" : {
+		"md5" : "c1e2d15cf9c7dbea0494dbf49da89ae3",
+		"size" : 392
+	},
+	"entry/nodes/Masses.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/nodes/Role.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/nodes/Object.lua" : {
+		"md5" : "de88723405a1b182b4fda9372e1562e9",
+		"size" : 1026
+	},
+	"entry/nodes/Prop.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/nodes/Npc.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/nodes/Player.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/utils/Extends.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/utils/UIHelper.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/const/EventEnum.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/const/ColorEnum.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/const/ConfigBase.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/manager/UserDataMgr.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/manager/SceneMgr.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/manager/SourceMgr.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/manager/XmlWriter.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/manager/MapMgr.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/manager/LevelMgr.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/manager/XmlReader.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/manager/ObjectMgr.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/manager/ResMgr.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/manager/TimerMgr.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/manager/LayerMgr.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/manager/DbMgr.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/manager/JsonWriter.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/manager/NetworkMgr.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/manager/CacheMgr.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/manager/CashMgr.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/manager/FuncOpenMgr.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/manager/ConfigMgr.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/manager/EventMgr.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/manager/JsonReader.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/system/Event.lua" : {
+		"md5" : "c7d8ead232731965438c7718ea42893f",
+		"size" : 2034
+	},
+	"entry/system/Timer.lua" : {
+		"md5" : "e98c9f1b9c1c9a6034334a5504544656",
+		"size" : 2427
+	},
+	"entry/system/Net.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/system/Audio.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/thirds/XmlParser.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/thirds/UTF8.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/thirds/Md5.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/thirds/richlabel/richlabel.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/thirds/richlabel/label_div.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/thirds/richlabel/label_parser.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/base/ManagerBase.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/base/PropBase.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/base/RoleBase.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/base/SceneBase.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/base/UserDataBase.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/base/ConfigBase.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/base/LayerBase.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"entry/base/ObjectBase.lua" : {
+		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
+		"size" : 0
+	},
+	"cocos/framework/extends/SpriteEx.lua" : {
+		"md5" : "0db1c7fa60f27ea680d6ac31c4165005",
+		"size" : 2156
+	},
+	"cocos/framework/extends/UISlider.lua" : {
+		"md5" : "f82bcaf11beb658da0a7fdc5a3c04aa8",
+		"size" : 1402
+	},
+	"cocos/framework/extends/UITextField.lua" : {
+		"md5" : "0d05ab78e29180bbdf943121fbc011e1",
+		"size" : 1635
+	},
+	"cocos/framework/extends/UIScrollView.lua" : {
+		"md5" : "a7425fa31d52266cd757169fa2d44e35",
+		"size" : 2210
+	},
+	"cocos/framework/extends/UICheckBox.lua" : {
+		"md5" : "613c3b42c1a3a053f93f8a9708288664",
+		"size" : 1446
+	},
+	"cocos/framework/extends/UIEditBox.lua" : {
+		"md5" : "fd67393654fba0d9b2fa39223e32260c",
+		"size" : 1452
+	},
+	"cocos/framework/extends/UIListView.lua" : {
+		"md5" : "dd18362d2049ab105a2f9ddd47e5bfd9",
+		"size" : 2526
+	},
+	"cocos/framework/extends/NodeEx.lua" : {
+		"md5" : "83fc8bc4c2dfe490d4f7d6a6304a65e5",
+		"size" : 5171
+	},
+	"cocos/framework/extends/LayerEx.lua" : {
+		"md5" : "f137a7632ade189c20048e5df9731eb1",
+		"size" : 2622
+	},
+	"cocos/framework/extends/UIWidget.lua" : {
+		"md5" : "4c09920e460819a58eafb77664fa6cfd",
+		"size" : 1572
+	},
+	"cocos/framework/extends/MenuEx.lua" : {
+		"md5" : "28d5d077848078eace868d55c724318e",
+		"size" : 1238
+	},
+	"cocos/framework/extends/UIPageView.lua" : {
+		"md5" : "c6027914fb76fe350af4e3ab081e67d7",
+		"size" : 1394
+	},
+	"packages/mvc/AppBase.lua" : {
+		"md5" : "6d6cbd32172bd49e71461168cc1bd5da",
+		"size" : 1853
+	},
+	"packages/mvc/init.lua" : {
+		"md5" : "6b9173481a1300c5e737ad5885ebef00",
+		"size" : 94
+	},
+	"packages/mvc/ViewBase.lua" : {
+		"md5" : "4499d9879d448bf7c35babbff918e8da",
+		"size" : 1888
+	}
+}
