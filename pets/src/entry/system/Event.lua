@@ -56,9 +56,9 @@ end
 -- @param : eventName - 事件名称
 -- @param : eventHandler - 事件数据
 --
-function Event:emit(eventName, userData)
+function Event:emit(eventName, msg)
     local event = cc.EventCustom:new(eventName)
-    event._usedata = userData
+    event._msg = msg
     Dispatcher:dispatchEvent(event)
 end
 

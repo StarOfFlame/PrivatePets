@@ -11,6 +11,13 @@ function Game:ctor()
     self:initEnv()
     self:load()
     self:registerSystemEvent()
+    self:test()
+end
+
+function Game:test()
+    self:tag('test')
+    self:tag(system.platform:getTargetOSname())
+    self:tag(system.platform:getLanguageName())
 end
 
 function Game:initEnv()
@@ -25,9 +32,6 @@ function Game:load()
     cc.exports.CONST  = loadSrc('Const')
     cc.exports.utils  = loadSrc('Utils')
     cc.exports.system = loadSrc('System')
-
-    self:tag(system.platform:getTargetOSname())
-    self:tag(system.platform:getLanguageName())
 end
 
 function Game:registerSystemEvent()
@@ -46,6 +50,11 @@ end
 
 function Game:reveiceMemoryWarning()
     self:tag('reveiceMemoryWarning')
+end
+
+function Game:receiveLuaError(msg)
+    self:tag('LUA_ERROR_OCCURS\n', msg)
+    -- stageMgr:showErrorMsg(msg)
 end
 
 return Game

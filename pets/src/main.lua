@@ -8,17 +8,18 @@ require('sources')
 local function entry()
     cc.exports.stage = cc.Scene:create()
     display.runScene(stage)
-
+    
     cc.exports.game = loadSrc('Game').new()
 end
 
-local status, msg = xpcall(entry, function()
+cc.exports.__G__TRACKBACK__ = function(msg)
     local msg = debug.traceback(msg, 3)
-    if not ON_RELEASED then
+    if game then
+        game:receiveLuaError(msg)
+    else
         print(msg)
     end
     return msg
-end)
-if not status then
-    print(msg)
 end
+
+xpcall(entry, __G__TRACKBACK__)
