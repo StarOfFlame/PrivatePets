@@ -6,6 +6,9 @@ require "cocos.init"
 require('sources')
 
 local function main()
+    cc.exports.stage = cc.Scene:create()
+    display.runScene(stage)
+
     cc.exports.game = loadSrc('Game').new()
 end
 

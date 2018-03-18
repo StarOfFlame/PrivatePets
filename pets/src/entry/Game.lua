@@ -1,24 +1,38 @@
 local Game = class('Game')
 
 function Game:ctor()
-    self.loaded_ = false
+    self:initEnv()
     self:load()
+    self:registerSystemEvent()
+end
+
+function Game:initEnv()
+    if CC_SHOW_FPS then
+        cc.Director:getInstance():setDisplayStats(true)
+    end
 end
 
 function Game:newInstance(classpath, ...)
-    return require(classpath).new(...)
+    return loadSrc(classpath).new(...)
 end
 
 function Game:load()
-    if self.loaded_ then
-        return
-    end
-    
-    self.event = self:newInstance('entry.system.Event')
-    self.timer = self:newInstance('entry.system.Timer')
-    
-    
-    self.loaded_ = true
+    cc.exports.EventEnum = loadSrc('EventEnum')
+    self.event = self:newInstance('Event')
+    self.timer = self:newInstance('Timer')
+end
+
+function Game:registerSystemEvent()
+    self.event:add(EventEnum.ApplicationDidEnterBackground,  handler(self, self.enterBackground))
+    self.event:add(EventEnum.ApplicationWillEnterForeground, handler(self, self.enterForeground))
+end
+
+function Game:enterBackground()
+
+end
+
+function Game:enterForeground()
+
 end
 
 return Game
