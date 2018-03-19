@@ -64,7 +64,7 @@ function Game:receiveLuaError()
     --
     local err = {}
     for level = 1, math.huge do
-        local info = debug.getinfo(level, "nSlL")
+        local info = debug.getinfo(level, 'nSl')
         if not info then break end
         local arr = string.split(tostring(info.source), '/')
         local stb = {}
@@ -82,7 +82,7 @@ function Game:receiveLuaError()
         end
     end
     local errstr = table.concat(err, '\n')
-    cc.Label:createWithSystemFont(errstr, "Arial", 18)
+    cc.Label:createWithSystemFont(errstr, 'Arial', 18)
     :setAnchorPoint(display.RIGHT_BOTTOM)
     :move(display.width-20, 20)
     :setColor(CONST.COLOR.RED)
