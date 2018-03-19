@@ -63,7 +63,7 @@ ON_DEVELOP  = CC_RUN_MODE == 2
 CC_OPEN_OUT = (tonumber(_C.OUT) or 0) == 1
 
 -- FPS
-CC_SHOW_FPS = CC_RUN_MODE == ON_DEVELOP
+CC_SHOW_FPS = ON_DEVELOP
 
 -- SDK
 CC_RUN_SDK = (tonumber(_C.TIP) or 0) == 1
