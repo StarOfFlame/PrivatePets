@@ -52,9 +52,43 @@ function Game:reveiceMemoryWarning()
     self:tag('reveiceMemoryWarning')
 end
 
-function Game:receiveLuaError(msg)
-    self:tag('LUA_ERROR_OCCURS\n', msg)
-    -- stageMgr:showErrorMsg(msg)
+function Game:receiveLuaError()
+    ----------------------------------------------------------------------
+    -- debug.getinfo()
+    -- 'n'   获取name和namewhat
+    -- 'f'   获取func
+    -- 'S'   获取source, short_src, what, linedefined, 和lastlinedefined
+    -- 'l'   获取当前行
+    -- 'L'   获取活动行
+    -- 'u'   获取nup (upvalue的个数) 
+    --
+    local err = {}
+    for level = 1, math.huge do
+        local info = debug.getinfo(level, "nSlL")
+        if not info then break end
+        local arr = string.split(tostring(info.source), '/')
+        local stb = {}
+        local len = #arr
+        if len > 1 then
+            for i=len-2, 3 do
+                table.insert(stb, arr[i])
+            end
+        elseif len > 0 then
+            table.insert(stb, arr[1])
+        end
+        local source = table.concat(stb, '/')
+        if source ~= '' then
+            err[#err+1] = string.format('[%s] func: %s  file: %s', info.currentline , info.name, source)
+        end
+    end
+    local errstr = table.concat(err, '\n')
+    cc.Label:createWithSystemFont(errstr, "Arial", 18)
+    :setAnchorPoint(display.RIGHT_BOTTOM)
+    :move(display.width-20, 20)
+    :setColor(CONST.COLOR.RED)
+    :addTo(stage, 9999)
+
+    self:tag('LUA_ERROR:\n'..errstr)
 end
 
 return Game
