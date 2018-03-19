@@ -15,7 +15,7 @@ end
 cc.exports.__G__TRACKBACK__ = function(msg)
     local msg = debug.traceback(msg, 3)
     if game then
-        game:receiveLuaError(msg)
+        game:receiveLuaError()
     else
         print(msg)
     end
