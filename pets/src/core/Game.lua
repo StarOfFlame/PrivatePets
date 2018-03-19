@@ -15,8 +15,8 @@ function Game:ctor()
 end
 
 function Game:test()
-    self:tag(system.platform:getTargetOSname())
-    self:tag(system.platform:getLanguageName())
+    self:tag(' System  : ' .. system.platform:getTargetOSname())
+    self:tag('Language : ' .. system.platform:getLanguageName())
 
     elapse(function()
         for i=1, 5000 do
