@@ -86,35 +86,43 @@ static int register_all_packages()
     return 0; //flag for packages manager
 }
 
+// register lua module
+static void registerLuaData()
+{
+    auto engine = LuaEngine::getInstance();
+    ScriptEngineManager::getInstance()->setScriptEngine(engine);
+    lua_State* L = engine->getLuaStack()->getLuaState();
+    lua_module_register(L);
+    
+    LuaStack* stack = engine->getLuaStack();
+    KEY_SIGN key_sign;
+    int key_len  = (int)strlen(key_sign.KEY);
+    int sign_len = (int)strlen(key_sign.KEY);
+    stack->setXXTEAKeyAndSign(key_sign.KEY, key_len, key_sign.SIGN, sign_len);
+    
+    register_all_packages();
+    
+    //register custom function
+    //LuaStack* stack = engine->getLuaStack();
+    //register_custom_function(stack->getLuaState());
+    lua_register(L, "GetElapseTime", GetElapseTime);
+    lua_register(L, "GetCurrentUsec", GetCurrentUsec);
+}
+
 bool AppDelegate::applicationDidFinishLaunching()
 {
     // set default FPS
     Director::getInstance()->setAnimationInterval(1.0 / 60.0f);
 
-    // register lua module
-    auto engine = LuaEngine::getInstance();
-    ScriptEngineManager::getInstance()->setScriptEngine(engine);
-    lua_State* L = engine->getLuaStack()->getLuaState();
-    lua_module_register(L);
-    lua_register(L, "GetElapseTime", GetElapseTime);
-    lua_register(L, "GetCurrentUsec", GetCurrentUsec);
-
-    register_all_packages();
-
-    LuaStack* stack = engine->getLuaStack();
-    KEY_SIGN key_sign;
-    stack->setXXTEAKeyAndSign(key_sign.KEY, strlen(key_sign.KEY), key_sign.SIGN, strlen(key_sign.SIGN));
-
-    //register custom function
-    //LuaStack* stack = engine->getLuaStack();
-    //register_custom_function(stack->getLuaState());
+    registerLuaData();
     
 #if CC_64BITS
     FileUtils::getInstance()->addSearchPath("src/64bit");
 #endif
     FileUtils::getInstance()->addSearchPath("src");
     FileUtils::getInstance()->addSearchPath("res");
-    if (engine->executeScriptFile("main.lua"))
+    auto engine = LuaEngine::getInstance();
+    if (engine->executeScriptFile("entry.lua"))
     {
         return false;
     }
