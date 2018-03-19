@@ -6,7 +6,7 @@ import sys
 
 PATH_ROUTER   = os.path
 CURRENT_PATH  = os.getcwd()
-RELATIVE_PATH = '../../src/entry/'
+RELATIVE_PATH = '../../src/core/'
 SOURCE_PATH   = PATH_ROUTER.abspath(PATH_ROUTER.join(CURRENT_PATH, RELATIVE_PATH))
 SOURCE_LUA    = PATH_ROUTER.abspath(PATH_ROUTER.join(SOURCE_PATH, '../sources.lua'))
 LUA_HEADER    = 'local sources = {\n'
@@ -39,7 +39,7 @@ class generator():
                 name, ext = PATH_ROUTER.splitext(file)
                 if ext == '.lua' and name != 'sources':
                     path = PATH_ROUTER.relpath(PATH_ROUTER.join(root, name), SOURCE_PATH)
-                    path = 'entry.' + path.replace('/', '.')
+                    path = 'core.' + path.replace('/', '.')
                     self.appendLuaItem(path)
         self.writeLuaSource()
 
