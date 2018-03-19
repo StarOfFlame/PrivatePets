@@ -2,6 +2,7 @@
 #include "scripting/lua-bindings/manual/CCLuaEngine.h"
 #include "cocos2d.h"
 #include "scripting/lua-bindings/manual/lua_module_register.h"
+#include <sys/time.h>
 
 // #define USE_AUDIO_ENGINE 1
 // #define USE_SIMPLE_AUDIO_ENGINE 1
@@ -20,6 +21,28 @@ using namespace CocosDenshion;
 
 USING_NS_CC;
 using namespace std;
+
+static struct timeval timeInBackGround;
+static struct timeval timeToForeGorund;
+
+int GetCurrentUsec(lua_State* l)
+{
+    struct timeval t_val;
+    gettimeofday(&t_val, NULL);
+    double current = t_val.tv_sec + (1.0 * t_val.tv_usec)/1000000;
+    lua_pushnumber(l, current);
+    return 1;
+}
+
+int GetElapseTime(lua_State* l)
+{
+    struct timeval t_elapse;
+    timersub(&timeToForeGorund, &timeInBackGround, &t_elapse);
+    double elapse = t_elapse.tv_sec + (1.0 * t_elapse.tv_usec)/1000000;
+    CCLOG("elapsed : %fs", elapse);
+    lua_pushnumber(l, elapse);
+    return 1;
+}
 
 AppDelegate::AppDelegate()
 {
@@ -68,6 +91,8 @@ bool AppDelegate::applicationDidFinishLaunching()
     ScriptEngineManager::getInstance()->setScriptEngine(engine);
     lua_State* L = engine->getLuaStack()->getLuaState();
     lua_module_register(L);
+    lua_register(L, "GetElapseTime", GetElapseTime);
+    lua_register(L, "GetCurrentUsec", GetCurrentUsec);
 
     register_all_packages();
 
@@ -94,6 +119,8 @@ bool AppDelegate::applicationDidFinishLaunching()
 // This function will be called when the app is inactive. Note, when receiving a phone call it is invoked.
 void AppDelegate::applicationDidEnterBackground()
 {
+    gettimeofday(&timeInBackGround, NULL);
+    
     Director::getInstance()->getEventDispatcher()->dispatchCustomEvent("ApplicationDidEnterBackground");
     Director::getInstance()->stopAnimation();
 
@@ -108,6 +135,8 @@ void AppDelegate::applicationDidEnterBackground()
 // this function will be called when the app is active again
 void AppDelegate::applicationWillEnterForeground()
 {
+    gettimeofday(&timeToForeGorund, NULL);
+
     Director::getInstance()->getEventDispatcher()->dispatchCustomEvent("ApplicationWillEnterForeground");
     Director::getInstance()->startAnimation();
 
@@ -118,3 +147,4 @@ void AppDelegate::applicationWillEnterForeground()
     SimpleAudioEngine::getInstance()->resumeAllEffects();
 #endif
 }
+

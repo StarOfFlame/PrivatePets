@@ -15,9 +15,16 @@ function Game:ctor()
 end
 
 function Game:test()
-    self:tag('test')
     self:tag(system.platform:getTargetOSname())
     self:tag(system.platform:getLanguageName())
+
+    self:useTime(function()
+        for i=1, 5000 do
+            for j=1, 5000 do
+                pass(i+j)
+            end
+        end
+    end, 'timer counter')
 end
 
 function Game:initEnv()
@@ -45,6 +52,7 @@ function Game:enterBackground()
 end
 
 function Game:enterForeground()
+    print(GetElapseTime())
     self:tag('AppEnterForeground')
 end
 
@@ -89,6 +97,18 @@ function Game:receiveLuaError()
     :addTo(stage, 9999)
 
     self:tag('LUA_ERROR:\n'..errstr)
+end
+
+function Game:useTime(fn, tag)
+    tag = tag or 'null'
+    local t = 0
+    if fn then 
+        local t1 = GetCurrentUsec()
+        fn()
+        t = GetCurrentUsec() - t1
+    end
+    self:tag(string.format('(%s) use time : %.3f', tag, t))
+    return t
 end
 
 return Game
