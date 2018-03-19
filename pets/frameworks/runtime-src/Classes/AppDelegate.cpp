@@ -22,6 +22,11 @@ using namespace CocosDenshion;
 USING_NS_CC;
 using namespace std;
 
+struct KEY_SIGN {
+    const char* KEY   = "jl88744653";
+    const char* SIGN  = "HJN.Reyn.JL";
+};
+
 static struct timeval timeInBackGround;
 static struct timeval timeToForeGorund;
 
@@ -97,7 +102,8 @@ bool AppDelegate::applicationDidFinishLaunching()
     register_all_packages();
 
     LuaStack* stack = engine->getLuaStack();
-    stack->setXXTEAKeyAndSign("2dxLua", strlen("2dxLua"), "XXTEA", strlen("XXTEA"));
+    KEY_SIGN key_sign;
+    stack->setXXTEAKeyAndSign(key_sign.KEY, strlen(key_sign.KEY), key_sign.SIGN, strlen(key_sign.SIGN));
 
     //register custom function
     //LuaStack* stack = engine->getLuaStack();
