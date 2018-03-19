@@ -52,8 +52,8 @@ function Game:enterBackground()
 end
 
 function Game:enterForeground()
-    print(GetElapseTime())
     self:tag('AppEnterForeground')
+    self:tag('App from backgorund back to foreground use time : ' .. GetElapseTime() .. 's')
 end
 
 function Game:reveiceMemoryWarning()
