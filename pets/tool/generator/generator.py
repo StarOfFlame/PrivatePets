@@ -12,7 +12,7 @@ SOURCE_LUA    = PATH_ROUTER.abspath(PATH_ROUTER.join(SOURCE_PATH, '../sources.lu
 LUA_HEADER    = 'local sources = {\n'
 LUA_LINE_PRE  = '\t'
 LUA_LINE_SUB  = ',\n'
-LUA_TAILER    = '}\n\n cc.exports.loadSrc = function(name)\n\treturn require(sources[name])\nend\n'
+LUA_TAILER    = '}\n\n cc.exports.include = function(name)\n\treturn require(sources[name])\nend\n'
 
 
 class generator():
