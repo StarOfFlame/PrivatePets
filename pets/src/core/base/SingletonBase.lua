@@ -1,12 +1,18 @@
-local Singleton = class('Singleton')
+local SingletonBase = class('SingletonBase')
 
-local __instance__ = nil
-
-function Singleton:getInstance()
-    if not __instance__ then
-        __instance__ = Singleton.new()
-    end
-    return __instance__
+function SingletonBase:ctor()
+    self.__instance__ = nil
+    
 end
 
-return Singleton
+function SingletonBase:getInstance()
+    if not self.__instance__ then
+        self.__inittime__ = checkint(self.__inittime__)
+        self.__inittime__ = self.__inittime__ + 1
+        self.__instance__ = self.new()
+        self:tag('__inittime__', self.__inittime__)
+    end
+    return self.__instance__
+end
+
+return SingletonBase
