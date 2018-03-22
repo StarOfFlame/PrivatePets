@@ -1,4 +1,4 @@
-local TestCase = class('TestCase', loadSrc('SingletonBase'))
+local TestCase = class('TestCase', SingletonBase)
 
 function TestCase:ctor()
 
