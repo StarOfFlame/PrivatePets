@@ -63,3 +63,13 @@ cc.exports.elapse = function(fn, tag)
     end
     print(string.format('(%s) use time : %.3f', tag, t))
 end
+
+--[[截取全屏并保存]]
+cc.exports.captureFullScreen = function (filename)
+    cc.utils:captureScreen(function(successed, outputFile)
+        if successed then
+            return outputFile
+        end
+        return nil
+    end, filename..".png")
+end

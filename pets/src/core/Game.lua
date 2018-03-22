@@ -17,7 +17,16 @@ end
 function Game:test()
     self:tag(' System  : ' .. system.platform:getTargetOSname())
     self:tag('Language : ' .. system.platform:getLanguageName())
+    local root = device.writablePath
+    cc.FileUtils:getInstance():createDirectory(root ..'res/')
 
+    local layer = cc.LayerColor:create(cc.c4b(255,255,255,255), display.width, display.height)
+    stage:addChild(layer)
+    local sp = cc.Sprite:create('HelloWorld.png')
+    sp:setPosition(display.center)
+    stage:addChild(sp)
+    cc.utils:captureNodeToFile(sp, root ..'res/HelloWorld-002.png')
+    
     elapse(function()
         for i=1, 5000 do
             for j=1, 5000 do
@@ -31,6 +40,7 @@ function Game:initEnv()
     if CC_SHOW_FPS then
         cc.Director:getInstance():setDisplayStats(true)
     end
+    self:tag(device.writablePath)
 end
 
 function Game:load()
