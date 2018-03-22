@@ -74,6 +74,7 @@ cc.exports.captureFullScreen = function (filename)
     end, filename..".png")
 end
 
+--[[检查值是否为函数类型]]
 cc.exports.checkfunc = function (value)
     return type(value) == 'function' and value or pass
 end
