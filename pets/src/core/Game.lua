@@ -17,6 +17,8 @@ end
 function Game:test()
     self:tag(' System  : ' .. system.platform:getTargetOSname())
     self:tag('Language : ' .. system.platform:getLanguageName())
+    self:dump('color hex to c4b:', utils.colorify:hex2c4b('FE32D4A0'))
+
     local root = device.writablePath
     cc.FileUtils:getInstance():createDirectory(root ..'res/')
 
