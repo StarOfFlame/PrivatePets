@@ -7,6 +7,7 @@ require('sources')
 
 local function entry()
     math.randomseed(os.time())
+    
     cc.exports.stage = cc.Scene:create()
     display.runScene(stage)
     
