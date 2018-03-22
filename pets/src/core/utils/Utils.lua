@@ -7,7 +7,23 @@
 
 local Utils = {}
 
-Utils.colorify       = loadSrc('Colorify')
-Utils.securityNumber = loadSrc('SecurityNumber')
+Utils.colorify          = loadSrc('Colorify')
+Utils.securityNumber    = loadSrc('SecurityNumber')
+
+function Utils:grabNodeToFile(node, where)
+    cc.utils:captureNodeToFile(node, where)
+end
+
+function Utils:grabScreenToFile(okfn, nofn, where)
+    okfn = checkfunc(okfn)
+    nofn = checkfunc(nofn)
+    cc.utils:captureScreen(function(success, output)
+        if success then
+            okfn(output)
+        else
+            nofn(output)
+        end
+    end, where)
+end
 
 return Utils

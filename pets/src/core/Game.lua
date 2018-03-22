@@ -15,27 +15,41 @@ function Game:ctor()
 end
 
 function Game:test()
-    self:tag(' System  : ' .. system.platform:getTargetOSname())
-    self:tag('Language : ' .. system.platform:getLanguageName())
-    self:dump('color hex to c4b:', utils.colorify:hex2c4b('FE32D4A0'))
+    local function testcase01_tag()
+        self:tag(' System  : ' .. system.platform:getTargetOSname())
+        self:tag('Language : ' .. system.platform:getLanguageName())
+    end
 
-    local root = device.writablePath
-    cc.FileUtils:getInstance():createDirectory(root ..'res/')
-
-    local layer = cc.LayerColor:create(cc.c4b(255,255,255,255), display.width, display.height)
-    stage:addChild(layer)
-    local sp = cc.Sprite:create('HelloWorld.png')
-    sp:setPosition(display.center)
-    stage:addChild(sp)
-    cc.utils:captureNodeToFile(sp, root ..'res/HelloWorld-002.png')
+    local function testcase02_grab()
+        local layer = cc.LayerColor:create(cc.c4b(255,255,255,255), display.width, display.height)
+        stage:addChild(layer)
+        local sp = cc.Sprite:create('HelloWorld.png')
+        sp:setPosition(display.center)
+        stage:addChild(sp)
+        
+        local root = device.writablePath
+        cc.FileUtils:getInstance():createDirectory(root ..'res/')
+        utils:grabNodeToFile(sp, root .. 'res/HelloWorld-001.png')
+        utils:grabScreenToFile(function(output)
+            self:tag('grap screen success : ' .. output)
+        end, function(output)
+            self:tag('grap screen failure : ' .. output)
+        end, root .. 'res/HelloWorld-002.png')
+    end
     
-    elapse(function()
-        for i=1, 5000 do
-            for j=1, 5000 do
-                pass(i+j)
+    local function testcase03_elapse()
+        elapse(function()
+            for i=1, 5000 do
+                for j=1, 5000 do
+                    pass(i+j)
+                end
             end
-        end
-    end, 'timer counter')
+        end, 'timer counter')
+    end
+
+    testcase01_tag()
+    testcase02_grab()
+    testcase03_elapse()
 end
 
 function Game:initEnv()

@@ -54,7 +54,7 @@ end
 -- 执行方法所需时间
 --
 cc.exports.elapse = function(fn, tag)
-    tag = tag or 'null'
+    tag = tag or 'elapse'
     local t = 0
     if fn then 
         local t1 = GetCurrentUsec()
@@ -72,4 +72,8 @@ cc.exports.captureFullScreen = function (filename)
         end
         return nil
     end, filename..".png")
+end
+
+cc.exports.checkfunc = function (value)
+    return type(value) == 'function' and value or pass
 end
