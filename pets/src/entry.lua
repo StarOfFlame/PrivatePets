@@ -5,13 +5,25 @@ require('config')
 require('cocos.init')
 require('sources')
 
+cc.exports.SingletonBase = include('SingletonBase')
+cc.exports.GetInstance = function(modulename, ...)
+    local base = include(modulename)
+    if not base.getInstance then
+        return base
+    end
+    return base:getInstance(...)
+end
+cc.exports.NewInstance = function(modulename, ...)
+    return include(modulename):create(...)
+end
+
 local function entry()
     math.randomseed(os.time())
     
     cc.exports.stage = cc.Scene:create()
     display.runScene(stage)
     
-    cc.exports.game = loadSrc('Game').new()
+    cc.exports.game = GetInstance('Game')
 end
 
 cc.exports.__G__TRACKBACK__ = function(msg)

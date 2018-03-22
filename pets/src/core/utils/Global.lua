@@ -20,7 +20,7 @@ printError = CC_OPEN_OUT and printError or pass
 -- 创建实例
 --
 cc.exports.newInstance = function (classpath, ...)
-    return loadSrc(classpath).new(...)
+    return include(classpath).new(...)
 end
 
 ----------------------------------------

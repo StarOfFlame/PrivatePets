@@ -5,7 +5,7 @@
 ---- Author : Reyn - jl88744653@gmail.com
 ------------------------------------------------------------------------------------------
 
-local Game = class('Game')
+local Game = class('Game', SingletonBase)
 
 function Game:ctor()
     self:initEnv()
@@ -15,9 +15,9 @@ function Game:ctor()
 end
 
 function Game:test()
-    testcase:getInstance():testcase01()
-    testcase:getInstance():testcase02()
-    testcase:getInstance():testcase03()
+    GetInstance('TestCase'):testcase01()
+    GetInstance('TestCase'):testcase02()
+    GetInstance('TestCase'):testcase03()
 end
 
 function Game:initEnv()
@@ -28,12 +28,12 @@ function Game:initEnv()
 end
 
 function Game:load()
-    loadSrc('Global')
+    include('Global')
     
-    cc.exports.CONST    = loadSrc('Const')
-    cc.exports.utils    = loadSrc('Utils')
-    cc.exports.system   = loadSrc('System')
-    cc.exports.testcase = loadSrc('TestCase')
+    cc.exports.CONST    = include('Const')
+    cc.exports.utils    = include('Utils')
+    cc.exports.system   = include('System')
+    -- cc.exports.manager  = include('Manager')
 end
 
 function Game:registerSystemEvent()

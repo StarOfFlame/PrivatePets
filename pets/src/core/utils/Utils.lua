@@ -7,8 +7,8 @@
 
 local Utils = {}
 
-Utils.colorify          = loadSrc('Colorify')
-Utils.securityNumber    = loadSrc('SecurityNumber')
+Utils.colorify          = include('Colorify')
+Utils.securityNumber    = include('SecurityNumber')
 
 function Utils:grabNodeToFile(node, where)
     cc.utils:captureNodeToFile(node, where)

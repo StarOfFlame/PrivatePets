@@ -62,6 +62,6 @@ local sources = {
 	ObjectBase = 'core.base.ObjectBase',
 }
 
- cc.exports.loadSrc = function(name)
+cc.exports.include = function(name)
 	return require(sources[name])
 end
