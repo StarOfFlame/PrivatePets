@@ -14,7 +14,6 @@ function zz:init()
     math.randomseed(os.time())
     self.singleton = SingletonBase
     self:initStage()
-    self:start()
 end
 
 function zz:loadInstance(modulename, ...)
@@ -34,7 +33,7 @@ function zz:initStage()
     display.runScene(self.stage)
 end
 
-function zz:start()
+function zz:startGame()
     self.game = zz:loadInstance('Game')
 end
 
