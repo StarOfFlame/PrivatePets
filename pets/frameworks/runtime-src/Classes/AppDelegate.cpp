@@ -2,7 +2,7 @@
 #include "scripting/lua-bindings/manual/CCLuaEngine.h"
 #include "cocos2d.h"
 #include "scripting/lua-bindings/manual/lua_module_register.h"
-#include <sys/time.h>
+#include "thirds/Thirds.h"
 
 // #define USE_AUDIO_ENGINE 1
 // #define USE_SIMPLE_AUDIO_ENGINE 1
@@ -26,27 +26,6 @@ struct KEY_SIGN {
     const char* KEY   = "jl88744653";
     const char* SIGN  = "HJN.Reyn.JL";
 };
-
-static struct timeval timeInBackGround;
-static struct timeval timeToForeGorund;
-
-int GetCurrentUsec(lua_State* l)
-{
-    struct timeval t_val;
-    gettimeofday(&t_val, NULL);
-    double current = t_val.tv_sec + (1.0 * t_val.tv_usec)/1000000;
-    lua_pushnumber(l, current);
-    return 1;
-}
-
-int GetElapseTime(lua_State* l)
-{
-    struct timeval t_elapse;
-    timersub(&timeToForeGorund, &timeInBackGround, &t_elapse);
-    double elapse = t_elapse.tv_sec + (1.0 * t_elapse.tv_usec)/1000000;
-    lua_pushnumber(l, elapse);
-    return 1;
-}
 
 AppDelegate::AppDelegate()
 {
@@ -93,6 +72,8 @@ static void registerLuaData()
     lua_State* L = engine->getLuaStack()->getLuaState();
     lua_module_register(L);
     
+    Thirds::init_pbc_lua(L);
+    
     LuaStack* stack = engine->getLuaStack();
     KEY_SIGN key_sign;
     int key_len  = (int)strlen(key_sign.KEY);
@@ -102,10 +83,8 @@ static void registerLuaData()
     register_all_packages();
     
     //register custom function
-    //LuaStack* stack = engine->getLuaStack();
-    //register_custom_function(stack->getLuaState());
-    lua_register(L, "GetElapseTime", GetElapseTime);
-    lua_register(L, "GetCurrentUsec", GetCurrentUsec);
+    Thirds::TimeUtils::register_getelapsetime_lua(L);
+    Thirds::TimeUtils::register_getcurrentusec_lua(L);
 }
 
 bool AppDelegate::applicationDidFinishLaunching()
@@ -115,12 +94,14 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     registerLuaData();
     
+    auto engine = LuaEngine::getInstance();
+    
 #if CC_64BITS
     FileUtils::getInstance()->addSearchPath("src/64bit");
 #endif
     FileUtils::getInstance()->addSearchPath("src");
     FileUtils::getInstance()->addSearchPath("res");
-    auto engine = LuaEngine::getInstance();
+    engine = LuaEngine::getInstance();
     if (engine->executeScriptFile("entry.lua"))
     {
         return false;
@@ -132,7 +113,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 // This function will be called when the app is inactive. Note, when receiving a phone call it is invoked.
 void AppDelegate::applicationDidEnterBackground()
 {
-    gettimeofday(&timeInBackGround, NULL);
+    Thirds::TimeUtils::setTimeWhenEnterBackGround();
     
     Director::getInstance()->getEventDispatcher()->dispatchCustomEvent("ApplicationDidEnterBackground");
     Director::getInstance()->stopAnimation();
@@ -148,7 +129,7 @@ void AppDelegate::applicationDidEnterBackground()
 // this function will be called when the app is active again
 void AppDelegate::applicationWillEnterForeground()
 {
-    gettimeofday(&timeToForeGorund, NULL);
+    Thirds::TimeUtils::setTimeWhenBackToForeGround();
 
     Director::getInstance()->getEventDispatcher()->dispatchCustomEvent("ApplicationWillEnterForeground");
     Director::getInstance()->startAnimation();

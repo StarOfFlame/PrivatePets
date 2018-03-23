@@ -2,10 +2,6 @@
 #define __APP_DELEGATE_H__
 
 #include "cocos2d.h"
-#include "scripting/lua-bindings/manual/CCLuaEngine.h"
-
-int GetElapseTime(lua_State* l);
-int GetCurrentUsec(lua_State* l);
 
 /**
 @brief    The cocos2d Application.
