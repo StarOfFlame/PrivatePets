@@ -5,9 +5,7 @@
 ---- Author : Reyn - jl88744653@gmail.com
 ------------------------------------------------------------------------------------------
 
-----------------------------------------
--- 跳过函数及输出指定
---
+--[[跳过函数及输出指定]]
 cc.exports.pass = function() end
 dump          = CC_OPEN_OUT and dump          or pass
 print         = CC_OPEN_OUT and print         or pass
@@ -17,14 +15,12 @@ printInfo     = CC_OPEN_OUT and printInfo     or pass
 printError    = CC_OPEN_OUT and printError    or pass
 release_print = CC_OPEN_OUT and release_print or pass
 
-----------------------------------------
--- 解表
---
+
+--[[解表]]
 cc.exports.unpack = unpack or table.unpack
 
-----------------------------------------
--- 取最大值
---
+
+--[[取最大值]]
 cc.exports.max = function(a,b,...)
     local t = {a,b,unpack({...})}
     table.sort(t, function(v1,v2)
@@ -33,9 +29,7 @@ cc.exports.max = function(a,b,...)
     return t[1]
 end
 
-----------------------------------------
--- 取最小值
---
+--[[取最小值]]
 cc.exports.min = function(a,b,...)
     local t = {a,b,unpack({...})}
     table.sort(t, function(v1,v2)
@@ -44,9 +38,7 @@ cc.exports.min = function(a,b,...)
     return t[1]
 end
 
-----------------------------------------
--- 执行方法所需时间
---
+--[[执行方法所需时间]]
 cc.exports.elapse = function(fn, tag)
     tag = tag or 'elapse'
     local t = 0
