@@ -10,7 +10,7 @@ require('sources')
 local SingletonBase = include('SingletonBase')
 local zz = class('zz_framework', SingletonBase)
 
-function zz:init()
+function zz:initialize()
     math.randomseed(os.time())
     self.singleton = SingletonBase
     self:initStage()
