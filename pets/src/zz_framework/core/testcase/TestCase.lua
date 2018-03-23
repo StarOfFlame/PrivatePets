@@ -13,6 +13,7 @@ function TestCase:ctor()
         handler(self, self.testcase01),
         handler(self, self.testcase02),
         handler(self, self.testcase03),
+        handler(self, self.testcase04),
     }
 end
 
@@ -21,9 +22,9 @@ function TestCase:run(case)
         self.testcases_[case]()
         return
     end
-    self:testcase01()
-    self:testcase02()
-    self:testcase03()
+    for _, case in ipairs(self.testcases_) do
+        case()
+    end
 end
 
 function TestCase:testcase01()
@@ -62,6 +63,49 @@ function TestCase:testcase03()
         self:dump('testcase03', {a=1,b='fffff',c=cc.BLUE})
     end
     test()
+end
+
+function TestCase:testcase04()
+    self:warn('测试用例04-lfs')
+    self:tag('lfs版本号: ', lfs._VERSION)
+    self:tag('当前路径: ', lfs.currentdir(), device.writablePath)
+
+    local function walk(root)
+        local result = {dir = {}, file={}}
+        
+        local function listdir(rootPath, level)
+            level = level or 1
+            local last = string.sub(rootPath, -1)
+            if last ~= '/' then 
+                rootPath = rootPath .. '/'
+            end
+            for entry in lfs.dir(rootPath) do
+                if entry ~= '.' and entry ~= '..' then
+                    local path = rootPath .. entry
+                    local attr = lfs.attributes(path)
+                    if attr then
+                        local prefix = string.rep('\t', level-1)
+                        if attr.mode == 'directory' then
+                            self:tag(prefix .. '目录:', path)
+                            table.insert(result.dir, path)
+                            listdir(path, level+1)
+                        elseif attr.mode == 'file' then
+                            self:tag(prefix .. '文件:', path)
+                            table.insert(result.file, path)
+                            for name, value in pairs(attr) do
+                                self:tag(prefix..'\t', name, value)
+                            end
+                        end
+                    end
+                end
+            end
+        end
+        listdir(root)
+        
+        return result
+    end
+
+    self:dump('lfs目录遍历', walk(device.writablePath))
 end
 
 return TestCase
