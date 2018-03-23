@@ -2,7 +2,8 @@
 ---- Name   : Event
 ---- Desc   : 事件核心类
 ---- Date   : 2017/12/09
----- Author : Reyn - jl88744653@gmail.com
+---- Author : Reyn 
+---- Email  : jl88744653@gmail.com
 ------------------------------------------------------------------------------------------
 
 local Event  = class('Event')

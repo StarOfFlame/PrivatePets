@@ -1,3 +1,11 @@
+------------------------------------------------------------------------------------------
+---- Name   : SingletonBase
+---- Desc   : 单例基类
+---- Date   : 2018/03/23
+---- Author : Reyn 
+---- Email  : jl88744653@gmail.com
+------------------------------------------------------------------------------------------
+
 local SingletonBase = class('SingletonBase')
 
 function SingletonBase:getInstance()

@@ -1,3 +1,11 @@
+------------------------------------------------------------------------------------------
+---- Name   : config
+---- Desc   : 游戏基础配置
+---- Date   : 2018/03/23
+---- Author : Reyn 
+---- Email  : jl88744653@gmail.com
+------------------------------------------------------------------------------------------
+
 local function split(input, delimiter)
     input = tostring(input)
     delimiter = tostring(delimiter)

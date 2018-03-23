@@ -17,13 +17,6 @@ printInfo  = CC_OPEN_OUT and printInfo or pass
 printError = CC_OPEN_OUT and printError or pass
 
 ----------------------------------------
--- 创建实例
---
-cc.exports.newInstance = function (classpath, ...)
-    return include(classpath).new(...)
-end
-
-----------------------------------------
 -- 解表
 --
 cc.exports.unpack = unpack or table.unpack
