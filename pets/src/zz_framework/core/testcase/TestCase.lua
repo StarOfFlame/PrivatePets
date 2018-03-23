@@ -13,8 +13,8 @@ function TestCase:ctor()
 end
 
 function TestCase:testcase01()
-    self:tag(' System  : ' .. system.platform:getTargetOSname())
-    self:tag('Language : ' .. system.platform:getLanguageName())
+    self:tag(' System  : ' .. zz.system.platform:getTargetOSname())
+    self:tag('Language : ' .. zz.system.platform:getLanguageName())
 end
 
 function TestCase:testcase02()
@@ -26,8 +26,8 @@ function TestCase:testcase02()
     
     local root = device.writablePath
     cc.FileUtils:getInstance():createDirectory(root ..'res/')
-    utils:grabNodeToFile(sp, root .. 'res/HelloWorld-001.png')
-    utils:grabScreenToFile(function(output)
+    zz.utils:grabNodeToFile(sp, root .. 'res/HelloWorld-001.png')
+    zz.utils:grabScreenToFile(function(output)
         self:tag('grap screen success : ' .. output)
     end, function(output)
         self:tag('grap screen failure : ' .. output)

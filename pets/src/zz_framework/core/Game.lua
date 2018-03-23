@@ -31,16 +31,15 @@ end
 function Game:load()
     include('Global')
     
-    cc.exports.CONST    = include('Const')
-    cc.exports.utils    = include('Utils')
-    cc.exports.system   = include('System')
-    -- cc.exports.manager  = include('Manager')
+    zz.CONST  = include('Const')
+    zz.utils  = include('Utils')
+    zz.system = include('System')
 end
 
 function Game:registerSystemEvent()
-    system.event:add(CONST.EVENT.APP_ENTER_BG, handler(self, self.enterBackground))
-    system.event:add(CONST.EVENT.APP_ENTER_FG, handler(self, self.enterForeground))
-    system.event:add(CONST.EVENT.APP_RECV_MEM_WARNING, handler(self, self.reveiceMemoryWarning))
+    zz.system.event:add(zz.CONST.EVENT.APP_ENTER_BG, handler(self, self.enterBackground))
+    zz.system.event:add(zz.CONST.EVENT.APP_ENTER_FG, handler(self, self.enterForeground))
+    zz.system.event:add(zz.CONST.EVENT.APP_RECV_MEM_WARNING, handler(self, self.reveiceMemoryWarning))
 end
 
 function Game:enterBackground()
