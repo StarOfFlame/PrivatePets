@@ -22,11 +22,6 @@ using namespace CocosDenshion;
 USING_NS_CC;
 using namespace std;
 
-struct KEY_SIGN {
-    const char* KEY   = "jl88744653";
-    const char* SIGN  = "HJN.Reyn.JL";
-};
-
 AppDelegate::AppDelegate()
 {
 }
@@ -72,13 +67,15 @@ static void registerLuaData()
     lua_State* L = engine->getLuaStack()->getLuaState();
     lua_module_register(L);
     
-    Thirds::init_pbc_lua(L);
+    Thirds::lfs::register_lfs_lua(L);
+    Thirds::Protobuf::register_protobuf_lua(L);
     
     LuaStack* stack = engine->getLuaStack();
-    KEY_SIGN key_sign;
-    int key_len  = (int)strlen(key_sign.KEY);
-    int sign_len = (int)strlen(key_sign.KEY);
-    stack->setXXTEAKeyAndSign(key_sign.KEY, key_len, key_sign.SIGN, sign_len);
+    const char* key_str  = Thirds::XXTEA::getKey();
+    const char* sign_str = Thirds::XXTEA::getSign();
+    auto key_len  = (int)strlen(key_str);
+    auto sign_len = (int)strlen(sign_str);
+    stack->setXXTEAKeyAndSign(key_str, key_len, sign_str, sign_len);
     
     register_all_packages();
     
