@@ -245,6 +245,9 @@ function class(classname, ...)
     cls.tag = function(_, ...)
         print(string.format('[%s]', classname), ...)
     end
+    cls.fmt = function(_, fmt, ...) 
+        cls:tag(string.format(fmt, ...))
+    end
     cls.dump = function(_, tag, val)
         dump(val, tag)
     end
