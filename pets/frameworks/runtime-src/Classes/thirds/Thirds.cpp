@@ -2,12 +2,20 @@
 #include "thirds/pbc/pbc-lua.h"
 #include "thirds/lfs/lfs.h"
 #include <sys/time.h>
+#include "thirds/serialize/serialize.h"
 
 namespace Thirds {
     // proto buffer
     namespace Protobuf {
         void register_protobuf_lua(lua_State* l) {
             luaopen_protobuf_c(l);
+        }
+    }
+    
+    // Lua序列化
+    namespace Serialize {
+        void register_seiralize_lua(lua_State* l) {
+            luaopen_serialize(l);
         }
     }
     

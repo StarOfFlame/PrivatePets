@@ -69,6 +69,7 @@ static void registerLuaData()
     
     Thirds::lfs::register_lfs_lua(L);
     Thirds::Protobuf::register_protobuf_lua(L);
+    Thirds::Serialize::register_seiralize_lua(L);
     
     LuaStack* stack = engine->getLuaStack();
     const char* key_str  = Thirds::XXTEA::getKey();

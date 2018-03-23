@@ -8,6 +8,11 @@ namespace Thirds {
         void register_protobuf_lua(lua_State* L);
     }
     
+
+    namespace Serialize {
+        void register_seiralize_lua(lua_State* l);
+    }
+    
     namespace lfs {
         void register_lfs_lua(lua_State* l);
     }
