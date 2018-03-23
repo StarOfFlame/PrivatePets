@@ -9,12 +9,13 @@
 -- 跳过函数及输出指定
 --
 cc.exports.pass = function() end
-dump       = CC_OPEN_OUT and dump or pass
-print      = CC_OPEN_OUT and print or pass
-printf     = CC_OPEN_OUT and printf or pass
-printLog   = CC_OPEN_OUT and printLog or pass
-printInfo  = CC_OPEN_OUT and printInfo or pass
-printError = CC_OPEN_OUT and printError or pass
+dump          = CC_OPEN_OUT and dump          or pass
+print         = CC_OPEN_OUT and print         or pass
+printf        = CC_OPEN_OUT and printf        or pass
+printLog      = CC_OPEN_OUT and printLog      or pass
+printInfo     = CC_OPEN_OUT and printInfo     or pass
+printError    = CC_OPEN_OUT and printError    or pass
+release_print = CC_OPEN_OUT and release_print or pass
 
 ----------------------------------------
 -- 解表
@@ -54,7 +55,7 @@ cc.exports.elapse = function(fn, tag)
         fn()
         t = GetCurrentUsec() - t1
     end
-    print(string.format('(%s) 耗时: %.3f', tag, t))
+    print(string.format('(%s) 耗时: %.3fs', tag, t))
 end
 
 --[[截取全屏并保存]]
