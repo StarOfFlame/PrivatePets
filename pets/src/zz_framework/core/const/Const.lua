@@ -11,6 +11,7 @@ local CONST = {}
 CONST.COLOR   = include('ColorEnum')
 CONST.EVENT   = include('EventEnum')
 CONST.USERXML = include('UserXmlEnum')
+CONST.UNICODE = include('UnicodeEnum')
 
 return CONST
 

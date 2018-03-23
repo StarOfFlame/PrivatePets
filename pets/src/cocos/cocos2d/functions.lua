@@ -242,11 +242,20 @@ function class(classname, ...)
     cls.create = function(_, ...)
         return cls.new(...)
     end
+    cls._tag = function(_, tag, ...) 
+        print(tag .. string.format('[%s]', classname), ...)
+    end
     cls.tag = function(_, ...)
-        print(string.format('[%s]', classname), ...)
+        cls:_tag(zz.CONST.UNICODE.CORRECT, ...)
     end
     cls.fmt = function(_, fmt, ...) 
         cls:tag(string.format(fmt, ...))
+    end
+    cls.warn = function(_, ...)
+        cls:_tag(zz.CONST.UNICODE.WARNING, ...)
+    end
+    cls.fault = function(_, ...)
+        cls:_tag(zz.CONST.UNICODE.ERROR, ...)
     end
     cls.dump = function(_, tag, val)
         dump(val, tag)

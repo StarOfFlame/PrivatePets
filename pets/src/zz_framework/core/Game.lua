@@ -56,7 +56,7 @@ function Game:enterForeground()
 end
 
 function Game:reveiceMemoryWarning()
-    self:tag('收到内存警告⚠️')
+    self:tag('收到内存警告')
 end
 
 function Game:receiveLuaError()
@@ -79,7 +79,7 @@ function Game:receiveLuaError()
         end
         info.source = table.concat(arr, '/')
         if info.source ~= '' then
-            err[#err+1] = string.format('类型:%s 定位:%s 行号:%s 方法:%s upvalue:%s', 
+            err[#err+1] = zz.CONST.UNICODE.ERROR .. string.format(' 类型:%s 定位:%s 行号:%s 方法:%s upvalue:%s', 
                 info.what, info.source, info.currentline, info.name, info.nups)
         end
     end

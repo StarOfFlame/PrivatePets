@@ -19,6 +19,7 @@ local sources = {
 	['UIHelper'] = 'zz_framework.core.utils.UIHelper',
 	['Utils'] = 'zz_framework.core.utils.Utils',
 	['Const'] = 'zz_framework.core.const.Const',
+	['UnicodeEnum'] = 'zz_framework.core.const.UnicodeEnum',
 	['EventEnum'] = 'zz_framework.core.const.EventEnum',
 	['UserXmlEnum'] = 'zz_framework.core.const.UserXmlEnum',
 	['ColorEnum'] = 'zz_framework.core.const.ColorEnum',
