@@ -1,4 +1,4 @@
-local TestCase = class('TestCase', SingletonBase)
+local TestCase = class('TestCase', zz.singleton)
 
 function TestCase:ctor()
 
@@ -11,10 +11,10 @@ end
 
 function TestCase:testcase02()
     local layer = cc.LayerColor:create(cc.c4b(255,255,255,255), display.width, display.height)
-    stage:addChild(layer)
+    zz.stage:addChild(layer)
     local sp = cc.Sprite:create('HelloWorld.png')
     sp:setPosition(display.center)
-    stage:addChild(sp)
+    zz.stage:addChild(sp)
     
     local root = device.writablePath
     cc.FileUtils:getInstance():createDirectory(root ..'res/')

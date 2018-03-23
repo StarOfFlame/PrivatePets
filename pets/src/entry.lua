@@ -4,32 +4,16 @@ cc.FileUtils:getInstance():setPopupNotify(false)
 require('config')
 require('cocos.init')
 require('sources')
-
-cc.exports.SingletonBase = include('SingletonBase')
-cc.exports.GetInstance = function(modulename, ...)
-    local base = include(modulename)
-    if not base.getInstance then
-        return base
-    end
-    return base:getInstance(...)
-end
-cc.exports.NewInstance = function(modulename, ...)
-    return include(modulename):create(...)
-end
+cc.exports.zz = require('zz'):getInstance()
 
 local function entry()
-    math.randomseed(os.time())
-    
-    cc.exports.stage = cc.Scene:create()
-    display.runScene(stage)
-    
-    cc.exports.game = GetInstance('Game')
+    zz:init()
 end
 
 cc.exports.__G__TRACKBACK__ = function(msg)
     local msg = debug.traceback(msg, 3)
-    if game then
-        game:receiveLuaError()
+    if zz.game then
+        zz.game:receiveLuaError()
     else
         print(msg)
     end

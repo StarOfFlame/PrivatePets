@@ -2,10 +2,11 @@
 ---- Name   : Game
 ---- Desc   : 游戏核心类
 ---- Date   : 2018/03/18
----- Author : Reyn - jl88744653@gmail.com
+---- Author : Reyn 
+---- Email  : jl88744653@gmail.com
 ------------------------------------------------------------------------------------------
 
-local Game = class('Game', SingletonBase)
+local Game = class('Game', zz.singleton)
 
 function Game:ctor()
     self:initEnv()
@@ -15,9 +16,9 @@ function Game:ctor()
 end
 
 function Game:test()
-    GetInstance('TestCase'):testcase01()
-    GetInstance('TestCase'):testcase02()
-    GetInstance('TestCase'):testcase03()
+    zz:loadInstance('TestCase'):testcase01()
+    zz:loadInstance('TestCase'):testcase02()
+    zz:loadInstance('TestCase'):testcase03()
 end
 
 function Game:initEnv()
@@ -89,7 +90,7 @@ function Game:receiveLuaError()
     :setAnchorPoint(display.RIGHT_BOTTOM)
     :move(display.width-20, 20)
     :setColor(CONST.COLOR.RED)
-    :addTo(stage, 9999)
+    :addTo(zz.stage, 9999)
 
     self:tag('LUA_ERROR:\n'..errstr)
 end
