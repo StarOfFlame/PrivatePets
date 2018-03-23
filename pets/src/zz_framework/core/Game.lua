@@ -12,10 +12,10 @@ function Game:ctor()
     self:initEnv()
     self:load()
     self:registerSystemEvent()
-    self:test()
 end
 
 function Game:test()
+    zz.system:unknown()
     zz:loadInstance('TestCase'):testcase01()
     zz:loadInstance('TestCase'):testcase02()
     zz:loadInstance('TestCase'):testcase03()
@@ -43,16 +43,16 @@ function Game:registerSystemEvent()
 end
 
 function Game:enterBackground()
-    self:tag('AppEnterBackgorund')
+    self:tag('游戏退到后台')
 end
 
 function Game:enterForeground()
-    self:tag('AppEnterForeground')
-    self:tag('App from backgorund back to foreground use time : ' .. GetElapseTime() .. 's')
+    self:tag('游戏回到前台')
+    self:tag('从后台回到前台过去了' .. GetElapseTime() .. 's')
 end
 
 function Game:reveiceMemoryWarning()
-    self:tag('reveiceMemoryWarning')
+    self:tag('收到内存警告⚠️')
 end
 
 function Game:receiveLuaError()
@@ -73,7 +73,7 @@ function Game:receiveLuaError()
         local stb = {}
         local len = #arr
         if len > 1 then
-            for i=len-2, 3 do
+            for i=len-2, 4 do
                 table.insert(stb, arr[i])
             end
         elseif len > 0 then
@@ -81,16 +81,17 @@ function Game:receiveLuaError()
         end
         local source = table.concat(stb, '/')
         if source ~= '' then
-            err[#err+1] = string.format('[%s] func: %s  file: %s', info.currentline , info.name, source)
+            err[#err+1] = string.format('错误定位 文件:%s 行号:[%s] 方法:%s ', source, info.currentline, info.name)
         end
     end
+    table.remove(err, 1)
+    table.remove(err)
     local errstr = table.concat(err, '\n')
     cc.Label:createWithSystemFont(errstr, 'Arial', 18)
-    :setAnchorPoint(display.RIGHT_BOTTOM)
-    :move(display.width-20, 20)
-    :setColor(CONST.COLOR.RED)
-    :addTo(zz.stage, 9999)
-
+        :setAnchorPoint(display.RIGHT_BOTTOM)
+        :move(display.width-20, 20)
+        :setColor(zz.CONST.COLOR.RED)
+        :addTo(zz.stage, 9999)
     self:tag('LUA_ERROR:\n'..errstr)
 end
 

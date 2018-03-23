@@ -44,7 +44,6 @@ int GetElapseTime(lua_State* l)
     struct timeval t_elapse;
     timersub(&timeToForeGorund, &timeInBackGround, &t_elapse);
     double elapse = t_elapse.tv_sec + (1.0 * t_elapse.tv_usec)/1000000;
-    CCLOG("elapsed : %fs", elapse);
     lua_pushnumber(l, elapse);
     return 1;
 }
