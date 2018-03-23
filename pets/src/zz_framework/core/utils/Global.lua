@@ -54,7 +54,7 @@ cc.exports.elapse = function(fn, tag)
         fn()
         t = GetCurrentUsec() - t1
     end
-    print(string.format('(%s) use time : %.3f', tag, t))
+    print(string.format('(%s) 耗时: %.3f', tag, t))
 end
 
 --[[截取全屏并保存]]

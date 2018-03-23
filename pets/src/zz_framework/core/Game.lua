@@ -12,20 +12,24 @@ function Game:ctor()
     self:initEnv()
     self:load()
     self:registerSystemEvent()
+    self:dumpSystemInfo()
+end
+
+function Game:dumpSystemInfo()
+    self:tag('操作系统: ' .. zz.system.platform:getTargetOSname())
+    self:tag('系统语言: ' .. zz.system.platform:getLanguageName())
+    self:tag('可写路径: ' .. device.writablePath)
 end
 
 function Game:test()
-    zz.system:unknown()
     zz:loadInstance('TestCase'):testcase01()
     zz:loadInstance('TestCase'):testcase02()
-    zz:loadInstance('TestCase'):testcase03()
 end
 
 function Game:initEnv()
     if CC_SHOW_FPS then
         cc.Director:getInstance():setDisplayStats(true)
     end
-    self:tag(device.writablePath)
 end
 
 function Game:load()
@@ -66,26 +70,19 @@ function Game:receiveLuaError()
     -- 'u'   获取nup (upvalue的个数) 
     --
     local err = {}
-    for level = 1, math.huge do
-        local info = debug.getinfo(level, 'nSl')
+    for level = 3, math.huge do
+        local info = debug.getinfo(level, 'lnuS')
         if not info then break end
         local arr = string.split(tostring(info.source), '/')
-        local stb = {}
-        local len = #arr
-        if len > 1 then
-            for i=len-2, 4 do
-                table.insert(stb, arr[i])
-            end
-        elseif len > 0 then
-            table.insert(stb, arr[1])
+        for i=#arr-2, 1, -1 do
+            table.remove(arr, i)
         end
-        local source = table.concat(stb, '/')
-        if source ~= '' then
-            err[#err+1] = string.format('错误定位 文件:%s 行号:[%s] 方法:%s ', source, info.currentline, info.name)
+        info.source = table.concat(arr, '/')
+        if info.source ~= '' then
+            err[#err+1] = string.format('类型:%s 定位:%s 行号:%s 方法:%s upvalue:%s', 
+                info.what, info.source, info.currentline, info.name, info.nups)
         end
     end
-    table.remove(err, 1)
-    table.remove(err)
     local errstr = table.concat(err, '\n')
     cc.Label:createWithSystemFont(errstr, 'Arial', 18)
         :setAnchorPoint(display.RIGHT_BOTTOM)
