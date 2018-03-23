@@ -14,6 +14,7 @@ function TestCase:ctor()
         handler(self, self.testcase02),
         handler(self, self.testcase03),
         handler(self, self.testcase04),
+        handler(self, self.testcase05),
     }
 end
 
@@ -86,15 +87,15 @@ function TestCase:testcase04()
                     if attr then
                         local prefix = string.rep('\t', level-1)
                         if attr.mode == 'directory' then
-                            self:tag(prefix .. '目录:', path)
+                            -- self:tag(prefix .. '目录:', path)
                             table.insert(result.dir, path)
                             listdir(path, level+1)
                         elseif attr.mode == 'file' then
-                            self:tag(prefix .. '文件:', path)
+                            -- self:tag(prefix .. '文件:', path)
                             table.insert(result.file, path)
-                            for name, value in pairs(attr) do
-                                self:tag(prefix..'\t', name, value)
-                            end
+                            -- for name, value in pairs(attr) do
+                            --     self:tag(prefix..'\t', name, value)
+                            -- end
                         end
                     end
                 end
@@ -106,6 +107,26 @@ function TestCase:testcase04()
     end
 
     self:dump('lfs目录遍历', walk(device.writablePath))
+end
+
+function TestCase:testcase05()
+    local s = serialize or require "serialize"
+
+    local addressbook = {
+        name = "Alice",
+        id = 12345,
+        phone = {
+            { number = "1301234567" },
+            { number = "87654321", type = "WORK" },
+        }
+    }
+
+    elapse(function()
+        for i=1,100000 do
+            local u = s.pack(addressbook)
+            local t = s.unpack(u)
+        end
+    end, 'lua序列化')
 end
 
 return TestCase
