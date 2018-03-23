@@ -6,6 +6,7 @@
 ---- Email  : jl88744653@gmail.com
 ------------------------------------------------------------------------------------------
 
+require('sources')
 local SingletonBase = include('SingletonBase')
 local zz = class('zz_framework', SingletonBase)
 
