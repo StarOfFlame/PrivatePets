@@ -21,11 +21,6 @@ function Game:dumpSystemInfo()
     self:tag('可写路径: ' .. device.writablePath)
 end
 
-function Game:test()
-    zz:loadInstance('TestCase'):testcase01()
-    zz:loadInstance('TestCase'):testcase02()
-end
-
 function Game:initEnv()
     if CC_SHOW_FPS then
         cc.Director:getInstance():setDisplayStats(true)

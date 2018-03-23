@@ -9,7 +9,21 @@
 local TestCase = class('TestCase', zz.singleton)
 
 function TestCase:ctor()
+    self._testcases = {
+        handler(self, self.testcase01),
+        handler(self, self.testcase02),
+        handler(self, self.testcase03),
+    }
+end
 
+function TestCase:run(case)
+    if case and self._testcases[case] then
+        self._testcases[case]()
+        return
+    end
+    self:testcase01()
+    self:testcase02()
+    self:testcase03()
 end
 
 function TestCase:testcase01()
@@ -41,7 +55,7 @@ end
 
 function TestCase:testcase03()
     local function test()
-        zz.utils.createDirectory()
+        self:dump('testcase03', {a=1,b='fffff',c=cc.White})
     end
     test()
 end

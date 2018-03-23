@@ -243,7 +243,7 @@ function class(classname, ...)
         return cls.new(...)
     end
     cls._tag = function(_, tag, ...) 
-        print(tag .. string.format('[%s]', classname), ...)
+        print(tag .. string.format(' [%s]', classname), ...)
     end
     cls.tag = function(_, ...)
         cls:_tag(zz.CONST.UNICODE.CORRECT, ...)
@@ -258,6 +258,7 @@ function class(classname, ...)
         cls:_tag(zz.CONST.UNICODE.ERROR, ...)
     end
     cls.dump = function(_, tag, val)
+        cls:_tag(zz.CONST.UNICODE.RIGHT, 'DUMP')
         dump(val, tag)
     end
 
