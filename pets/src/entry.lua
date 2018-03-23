@@ -16,7 +16,7 @@ local function entry()
     zz:initialize()
     zz:startGame()
     
-    zz:loadInstance('TestCase'):run(3)
+    zz:loadInstance('TestCase'):run()
 end
 
 xpcall(entry, function(msg)

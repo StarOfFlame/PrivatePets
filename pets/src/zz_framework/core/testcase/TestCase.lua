@@ -9,7 +9,7 @@
 local TestCase = class('TestCase', zz.singleton)
 
 function TestCase:ctor()
-    self._testcases = {
+    self.testcases_ = {
         handler(self, self.testcase01),
         handler(self, self.testcase02),
         handler(self, self.testcase03),
@@ -17,8 +17,8 @@ function TestCase:ctor()
 end
 
 function TestCase:run(case)
-    if case and self._testcases[case] then
-        self._testcases[case]()
+    if case and self.testcases_[case] then
+        self.testcases_[case]()
         return
     end
     self:testcase01()
@@ -27,6 +27,8 @@ function TestCase:run(case)
 end
 
 function TestCase:testcase01()
+    self:warn('测试用例01-保存截图')
+    
     local layer = cc.LayerColor:create(cc.c4b(255,255,255,255), display.width, display.height)
     zz.stage:addChild(layer)
     local sp = cc.Sprite:create('HelloWorld.png')
@@ -44,6 +46,7 @@ function TestCase:testcase01()
 end
 
 function TestCase:testcase02()
+    self:warn('测试用例02-运行计时')
     elapse(function()
         for i=1, 5000 do
             for j=1, 5000 do
@@ -54,8 +57,9 @@ function TestCase:testcase02()
 end
 
 function TestCase:testcase03()
+    self:warn('测试用例03-数据dump')
     local function test()
-        self:dump('testcase03', {a=1,b='fffff',c=cc.White})
+        self:dump('testcase03', {a=1,b='fffff',c=cc.BLUE})
     end
     test()
 end
