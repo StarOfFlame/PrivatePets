@@ -40,7 +40,6 @@ class generator():
                 for dirname in IGNORE_DIRS:
                     absfile = PATH_ROUTER.abspath(PATH_ROUTER.join(root, file))
                     absdir  = PATH_ROUTER.abspath(PATH_ROUTER.join(SOURCE_PATH, dirname))
-                    print(absdir, absfile)
                     if absdir in absfile:
                         ignore = True
                 if ignore:
