@@ -5,10 +5,12 @@ import os
 import sys
 import md5
 
-PATH_ROUTER = os.path
-CURRENT_PATH = os.getcwd()
-RELATIVE_PATH = '../../src/'
-SOURCE_PATH = PATH_ROUTER.abspath(PATH_ROUTER.join(CURRENT_PATH, RELATIVE_PATH))
+PATH_ROUTER       = os.path
+CURRENT_PATH      = os.getcwd()
+RELATIVE_SRC_PATH = '../../src/'
+RELATIVE_RES_PATH = '../../res/'
+SOURCE_PATH       = PATH_ROUTER.abspath(PATH_ROUTER.join(CURRENT_PATH, RELATIVE_SRC_PATH))
+RESOURCE_PATH     = PATH_ROUTER.abspath(PATH_ROUTER.join(CURRENT_PATH, RELATIVE_RES_PATH))
 
 IGNORE_DIR = [
     'cocos',
@@ -63,6 +65,17 @@ class encryptor():
                 if ext != '.lua' or name in IGNORE_FILE:
                     continue
                 path = PATH_ROUTER.relpath(PATH_ROUTER.join(root, file), SOURCE_PATH)
+                real = PATH_ROUTER.join(root, file)
+                self.md5files_.append([path, self.getMd5(
+                    real), PATH_ROUTER.getsize(real)])
+                    
+        for root, _, files in os.walk(RESOURCE_PATH):
+            for file in files:
+                dir = PATH_ROUTER.relpath(root, RESOURCE_PATH)
+                if dir in IGNORE_DIR:
+                    continue
+                path = PATH_ROUTER.relpath(
+                    PATH_ROUTER.join(root, file), RESOURCE_PATH)
                 real = PATH_ROUTER.join(root, file)
                 self.md5files_.append([path, self.getMd5(
                     real), PATH_ROUTER.getsize(real)])
