@@ -24,5 +24,6 @@ xpcall(entry, function(msg)
     if zz and zz.game then
         zz.game:receiveLuaError()
     end
+    print('\n->ERROR BEGAN\n' .. msg .. '\n<-ERROR ENDED\n')
     return msg
 end)

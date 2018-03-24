@@ -87,7 +87,6 @@ function TestCase:testcase04()
 
     local function walk(root)
         local result = {dir = {}, file={}}
-        
         local function listdir(rootPath, level)
             level = level or 1
             local last = string.sub(rootPath, -1)
@@ -95,7 +94,7 @@ function TestCase:testcase04()
                 rootPath = rootPath .. '/'
             end
             for entry in lfs.dir(rootPath) do
-                if entry ~= '.' and entry ~= '..' then
+                if entry ~= '.' and entry ~= '..' and entry ~= '.DS_Store' then
                     local path = rootPath .. entry
                     local attr = lfs.attributes(path)
                     if attr then
@@ -106,7 +105,8 @@ function TestCase:testcase04()
                             listdir(path, level+1)
                         elseif attr.mode == 'file' then
                             -- self:tag(prefix .. '文件:', path)
-                            table.insert(result.file, path)
+                            local md5 = cc.utils:getFileMD5Hash(path)
+                            table.insert(result.file, {path=path, md5=md5})
                             -- for name, value in pairs(attr) do
                             --     self:tag(prefix..'\t', name, value)
                             -- end
@@ -116,7 +116,6 @@ function TestCase:testcase04()
             end
         end
         listdir(root)
-        
         return result
     end
 
