@@ -220,9 +220,63 @@ function Node:onExitTransitionStart_()
 end
 
 function Node:onCleanup_()
+    self:stopAllTimer()
+    self:delAllEvent()
     self:onCleanup()
     if not self.onCleanupCallback_ then
         return
     end
     self:onCleanupCallback_()
+end
+
+
+----------------------------------------------
+-- Event
+--
+function Node:addEvent(eventName, handler)
+    self.eventPool_ = checktable(self.eventPool_)
+    self.eventPool_[eventName] = true
+    zz.system.event:add(eventName, handler)
+end
+
+function Node:delEvent(eventName)
+    if not self.eventPool_[eventName] then
+        return
+    end
+    zz.system.event:del(eventName)
+    self.eventPool_[eventName] = nil
+end
+
+function Node:delAllEvent()
+    for eventName in pairs(self.eventPool_) do
+        zz.system.event:del(eventName)
+    end
+    self.eventPool_ = nil
+end
+
+----------------------------------------------
+-- Timer
+--
+function Node:startTimer(timer, func, interval, isonce)
+    self.timers_ = checktable(self.timers_)
+    self.timers_[timer] = true
+    zz.system.timer:start(timer, func, interval, isonce)
+end
+
+function Node:stopTimer(timer)
+    if not self.timers_[timer] then
+        return
+    end
+    zz.system.timer:stop(timer)
+    self.timers_[timer] = nil
+end
+
+function Node:stopAllTimer()
+    if not self.timers_ then
+        return
+    end
+    for timer in pairs(self.timers_) do
+        zz.system.timer:stop(timer)
+    end
+    self.timers_ = nil
 end

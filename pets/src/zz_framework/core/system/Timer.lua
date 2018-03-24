@@ -18,7 +18,7 @@ local _scheduler = cc.Director:getInstance():getScheduler()
 local Timer = class('Timer')
 
 function Timer:ctor()
-    self._timers = {}
+    self.timers_ = {}
 end
 
 ------------------------------------------
@@ -40,7 +40,7 @@ end
 -- @param : timer - timer name
 --
 function Timer:find(timer)
-    if self._timers[timer] then
+    if self.timers_[timer] then
         return true
     end
     return false
@@ -63,7 +63,7 @@ function Timer:start(timer, callfn, interval, isonce)
     end
     local packfn  = isonce and oncefn or callfn
     local timerId = _scheduler:scheduleScriptFunc(packfn, interval, false)
-    self._timers[timer] = timerId
+    self.timers_[timer] = timerId
     self:tag(strfmt('%s is running.', timer))
 end
 
@@ -81,8 +81,8 @@ end
 --
 function Timer:stop(timer)
     if not self:find(timer) then return end
-    stopById(self._timers[timer])
-    self._timers[timer] = nil
+    stopById(self.timers_[timer])
+    self.timers_[timer] = nil
     self:tag(strfmt('%s is stop.', timer))
 end
 
@@ -90,9 +90,9 @@ end
 -- @desc : 停止所有定时器
 --
 function Timer:stopAll()
-    table.foreach(self._timers, function(timerId, timer)
+    table.foreach(self.timers_, function(timerId, timer)
         stopById(timerId)
-        self._timers[timer] = nil
+        self.timers_[timer] = nil
     end)
     self:tag('All timer is stop.')
 end

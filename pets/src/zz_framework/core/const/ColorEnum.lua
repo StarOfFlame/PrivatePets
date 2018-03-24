@@ -5,6 +5,8 @@
 ---- Author : Reyn 
 ---- Email  : jl88744653@gmail.com
 ------------------------------------------------------------------------------------------
+local rgb  = cc.c3b
+local rgba = cc.c4b
 
 local COLORENUM = {
     BLACK  = cc.BLACK,
