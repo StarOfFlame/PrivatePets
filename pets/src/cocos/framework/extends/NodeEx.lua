@@ -280,3 +280,72 @@ function Node:stopAllTimer()
     end
     self.timers_ = nil
 end
+
+----------------------------------------------
+-- 注册触摸
+--
+function Node:isTouchOnNode(touchPos)
+    local nodePos  = self:convertToNodeSpace(touchPos)
+    local nodeSize = self:getContentSize()
+    return cc.rectContainsPoint(cc.rect(0, 0, nodeSize.width, nodeSize.height), nodePos)
+end
+
+function Node:registerTouchEvent(touchFn)
+    if self.isTouchEnabled then
+        print(zz.CONST.UNICODE.WARNING .. ' 为UIWidget控件开启节点触摸事件需要禁用原来的触摸机制')
+        self:setTouchEnabled(false)
+    end
+
+    local function touchBegan(touch, event)
+        if not touchFn then 
+            return false 
+        end
+        local pos = touch:getStartLocation()
+        if not self:isTouchOnNode(pos) then
+            return false
+        end
+        touchFn(self, 'began', pos)
+        return true
+    end
+
+    local function touchEnded(touch, event)
+        if not touchFn then 
+            return 
+        end
+        local pos = touch:getLocation()
+        if not self:isTouchOnNode(pos) then
+            return
+        end
+        touchFn(self, 'ended', pos)
+    end
+
+    local function touchMoved(touch, event)
+        if not touchFn then 
+            return 
+        end
+        local pos = touch:getLocation()
+        if not self:isTouchOnNode(pos) then
+            return
+        end
+        touchFn(self, 'moved', pos)
+    end
+
+    local function touchCancel(touch, event)
+        if not touchFn then 
+            return 
+        end
+        touchFn(self, 'canceled', pos)
+    end
+    
+    local touchListener = cc.EventListenerTouchOneByOne:create()
+    touchListener:setSwallowTouches(true)
+    touchListener:registerScriptHandler(touchBegan, cc.Handler.EVENT_TOUCH_BEGAN)
+    touchListener:registerScriptHandler(touchEnded, cc.Handler.EVENT_TOUCH_ENDED)
+    touchListener:registerScriptHandler(touchMoved, cc.Handler.EVENT_TOUCH_MOVED)
+    touchListener:registerScriptHandler(touchCancel,cc.Handler.EVENT_TOUCH_CANCELLED)
+    self:getEventDispatcher():addEventListenerWithSceneGraphPriority(touchListener, self)
+end
+
+function Node:disableTouchThrough()
+    self:registerTouchEvent(pass)
+end

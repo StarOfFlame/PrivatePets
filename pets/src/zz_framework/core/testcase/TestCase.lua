@@ -29,12 +29,24 @@ function TestCase:run(case)
 end
 
 function TestCase:testcase01()
-    self:warn('测试用例01-保存截图')
+    self:warn('测试用例01-精灵触摸、移动及保存截图')
     
     local layer = cc.LayerColor:create(cc.c4b(255,255,255,255), display.width, display.height)
     zz.stage:addChild(layer)
-    local sp = cc.Sprite:create('HelloWorld.png')
+    
+    local sp0 = ccui.ImageView:create('HelloWorld.png')
+    sp0:setPosition(display.cx-100, display.cy+100)
+    sp0:registerTouchEvent(function(sender, event, pos)
+        self:tag('touch : ', event, pos.x, pos.y)
+        if event == 'moved' then
+            sp0:setPosition(pos)
+        end
+    end)
+    zz.stage:addChild(sp0)
+    
+    local sp = ccui.ImageView:create('HelloWorld.png')
     sp:setPosition(display.center)
+    sp:disableTouchThrough()
     zz.stage:addChild(sp)
     
     local root = device.writablePath
