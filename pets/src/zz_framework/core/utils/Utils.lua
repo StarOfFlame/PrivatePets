@@ -10,6 +10,7 @@ local Utils = {}
 
 Utils.colorify          = include('Colorify')
 Utils.securityNumber    = include('SecurityNumber')
+Utils.shader            = include('ShaderUtil')
 
 function Utils:grabNodeToFile(node, where)
     cc.utils:captureNodeToFile(node, where)

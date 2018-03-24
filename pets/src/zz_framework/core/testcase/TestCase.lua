@@ -15,6 +15,7 @@ function TestCase:ctor()
         handler(self, self.testcase03),
         handler(self, self.testcase04),
         handler(self, self.testcase05),
+        handler(self, self.testcase06),
     }
 end
 
@@ -47,6 +48,7 @@ function TestCase:testcase01()
     local sp = ccui.ImageView:create('HelloWorld.png')
     sp:setPosition(display.center)
     sp:disableTouchThrough()
+    sp:setTag(1001)
     zz.stage:addChild(sp)
     
     local root = device.writablePath
@@ -139,6 +141,19 @@ function TestCase:testcase05()
             local t = s.unpack(u)
         end
     end, 'lua序列化')
+end
+
+function TestCase:testcase06()
+    local sp = zz.stage:getChildByTag(1001)
+    sp.idx = 0
+    schedule(sp, function()
+        sp.idx = sp.idx + 1
+        if sp.idx % 2 == 0 then 
+            zz.utils.shader.normalShader(sp)
+        elseif sp.idx % 2 == 1 then
+            zz.utils.shader.greyShader(sp)
+        end
+    end, 3)
 end
 
 return TestCase
