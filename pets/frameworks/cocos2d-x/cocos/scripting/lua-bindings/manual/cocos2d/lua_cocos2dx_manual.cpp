@@ -8159,6 +8159,47 @@ static int tolua_cocos2d_utils_findChild(lua_State* tolua_S)
 #endif
 }
 
+
+static int tolua_cocos2d_utils_getFileMD5Hash(lua_State* tolua_S)
+{
+    int argc = 0;
+    bool ok  = true;
+    
+#if COCOS2D_DEBUG >= 1
+    tolua_Error tolua_err;
+#endif
+    
+#if COCOS2D_DEBUG >= 1
+    if (!tolua_istable(tolua_S,1,0, &tolua_err)) goto tolua_lerror;
+#endif
+    
+    argc = lua_gettop(tolua_S)-1;
+    if (argc == 1)
+    {
+        std::string arg0;
+        
+        ok &= luaval_to_std_string(tolua_S, 2,&arg0, "cc.utils:getFileMD5Hash");
+        if(!ok)
+        {
+            tolua_error(tolua_S,"invalid arguments in function 'tolua_cocos2d_utils_getFileMD5Hash'", nullptr);
+            return 0;
+        }
+        std::string ret = cocos2d::utils::getFileMD5Hash(arg0);
+        CCLOG("File : %s MD5 : %s", arg0.c_str(), ret.c_str());
+        lua_pushlstring(tolua_S,ret.c_str(),ret.length());
+        return 1;
+    }
+    luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "tolua_cocos2d_utils_getFileMD5Hash",argc, 1);
+    return 0;
+    
+#if COCOS2D_DEBUG >= 1
+tolua_lerror:
+    tolua_error(tolua_S,"#ferror in function 'tolua_cocos2d_utils_getFileMD5Hash'.",&tolua_err);
+#endif
+    
+    return 0;
+}
+
 int register_all_cocos2dx_module_manual(lua_State* tolua_S)
 {
     if (nullptr == tolua_S)
@@ -8173,6 +8214,7 @@ int register_all_cocos2dx_module_manual(lua_State* tolua_S)
             tolua_function(tolua_S, "captureScreen", tolua_cocos2d_utils_captureScreen);
             tolua_function(tolua_S, "findChildren", tolua_cocos2d_utils_findChildren);
             tolua_function(tolua_S, "findChild", tolua_cocos2d_utils_findChild);
+            tolua_function(tolua_S, "getFileMD5Hash", tolua_cocos2d_utils_getFileMD5Hash);
         tolua_endmodule(tolua_S);
     tolua_endmodule(tolua_S);
 
