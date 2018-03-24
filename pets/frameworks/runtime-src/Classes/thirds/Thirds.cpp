@@ -28,8 +28,8 @@ namespace Thirds {
     
     // xxtea加密key和sign
     namespace XXTEA {
-        const char* KEY   = "jl88744653";
-        const char* SIGN  = "HJN.Reyn.JL";
+        const char* KEY   = "zZ8fRaM3woRK77Cnjd23";
+        const char* SIGN  = "RE20717jsIgNiYNJu15e";
         
         const char* getKey() {
             return KEY;
