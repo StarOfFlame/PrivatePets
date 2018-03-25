@@ -1,3 +1,11 @@
+------------------------------------------------------------------------------------------
+---- Name   : UIMgr
+---- Desc   : UI管理器
+---- Date   : 2018/03/26
+---- Author : Reyn 
+---- Email  : jl88744653@gmail.com
+------------------------------------------------------------------------------------------
+
 local UIMgr = class('UIMgr', zz.Singleton)
 
 function UIMgr:ctor()
@@ -7,15 +15,17 @@ function UIMgr:ctor()
     }
 end
 
+--[[打开UI]]
 function UIMgr:open(name, ...)
     local ui = self.openlist_[name]
     if not ui then
-        ui = zz.newInstance(name, ...)
+        ui = zz:newInstance(name, ...)
         self.openlist_[name] = ui
     end
     return ui
 end
 
+--[[重载UI]]
 function UIMgr:reload(name, ...)
     local ui = self.openlist_[name]
     if ui and ui.reload then
@@ -23,22 +33,33 @@ function UIMgr:reload(name, ...)
     end
 end
 
+--[[关闭UI]]
 function UIMgr:close(name)
     local ui = self.openlist_[name]
     if ui then
-        ui:close()
+        ui:removeFromParent()
+        ui = nil
         self.openlist_[name] = nil
     end
 end
 
-function UIMgr:closeAll()
-    for name, ui in ipairs(self.openlist_) do
-        if not self.ignorelist_[name] then
-            ui:close()
+--[[关闭全部UI]]
+function UIMgr:closeAll(ignores)
+    if type(ignores) == 'boolean' then
+        ignores = ignores and {} or self.ignorelist_
+    elseif type(ignores) ~= 'table' then
+        ignores = self.ignorelist_
+    end
+    for name, ui in pairs(self.openlist_) do
+        if not table.contains(name) then
+            ui:removeFromParent()
+            ui = nil
+            self.openlist_[name] = nil
         end
     end
 end
 
+--[[执行UI方法]]
 function UIMgr:excute(name, func, ...)
     local ui = self.openlist_[name]
     if ui and ui[func] then
@@ -46,10 +67,12 @@ function UIMgr:excute(name, func, ...)
     end
 end
 
+--[[显示UI]]
 function UIMgr:show(name)
     self:excute(name, 'show')
 end
 
+--[[隐藏UI]]
 function UIMgr:hide(name)
     self:excute(name, 'hide')
 end
