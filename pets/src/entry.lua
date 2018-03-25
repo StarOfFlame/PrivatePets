@@ -21,8 +21,8 @@ end
 --[[错误跟踪]]
 xpcall(entry, function(msg)
     local msg = debug.traceback(msg, 3)
-    if zz and zz.game then
-        zz.game:handleLuaError()
+    if zz then
+        zz:handleLuaError()
     end
     print('\n-> ERROR TRACE BEGAN <-')
     print(msg)

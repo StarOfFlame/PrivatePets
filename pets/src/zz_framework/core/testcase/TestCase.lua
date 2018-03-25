@@ -32,7 +32,7 @@ end
 function TestCase:testcase01()
     self:warn('测试用例01-精灵触摸、移动及保存截图')
     
-    local layer = cc.LayerColor:create(cc.c4b(255,255,255,255), display.width, display.height)
+    local layer = cc.LayerColor:create(RGBA(zz.CONST.COLOR.WHITE), display.width, display.height)
     zz.stage:addChild(layer)
     
     local sp0 = ccui.ImageView:create('HelloWorld.png')

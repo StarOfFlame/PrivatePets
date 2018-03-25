@@ -1,17 +1,35 @@
+local MainScene = class('MainScene', zz.SceneBase)
 
-local MainScene = class("MainScene", cc.load("mvc").ViewBase)
+function MainScene:initialize()
+    
+    self:mountNodes()
+end
 
-function MainScene:onCreate()
-    -- add background image
-    display.newSprite("HelloWorld.png")
-        :move(display.center)
-        :addTo(self)
+function MainScene:onEnter()
+    self:tag('onEnter')
+end
 
-    -- add HelloWorld label
-    cc.Label:createWithSystemFont("Hello World", "Arial", 40)
-        :move(display.cx, display.cy + 200)
-        :addTo(self)
+function MainScene:mountNodes()
+    self:tag('mountNodes')
+    for name, zorder in pairs(zz.UIBase.ZOrder) do
+        local node = cc.Node:create()
+        node:setName(name)
+        self:addChild(node, zorder)
+    end
+end
 
+function MainScene:getNode(name)
+    return self:getChildByName(name)
+end
+
+function MainScene:show(name)
+    local node = self:getNode(name)
+    if node then node:setVisible(true) end
+end
+
+function MainScene:hide()
+    local node = self:getNode(name)
+    if node then node:setVisible(false) end
 end
 
 return MainScene

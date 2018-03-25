@@ -4,6 +4,11 @@ end)
 
 function SceneBase:ctor()
     self:enableNodeEvents()
+    self:initialize()
+end
+
+function SceneBase:initialize()
+
 end
 
 function SceneBase:onEnter()

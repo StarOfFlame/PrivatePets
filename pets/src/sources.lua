@@ -4,7 +4,6 @@ local sources = {
 	['UpdateUI'] = 'update.UpdateUI',
 	['zz'] = 'zz_framework.zz',
 	['MainScene'] = 'zz_framework.ui.scenes.MainScene',
-	['Game'] = 'zz_framework.core.Game',
 	['lfs_testcase'] = 'zz_framework.core.testcase.lfs_testcase',
 	['TestCase'] = 'zz_framework.core.testcase.TestCase',
 	['Masses'] = 'zz_framework.core.nodes.Masses',
