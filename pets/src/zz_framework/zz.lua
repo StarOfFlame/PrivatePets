@@ -45,6 +45,7 @@ end
 
 function zz:loadGlobal()
     include('Global')
+    include('Extends')
     cc.exports.CONST  = include('Const')
     cc.exports.utils  = include('Utils')
     cc.exports.system = include('System')
