@@ -70,4 +70,11 @@ function Event:cleanup()
     table.foreach(self.listenerRecords_, handler(self, self.del))
 end
 
+----------------------------------------------------
+-- @desc : 添加场景事件监听
+--
+function Event:addListener(listener, container)
+    Dispatcher:addEventListenerWithSceneGraphPriority(listener, container)
+end
+
 return Event

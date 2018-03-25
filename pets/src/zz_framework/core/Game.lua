@@ -15,46 +15,73 @@ function Game:ctor()
     self:dumpSystemInfo()
 end
 
+--[[输出游戏相关信息]]
 function Game:dumpSystemInfo()
     self:tag('操作系统: ' .. zz.system.platform:getTargetOSname())
     self:tag('系统语言: ' .. zz.system.platform:getLanguageName())
     self:tag('可写路径: ' .. device.writablePath)
 end
 
+--[[设置环境相关参数]]
 function Game:initEnv()
     if CC_SHOW_FPS then
         cc.Director:getInstance():setDisplayStats(true)
     end
 end
 
+--[[加载游戏框架]]
 function Game:load()
     include('Global')
     
     zz.CONST  = include('Const')
     zz.utils  = include('Utils')
     zz.system = include('System')
+
+    if zz.system.platform:isAndroid() then
+        cc.exports.luaj = require('cocos.cocos2d.luaj')
+    end
 end
 
+--[[注册系统事件]]
 function Game:registerSystemEvent()
-    zz.system.event:add(zz.CONST.EVENT.APP_ENTER_BG, handler(self, self.enterBackground))
-    zz.system.event:add(zz.CONST.EVENT.APP_ENTER_FG, handler(self, self.enterForeground))
-    zz.system.event:add(zz.CONST.EVENT.APP_RECV_MEM_WARNING, handler(self, self.reveiceMemoryWarning))
+    zz.system.event:add(zz.CONST.EVENT.APP_ENTER_BG, handler(self, self.onEnterBackground))
+    zz.system.event:add(zz.CONST.EVENT.APP_ENTER_FG, handler(self, self.onEnterForeground))
+    zz.system.event:add(zz.CONST.EVENT.APP_RECV_MEM_WARNING, handler(self, self.onReveiceMemoryWarning))
+
+    -- 注册安卓返回键按下事件
+    if zz.system.platform:isAndroid() then
+        local listener  = cc.EventListenerKeyboard:create()
+        listener:registerScriptHandler(handler(self, self.onBackBoardReleased), cc.Handler.EVENT_KEYBOARD_RELEASED)
+        zz.system.event:addListener(listener, zz.stage)
+    end
 end
 
-function Game:enterBackground()
+--[[监听返回键按下事件]]
+function Game:onBackBoardReleased()
+    if zz.system.platform:isAndroid() then
+        local className = "org/cocos2dx/lua/DeviceHelper"
+        luaj.callStaticMethod(className, "onBackBoardReleased")
+    end
+end
+
+--[[监听游戏退到后台事件]]
+function Game:onEnterBackground()
     self:tag('游戏退到后台')
 end
 
-function Game:enterForeground()
+--[[监听游戏回到前台事件]]
+function Game:onEnterForeground()
     self:tag('游戏回到前台')
     self:tag('从后台回到前台过去了' .. GetElapseTime() .. 's')
 end
 
-function Game:reveiceMemoryWarning()
+--[[监听游戏收到内存警告事件]]
+function Game:onReveiceMemoryWarning()
     self:tag('收到内存警告')
 end
 
-function Game:receiveLuaError()
+--[[lua错误处理]]
+function Game:handleLuaError()
     ----------------------------------------------------------------------
     -- debug.getinfo()
     -- 'n'   获取name和namewhat

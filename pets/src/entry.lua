@@ -8,22 +8,24 @@
 
 cc.FileUtils:getInstance():setPopupNotify(false)
 
-require('config')
-require('cocos.init')
-
+--[[主入口]]
 local function entry()
+    require('config')
+    require('cocos.init')
     cc.exports.zz = require('zz_framework.zz'):getInstance()
     zz:initialize()
     zz:startGame()
-    
     zz:loadInstance('TestCase'):run()
 end
 
+--[[错误跟踪]]
 xpcall(entry, function(msg)
     local msg = debug.traceback(msg, 3)
     if zz and zz.game then
-        zz.game:receiveLuaError()
+        zz.game:handleLuaError()
     end
-    print('\n->ERROR BEGAN\n' .. msg .. '\n<-ERROR ENDED\n')
+    print('\n-> ERROR TRACE BEGAN <-')
+    print(msg)
+    print('<- ERROR TRACE ENDED ->\n')
     return msg
 end)

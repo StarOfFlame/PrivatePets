@@ -16,8 +16,8 @@ local strupper = string.upper
 local strsub   = string.sub
 local strlen   = string.len
 local strfmt   = string.format
-local defRGB   = cc.c3b(255,255,255)
-local defRGBA  = cc.c4b(255,255,255,255)
+local defRGB   = zz.CONST.COLOR.WHITE
+local defRGBA  = RGBA(defRGB)
 local foreach  = table.foreach
 
 
