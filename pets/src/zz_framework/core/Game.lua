@@ -6,7 +6,7 @@
 ---- Email  : jl88744653@gmail.com
 ------------------------------------------------------------------------------------------
 
-local Game = class('Game', zz.singleton)
+local Game = class('Game', zz.SingletonBase)
 
 function Game:ctor()
     self:initEnv()

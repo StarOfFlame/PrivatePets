@@ -9,8 +9,13 @@
 --[[源码列表]]
 require('sources')
 
---[[单例基类]]
+--[[基础基类]]
 local SingletonBase = include('SingletonBase')
+local SceneBase     = include('SceneBase')
+local UIBase        = include('UIBase')
+local WindowBase    = include('WindowBase')
+local DialogBase    = include('DialogBase')
+local FloatBase     = include('FloatBase')
 
 --[[zz_framework 框架单例]]
 local zz = class('zz_framework', SingletonBase)
@@ -18,8 +23,16 @@ local zz = class('zz_framework', SingletonBase)
 --[[zz框架初始化]]
 function zz:initialize()
     math.randomseed(os.time())
-    self.singleton = SingletonBase
+    self:loadBaseClass()
     self:initStage()
+end
+
+function zz:loadBaseClass()
+    self.SingletonBase = SingletonBase
+    self.SceneBase     = SceneBase
+    self.WindowBase    = WindowBase
+    self.DialogBase    = DialogBase
+    self.FloatBase     = FloatBase
 end
 
 --[[获得实例]]

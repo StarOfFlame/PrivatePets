@@ -58,13 +58,16 @@ local sources = {
 	['label_div'] = 'zz_framework.core.thirds.richlabel.label_div',
 	['label_parser'] = 'zz_framework.core.thirds.richlabel.label_parser',
 	['SingletonBase'] = 'zz_framework.core.base.SingletonBase',
+	['FloatBase'] = 'zz_framework.core.base.FloatBase',
 	['ManagerBase'] = 'zz_framework.core.base.ManagerBase',
 	['PropBase'] = 'zz_framework.core.base.PropBase',
 	['RoleBase'] = 'zz_framework.core.base.RoleBase',
 	['SceneBase'] = 'zz_framework.core.base.SceneBase',
 	['UserDataBase'] = 'zz_framework.core.base.UserDataBase',
+	['UIBase'] = 'zz_framework.core.base.UIBase',
+	['WindowBase'] = 'zz_framework.core.base.WindowBase',
 	['ConfigBase'] = 'zz_framework.core.base.ConfigBase',
-	['LayerBase'] = 'zz_framework.core.base.LayerBase',
+	['DialogBase'] = 'zz_framework.core.base.DialogBase',
 	['ObjectBase'] = 'zz_framework.core.base.ObjectBase',
 }
 

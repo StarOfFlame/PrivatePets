@@ -6,7 +6,7 @@
 ---- Email  : jl88744653@gmail.com
 ------------------------------------------------------------------------------------------
 
-local TestCase = class('TestCase', zz.singleton)
+local TestCase = class('TestCase', zz.SingletonBase)
 
 function TestCase:ctor()
     self.testcases_ = {
