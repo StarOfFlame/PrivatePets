@@ -15,10 +15,8 @@ printInfo     = CC_OPEN_OUT and printInfo     or pass
 printError    = CC_OPEN_OUT and printError    or pass
 release_print = CC_OPEN_OUT and release_print or pass
 
-
 --[[解表]]
 cc.exports.unpack = unpack or table.unpack
-
 
 --[[取最大值]]
 cc.exports.max = function(a,b,...)

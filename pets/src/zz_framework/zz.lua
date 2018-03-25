@@ -28,18 +28,12 @@ end
 
 --[[zz框架初始化]]
 function zz:initialize()
-    print('initialize')
     math.randomseed(os.time())
     self:loadBaseClass()
-    print('initialize')
     self:loadGlobal()
-    print('initialize')
     self:registerSystemEvent()
-    print('initialize')
     self:loadEnvironment()
-    print('initialize')
     self:dumpFrameworkInfo()
-    print('initialize')
 end
 
 --[[设置环境相关参数]]
