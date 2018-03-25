@@ -1,7 +1,7 @@
-local FloatBase = class('FloatBase', zz.UIBase)
+local FloatBase = class('FloatBase', UIBase)
 
 function FloatBase:init()
-    self.UItype_ = zz.UIBase.UIType.Float
+    self.UItype_ = UIBase.UIType.Float
     self.super:init()
 end
 

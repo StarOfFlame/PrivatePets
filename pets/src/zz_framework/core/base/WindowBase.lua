@@ -1,7 +1,7 @@
-local WindowBase = class('WindowBase', zz.UIBase)
+local WindowBase = class('WindowBase', UIBase)
 
 function WindowBase:init()
-    self.UItype_ = zz.UIBase.UIType.Window
+    self.UItype_ = UIBase.UIType.Window
     self.super:init()
 end
 

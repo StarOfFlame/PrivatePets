@@ -249,19 +249,19 @@ function class(classname, ...)
         print(tag .. string.format(' [%s]', classname), ...)
     end
     cls.tag = function(_, ...)
-        cls:tag_(zz.CONST.UNICODE.TRUE, ...)
+        cls:tag_(CONST.UNICODE.TRUE, ...)
     end
     cls.fmt = function(_, fmt, ...) 
         cls:tag(string.format(fmt, ...))
     end
     cls.warn = function(_, ...)
-        cls:tag_(zz.CONST.UNICODE.WARNING, ...)
+        cls:tag_(CONST.UNICODE.WARNING, ...)
     end
     cls.fault = function(_, ...)
-        cls:tag_(zz.CONST.UNICODE.ERROR, ...)
+        cls:tag_(CONST.UNICODE.ERROR, ...)
     end
     cls.dump = function(_, tag, val)
-        cls:tag_(zz.CONST.UNICODE.RIGHT, 'DUMP')
+        cls:tag_(CONST.UNICODE.RIGHT, 'DUMP')
         dump(val, tag)
     end
 

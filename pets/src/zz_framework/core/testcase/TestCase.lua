@@ -6,7 +6,7 @@
 ---- Email  : jl88744653@gmail.com
 ------------------------------------------------------------------------------------------
 
-local TestCase = class('TestCase', zz.SingletonBase)
+local TestCase = class('TestCase', SingletonBase)
 
 function TestCase:ctor()
     self.testcases_ = {
@@ -32,7 +32,7 @@ end
 function TestCase:testcase01()
     self:warn('测试用例01-精灵触摸、移动及保存截图')
     
-    local layer = cc.LayerColor:create(RGBA(zz.CONST.COLOR.WHITE), display.width, display.height)
+    local layer = cc.LayerColor:create(RGBA(CONST.COLOR.WHITE), display.width, display.height)
     zz.stage:addChild(layer)
     
     local sp0 = ccui.ImageView:create('HelloWorld.png')
@@ -53,8 +53,8 @@ function TestCase:testcase01()
     
     local root = device.writablePath
     cc.FileUtils:getInstance():createDirectory(root ..'res/')
-    zz.utils:grabNodeToFile(sp, root .. 'res/HelloWorld-001.png')
-    zz.utils:grabScreenToFile(function(output)
+    utils:grabNodeToFile(sp, root .. 'res/HelloWorld-001.png')
+    utils:grabScreenToFile(function(output)
         self:fmt('保存截屏到[\'%s\']成功', output)
     end, function(output)
         self:fmt('保存截屏到[\'%s\']失败', output)
@@ -148,9 +148,9 @@ function TestCase:testcase06()
     schedule(sp, function()
         sp.idx = sp.idx + 1
         if sp.idx % 2 == 0 then 
-            zz.utils.shader.normalShader(sp)
+            utils.shader.normalShader(sp)
         elseif sp.idx % 2 == 1 then
-            zz.utils.shader.greyShader(sp)
+            utils.shader.greyShader(sp)
         end
     end, 3)
 end

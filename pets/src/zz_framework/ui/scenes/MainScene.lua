@@ -1,17 +1,15 @@
-local MainScene = class('MainScene', zz.SceneBase)
+local MainScene = class('MainScene', SceneBase)
 
 function MainScene:initialize()
-    
     self:mountNodes()
 end
 
 function MainScene:onEnter()
-    self:tag('onEnter')
+    zz:loadInstance('TestCase'):run()
 end
 
 function MainScene:mountNodes()
-    self:tag('mountNodes')
-    for name, zorder in pairs(zz.UIBase.ZOrder) do
+    for name, zorder in pairs(UIBase.ZOrder) do
         local node = cc.Node:create()
         node:setName(name)
         self:addChild(node, zorder)

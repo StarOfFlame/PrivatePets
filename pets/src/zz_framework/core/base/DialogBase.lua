@@ -1,7 +1,7 @@
-local DialogBase = class('DialogBase', zz.UIBase)
+local DialogBase = class('DialogBase', UIBase)
 
 function DialogBase:init()
-    self.UItype_ = zz.UIBase.UIType.Dialog
+    self.UItype_ = UIBase.UIType.Dialog
     self.super:init()
 end
 

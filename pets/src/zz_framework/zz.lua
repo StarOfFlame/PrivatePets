@@ -28,12 +28,18 @@ end
 
 --[[zz框架初始化]]
 function zz:initialize()
+    print('initialize')
     math.randomseed(os.time())
     self:loadBaseClass()
+    print('initialize')
     self:loadGlobal()
+    print('initialize')
     self:registerSystemEvent()
+    print('initialize')
     self:loadEnvironment()
+    print('initialize')
     self:dumpFrameworkInfo()
+    print('initialize')
 end
 
 --[[设置环境相关参数]]
@@ -45,48 +51,48 @@ end
 
 function zz:loadGlobal()
     include('Global')
-    self.CONST  = include('Const')
-    self.utils  = include('Utils')
-    self.system = include('System')
-    if self.system.platform:isAndroid() then
-        self.luaj = require('cocos.cocos2d.luaj')
+    cc.exports.CONST  = include('Const')
+    cc.exports.utils  = include('Utils')
+    cc.exports.system = include('System')
+    if system.platform:isAndroid() then
+        cc.exports.luaj = require('cocos.cocos2d.luaj')
     end
 end
 
 --[[加载基础基类]]
 function zz:loadBaseClass()
-    self.SingletonBase = include('SingletonBase')
-    self.UIBase        = include('UIBase')
-    self.SceneBase     = include('SceneBase')
-    self.WindowBase    = include('WindowBase')
-    self.DialogBase    = include('DialogBase')
-    self.FloatBase     = include('FloatBase')
+    cc.exports.SingletonBase = include('SingletonBase')
+    cc.exports.UIBase        = include('UIBase')
+    cc.exports.SceneBase     = include('SceneBase')
+    cc.exports.WindowBase    = include('WindowBase')
+    cc.exports.DialogBase    = include('DialogBase')
+    cc.exports.FloatBase     = include('FloatBase')
 end
 
 --[[输出游戏相关信息]]
 function zz:dumpFrameworkInfo()
-    self:tag('操作系统: ' .. self.system.platform:getTargetOSname())
-    self:tag('系统语言: ' .. self.system.platform:getLanguageName())
+    self:tag('操作系统: ' .. system.platform:getTargetOSname())
+    self:tag('系统语言: ' .. system.platform:getLanguageName())
     self:tag('可写路径: ' .. device.writablePath)
 end
 
 --[[注册系统事件]]
 function zz:registerSystemEvent()
-    self.system.event:add(self.CONST.EVENT.APP_ENTER_BG, handler(self, self.onEnterBackground))
-    self.system.event:add(self.CONST.EVENT.APP_ENTER_FG, handler(self, self.onEnterForeground))
-    self.system.event:add(self.CONST.EVENT.APP_RECV_MEM_WARNING, handler(self, self.onReveiceMemoryWarning))
+    system.event:add(CONST.EVENT.APP_ENTER_BG, handler(self, self.onEnterBackground))
+    system.event:add(CONST.EVENT.APP_ENTER_FG, handler(self, self.onEnterForeground))
+    system.event:add(CONST.EVENT.APP_RECV_MEM_WARNING, handler(self, self.onReveiceMemoryWarning))
 
     -- 注册安卓返回键按下事件
-    if self.system.platform:isAndroid() then
+    if system.platform:isAndroid() then
         local listener  = cc.EventListenerKeyboard:create()
         listener:registerScriptHandler(handler(self, self.onBackBoardReleased), cc.Handler.EVENT_KEYBOARD_RELEASED)
-        self.system.event:addListener(listener, self.stage)
+        system.event:addListener(listener, self.stage)
     end
 end
 
 --[[监听返回键按下事件]]
 function zz:onBackBoardReleased()
-    if self.system.platform:isAndroid() then
+    if system.platform:isAndroid() then
         local className = "org/cocos2dx/lua/DeviceHelper"
         luaj.callStaticMethod(className, "onBackBoardReleased")
     end
@@ -136,7 +142,7 @@ function zz:handleLuaError()
         end
         info.source = table.concat(arr, '/')
         if info.source ~= '' then
-            err[#err+1] = zz.CONST.UNICODE.ERROR .. string.format(' 类型:%s 定位:%s 行号:%s 方法:%s upvalue:%s', 
+            err[#err+1] = CONST.UNICODE.ERROR .. string.format(' 类型:%s 定位:%s 行号:%s 方法:%s upvalue:%s', 
                 info.what, info.source, info.currentline, info.name, info.nups)
         end
     end
@@ -144,7 +150,7 @@ function zz:handleLuaError()
     cc.Label:createWithSystemFont(errstr, 'Arial', 18)
         :setAnchorPoint(display.RIGHT_BOTTOM)
         :move(display.width-20, 20)
-        :setColor(self.CONST.COLOR.RED)
+        :setColor(CONST.COLOR.RED)
         :addTo(self.stage, self.UIBase.ZOrder.Error)
     self:tag('LUA_ERROR:\n'..errstr)
 end
