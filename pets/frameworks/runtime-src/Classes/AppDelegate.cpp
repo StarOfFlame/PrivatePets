@@ -3,6 +3,8 @@
 #include "cocos2d.h"
 #include "scripting/lua-bindings/manual/lua_module_register.h"
 #include "thirds/Thirds.h"
+#include "hotupdate/UpdateConfig.h"
+#include "hotupdate/UpdateUI.h"
 
 // #define USE_AUDIO_ENGINE 1
 // #define USE_SIMPLE_AUDIO_ENGINE 1
@@ -85,26 +87,35 @@ static void registerLuaData()
     Thirds::TimeUtils::register_getcurrentusec_lua(L);
 }
 
-bool AppDelegate::applicationDidFinishLaunching()
+// register search paths
+static void registerSearchPaths()
 {
-    // set default FPS
-    Director::getInstance()->setAnimationInterval(1.0 / 60.0f);
-
-    registerLuaData();
-    
-    auto engine = LuaEngine::getInstance();
-    
+    FileUtils::getInstance()->addSearchPath(UPDATE_FULL_PATH + "src", true);
+    FileUtils::getInstance()->addSearchPath(UPDATE_FULL_PATH + "res", true);
 #if CC_64BITS
     FileUtils::getInstance()->addSearchPath("src/64bit");
 #endif
     FileUtils::getInstance()->addSearchPath("src");
     FileUtils::getInstance()->addSearchPath("res");
-    engine = LuaEngine::getInstance();
-    if (engine->executeScriptFile("entry.lua"))
-    {
-        return false;
-    }
+}
 
+// run update scene
+void AppDelegate::startGameApp()
+{
+    Scene *scene = Scene::create();
+    Director::getInstance()->runWithScene(scene);
+    UpdateUI* layer = UpdateUI::create();
+    scene->addChild(layer);
+}
+
+// This function will be called when the app finishing launching.
+bool AppDelegate::applicationDidFinishLaunching()
+{
+    Director::getInstance()->setAnimationInterval(1.0 / 60.0f);
+    registerSearchPaths();
+    registerLuaData();
+    startGameApp();
+    
     return true;
 }
 
