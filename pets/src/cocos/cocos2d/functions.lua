@@ -227,6 +227,9 @@ function class(classname, ...)
         -- add default constructor
         cls.ctor = function() end
     end
+    cls.getObjName = function()
+        return cls.__cname
+    end
     cls.new = function(...)
         local instance
         if cls.__create then

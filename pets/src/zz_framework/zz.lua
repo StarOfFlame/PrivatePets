@@ -9,16 +9,8 @@
 --[[源码列表]]
 require('sources')
 
---[[基础基类]]
-local SingletonBase = include('SingletonBase')
-local SceneBase     = include('SceneBase')
-local UIBase        = include('UIBase')
-local WindowBase    = include('WindowBase')
-local DialogBase    = include('DialogBase')
-local FloatBase     = include('FloatBase')
-
 --[[zz_framework 框架单例]]
-local zz = class('zz_framework', SingletonBase)
+local zz = class('zz_framework', include('SingletonBase'))
 
 --[[zz框架初始化]]
 function zz:initialize()
@@ -27,12 +19,13 @@ function zz:initialize()
     self:initStage()
 end
 
+--[[加载基础基类]]
 function zz:loadBaseClass()
-    self.SingletonBase = SingletonBase
-    self.SceneBase     = SceneBase
-    self.WindowBase    = WindowBase
-    self.DialogBase    = DialogBase
-    self.FloatBase     = FloatBase
+    self.SingletonBase = include('SingletonBase')
+    self.SceneBase     = include('SceneBase')
+    self.WindowBase    = include('WindowBase')
+    self.DialogBase    = include('DialogBase')
+    self.FloatBase     = include('FloatBase')
 end
 
 --[[获得实例]]

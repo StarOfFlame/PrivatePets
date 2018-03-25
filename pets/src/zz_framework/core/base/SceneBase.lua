@@ -15,7 +15,7 @@ function SceneBase:onExit()
 end
 
 function SceneBase:onCleanup()
-
+    -- 清理资源
 end
 
 return SceneBase

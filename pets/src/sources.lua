@@ -34,6 +34,7 @@ local sources = {
 	['XmlReader'] = 'zz_framework.core.manager.XmlReader',
 	['ObjectMgr'] = 'zz_framework.core.manager.ObjectMgr',
 	['ResMgr'] = 'zz_framework.core.manager.ResMgr',
+	['UIMgr'] = 'zz_framework.core.manager.UIMgr',
 	['TimerMgr'] = 'zz_framework.core.manager.TimerMgr',
 	['LayerMgr'] = 'zz_framework.core.manager.LayerMgr',
 	['DbMgr'] = 'zz_framework.core.manager.DbMgr',
