@@ -284,13 +284,14 @@ end
 ----------------------------------------------
 -- 注册触摸
 --
-function Node:isTouchOnNode(touchPos)
+function Node:isTouchOnNode(touchPos, out)
     local nodePos  = self:convertToNodeSpace(touchPos)
     local nodeSize = self:getContentSize()
-    return cc.rectContainsPoint(cc.rect(0, 0, nodeSize.width, nodeSize.height), nodePos)
+    local inside   = cc.rectContainsPoint(cc.rect(0, 0, nodeSize.width, nodeSize.height), nodePos)
+    return out and not inside or inside
 end
 
-function Node:registerTouchEvent(touchFn)
+function Node:registerTouchEvent(touchFn, out)    
     if self.isTouchEnabled then
         print(CONST.UNICODE.WARNING .. ' 为UIWidget控件开启节点触摸事件需要禁用原来的触摸机制')
         self:setTouchEnabled(false)
@@ -301,11 +302,11 @@ function Node:registerTouchEvent(touchFn)
             return false 
         end
         local pos = touch:getStartLocation()
-        if not self:isTouchOnNode(pos) then
-            return false
+        if self:isTouchOnNode(pos, out) then 
+            touchFn(self, 'began', pos)
+            return true
         end
-        touchFn(self, 'began', pos)
-        return true
+        return false
     end
 
     local function touchEnded(touch, event)
@@ -313,10 +314,9 @@ function Node:registerTouchEvent(touchFn)
             return 
         end
         local pos = touch:getLocation()
-        if not self:isTouchOnNode(pos) then
-            return
+        if self:isTouchOnNode(pos, out) then
+            touchFn(self, 'ended', pos)
         end
-        touchFn(self, 'ended', pos)
     end
 
     local function touchMoved(touch, event)
@@ -324,17 +324,15 @@ function Node:registerTouchEvent(touchFn)
             return 
         end
         local pos = touch:getLocation()
-        if not self:isTouchOnNode(pos) then
-            return
+        if self:isTouchOnNode(pos, out) then
+            touchFn(self, 'moved', pos)
         end
-        touchFn(self, 'moved', pos)
     end
 
     local function touchCancel(touch, event)
-        if not touchFn then 
-            return 
+        if touchFn then 
+            touchFn(self, 'canceled', pos)
         end
-        touchFn(self, 'canceled', pos)
     end
     
     local touchListener = cc.EventListenerTouchOneByOne:create()
