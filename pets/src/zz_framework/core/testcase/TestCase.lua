@@ -38,17 +38,22 @@ function TestCase:testcase01()
     local sp0 = ccui.ImageView:create('HelloWorld.png')
     sp0:setPosition(display.cx-100, display.cy+100)
     sp0:registerTouchEvent(function(sender, event, pos)
-        self:tag('touch : ', event, pos.x, pos.y)
         if event == 'moved' then
+            self:tag('touch moved: ', event, pos.x, pos.y)
             sp0:setPosition(pos)
         end
     end)
-    zz.stage:addChild(sp0)
+    zz.stage:addChild(sp0,1)
     
     local sp = ccui.ImageView:create('HelloWorld.png')
     sp:setPosition(display.center)
     sp:disableTouchThrough()
-    sp:setTag(1001)
+    sp:setTag(1001)    
+    sp:registerTouchEvent(function(sender, event, pos)
+        if event == 'ended' then
+            self:tag('touch ended: ', event, pos.x, pos.y)
+        end
+    end, true)
     zz.stage:addChild(sp)
     
     local root = device.writablePath
