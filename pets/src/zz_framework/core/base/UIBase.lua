@@ -52,8 +52,8 @@ end
 
 --[[UI层级]]
 function UIBase:init_()
-    if self.init then
-        self:init()
+    if self.initData then
+        self:initData()
     end
     self:createCsbNode()
 end
@@ -106,6 +106,18 @@ function UIBase:createCsbNode()
                     end
                 end
             end
+        end
+
+        -- 绑定关闭按钮
+        local closeBtn = cc.utils:findChild(self.csbNode_, 'Button_Close')
+        if closeBtn then
+            closeBtn:setTouchEnabled(true)
+            closeBtn:setPressActionEnabled(true)
+            closeBtn:addTouchEventListener(function(sender, event)
+                if event == ccui.TouchEventType.ended then
+                    self:close()
+                end
+            end)
         end
     end
 
@@ -163,6 +175,7 @@ end
 --[[UI退出回调]]
 function UIBase:onExitCallback_()
     self:releaseAtalas()
+    self:stopAllActions()
 end
 
 --[[UI清理回调]]

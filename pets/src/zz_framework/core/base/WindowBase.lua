@@ -1,8 +1,55 @@
+------------------------------------------------------------------------------------------
+---- Name   : WindowBase
+---- Desc   : 窗口基类
+---- Date   : 2018/03/28
+---- Author : Reyn 
+---- Email  : jl88744653@gmail.com
+------------------------------------------------------------------------------------------
+
 local WindowBase = class('WindowBase', UIBase)
 
-function WindowBase:init()
-    self.UItype_ = UIBase.UIType.Window
-    self.super:init()
+--[[初始化窗口数据]]
+function WindowBase:initData()
+    self.UItype_    = UIBase.UIType.Window
+    self.maskTouch_ = true 
+    self.title_     = ''
+    self.titleNode_ = nil
+    
+    if self.init then
+        self:init()
+    end
+end
+
+--[[进入回调]]
+function DialogBase:onEnterCallback_()
+    self.super:onEnterCallback_()
+    self:showTitle()
+end
+
+--[[设置窗口标题]]
+function WindowBase:setTitle(title)
+    if self.title_ == title and title ~= '' then
+        return
+    end
+    self.title_ = title
+end
+
+--[[显示标题]]
+function WindowBase:showTitle()
+    if self.titleNode_ then
+        self.titleNode_:setString(self.title)
+        --TODO: show title
+    end
+end
+
+--[[进入动画]]
+function WindowBase:playEnterAnimation()
+
+end
+
+--[[退出动画]]
+function WindowBase:playExitAnimation()
+
 end
 
 return WindowBase
