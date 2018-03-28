@@ -10,10 +10,11 @@ local DialogBase = class('DialogBase', UIBase)
 
 --[[初始化悬浮窗数据]]
 function DialogBase:initData()
-    self.UItype_    = UIBase.UIType.Dialog
-    self.maskTouch_ = true 
-    self.blinkTip_  = ''
-    self.blinkNode_ = nil
+    self.UItype_     = UIBase.UIType.Dialog
+    self.maskTouch_  = true 
+    self.blinkTip_   = ''
+    self.blinkNode_  = nil
+    self.touchClose_ = true
     
     if self.init then
         self:init()
@@ -34,17 +35,14 @@ end
 
 --[[设置提示]]
 function DialogBase:setBlinkTip(tip)
-    if self.tip_ == tip then
+    if self.blinkTip_ == tip then
         return 
     end
-    self.tip_ = tip
+    self.blinkTip_ = tip
 end
 
 --[[开始闪烁提示]]
 function DialogBase:startBlinkTip()
-    if not self.tip_ or self.tip_ == '' then 
-        return
-    end
     if not self.blinkNode_ then
         return
     end

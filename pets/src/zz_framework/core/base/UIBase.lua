@@ -25,6 +25,7 @@ UIBase.UIType = {
 }
 
 function UIBase:ctor()
+    --以下是自定义UI数据
     self.uitype_     = UIBase.UIType.None --UI类型
     self.csb_        = nil                --csb名称
     self.occupy_     = false              --是否占用独立空间
@@ -32,10 +33,11 @@ function UIBase:ctor()
     self.musicId_    = nil                --播放背景音乐
     self.plists_     = nil                --图集
     self.maskTouch_  = false              --屏蔽底层触摸
-    self.rootNode_   = nil                --顶层节点
-    self.csbNode_    = nil                --csb节点
     self.touchClose_ = false              --点击关闭
     self.widgets_    = nil                --控件列表
+    --以上是自定义UI数据
+    self.csbNode_    = nil                --csb节点
+    self.rootNode_   = nil                --顶层节点
     
     self:init_()
 end
