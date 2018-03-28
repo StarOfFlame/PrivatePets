@@ -12,20 +12,9 @@ local UIBase = class('UIBase', function()
     return node
 end)
 
---[[UI类型]]
+--[[UI类型及其对应层级]]
 UIBase.UIType = {
     None   = 0, -- 无
-    Window = 1, -- 窗口
-    Dialog = 2, -- 模态
-    Float  = 3, -- 悬浮节点
-    Notice = 4, -- 通知节点
-    Broad  = 5, -- 跑马灯消息节点
-    Guide  = 6, -- 引导节点
-    Error  = 7, -- 错误节点
-}
-
---[[UI层级]]
-UIBase.ZOrder = {
     Window = 1, -- 窗口
     Dialog = 2, -- 模态
     Float  = 3, -- 悬浮节点
@@ -49,6 +38,16 @@ function UIBase:ctor()
     self.widgets_    = nil                --控件列表
     
     self:init_()
+end
+
+--[[获取UI名称]]
+function UIBase:getUITypeName()
+    for name, type in pairs(UIBase.UIType) do
+        if type == self.uitype_ then
+            return name
+        end
+    end
+    return 'None'
 end
 
 --[[UI层级]]

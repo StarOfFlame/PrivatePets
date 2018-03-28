@@ -43,12 +43,14 @@ function zz:loadEnvironment()
     end
 end
 
+--[[加载全局变量]]
 function zz:loadGlobal()
     include('Global')
     include('Extends')
-    cc.exports.CONST  = include('Const')
-    cc.exports.utils  = include('Utils')
-    cc.exports.system = include('System')
+    cc.exports.CONST   = include('Const')
+    cc.exports.utils   = include('Utils')
+    cc.exports.system  = include('System')
+    cc.exports.manager = include('Manager')
     if system.platform:isAndroid() then
         cc.exports.luaj = require('cocos.cocos2d.luaj')
     end
@@ -146,7 +148,7 @@ function zz:handleLuaError()
         :setAnchorPoint(display.RIGHT_BOTTOM)
         :move(display.width-20, 20)
         :setColor(CONST.COLOR.RED)
-        :addTo(self.stage, self.UIBase.ZOrder.Error)
+        :addTo(self.stage, UIBase.UIType.Error)
     self:tag('LUA_ERROR:\n'..errstr)
 end
 

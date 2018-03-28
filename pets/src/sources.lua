@@ -38,6 +38,7 @@ local sources = {
 	['LayerMgr'] = 'zz_framework.core.manager.LayerMgr',
 	['DbMgr'] = 'zz_framework.core.manager.DbMgr',
 	['JsonWriter'] = 'zz_framework.core.manager.JsonWriter',
+	['Manager'] = 'zz_framework.core.manager.Manager',
 	['NetworkMgr'] = 'zz_framework.core.manager.NetworkMgr',
 	['CacheMgr'] = 'zz_framework.core.manager.CacheMgr',
 	['CashMgr'] = 'zz_framework.core.manager.CashMgr',

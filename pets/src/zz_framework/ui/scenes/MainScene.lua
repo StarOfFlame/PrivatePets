@@ -18,7 +18,7 @@ end
 
 --[[挂载节点]]
 function MainScene:mountNodes()
-    for name, zorder in pairs(UIBase.ZOrder) do
+    for name, zorder in pairs(UIBase.UIType) do
         local node = cc.Node:create()
         node:setName(name)
         self:addChild(node, zorder)
@@ -33,13 +33,17 @@ end
 --[[显示挂载节点]]
 function MainScene:showNode(name)
     local node = self:getNode(name)
-    if node then node:setVisible(true) end
+    if node then 
+        node:setVisible(true) 
+    end
 end
 
 --[[隐藏挂载节点]]
 function MainScene:hideNode()
     local node = self:getNode(name)
-    if node then node:setVisible(false) end
+    if node then 
+        node:setVisible(false) 
+    end
 end
 
 --[[清理挂载节点]]
@@ -52,8 +56,21 @@ end
 
 --[[清理所有挂载节点]]
 function MainScene:cleanAllNodes()
-    for name in pairs(UIBase.ZOrder) do
-        self:getNode(name)
+    if UIMgr then
+        UIMgr:closeAll(true)
+    end
+    for name in pairs(UIBase.UIType) do
+        self:cleanNode(name)
+    end
+end
+
+--[[添加子节点到挂载节点]]
+function MainScene:addToMountNode(node, uitype, zorder)
+    local mountNode = self:getNode(uitype)
+    if not zorder then
+        mountNode:addChild(node)
+    else
+        mountNode:addChild(node, zorder)
     end
 end
 

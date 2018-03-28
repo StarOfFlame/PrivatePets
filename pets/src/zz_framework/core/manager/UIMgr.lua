@@ -21,8 +21,14 @@ function UIMgr:open(name, ...)
     if not ui then
         ui = zz:newInstance(name, ...)
         self.openlist_[name] = ui
+        zz.stage:addToMountNode(ui, ui:getUITypeName())
     end
     return ui
+end
+
+--[[获取UI]]
+function UIMgr:get(name)
+    return self.openlist_[name]
 end
 
 --[[重载UI]]
@@ -51,7 +57,7 @@ function UIMgr:closeAll(ignores)
         ignores = self.ignorelist_
     end
     for name, ui in pairs(self.openlist_) do
-        if not table.contains(name) then
+        if not table.contains(ignores, name) then
             ui:removeFromParent()
             ui = nil
             self.openlist_[name] = nil
