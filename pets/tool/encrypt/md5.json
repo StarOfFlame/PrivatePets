@@ -1,15 +1,15 @@
 {
 	"sources.lua" : {
-		"md5" : "c664c497927e77eceddeb549a35aac33",
-		"size" : 3547
+		"md5" : "4216b87eceaa779b3510c5b39ea1399d",
+		"size" : 3766
 	},
 	"config.lua" : {
 		"md5" : "a1cd9acdc9d12b1773e69c34f2e0ad3a",
 		"size" : 2978
 	},
 	"entry.lua" : {
-		"md5" : "fcc1788217e0363d14cd8511d97dd49a",
-		"size" : 796
+		"md5" : "fb8c73cacd7324081ff4f69ed016112f",
+		"size" : 814
 	},
 	"update/UpdateUI.lua" : {
 		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
@@ -44,8 +44,8 @@
 		"size" : 2526
 	},
 	"cocos/framework/extends/NodeEx.lua" : {
-		"md5" : "82ce46d723b15294d6cff3d24df031b4",
-		"size" : 8524
+		"md5" : "2ff7da0c8ee78a6dd5d1b9b00424c948",
+		"size" : 8525
 	},
 	"cocos/framework/extends/LayerEx.lua" : {
 		"md5" : "f137a7632ade189c20048e5df9731eb1",
@@ -64,24 +64,20 @@
 		"size" : 1394
 	},
 	"zz_framework/zz.lua" : {
-		"md5" : "42744031b15a20c2669fcb6877627c02",
-		"size" : 996
+		"md5" : "d895a782c8cec173efb5d30d4494499c",
+		"size" : 4931
 	},
 	"zz_framework/ui/scenes/MainScene.lua" : {
-		"md5" : "c1e2d15cf9c7dbea0494dbf49da89ae3",
-		"size" : 392
-	},
-	"zz_framework/core/Game.lua" : {
-		"md5" : "15bfc601508c3f7cf5572ede96418717",
-		"size" : 2841
+		"md5" : "594cede3e946ce9047f642a47701e86d",
+		"size" : 1744
 	},
 	"zz_framework/core/testcase/lfs_testcase.lua" : {
 		"md5" : "4932c0c281394608bb7b655526de1d6c",
 		"size" : 6310
 	},
 	"zz_framework/core/testcase/TestCase.lua" : {
-		"md5" : "cc06600635634cceaa15778fe2c518a9",
-		"size" : 4914
+		"md5" : "29525f6f4f396aa4b794817baeaae7db",
+		"size" : 5092
 	},
 	"zz_framework/core/nodes/Masses.lua" : {
 		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
@@ -108,24 +104,24 @@
 		"size" : 0
 	},
 	"zz_framework/core/utils/Global.lua" : {
-		"md5" : "ba7d650cbe158273efc05b7ec6dd7703",
-		"size" : 1823
+		"md5" : "d7133fea9372c9512ef4482583a8777f",
+		"size" : 1835
 	},
 	"zz_framework/core/utils/SecurityNumber.lua" : {
 		"md5" : "f369b7445a0547bc3b9e747967ff511e",
 		"size" : 3683
 	},
 	"zz_framework/core/utils/Colorify.lua" : {
-		"md5" : "cf3ef5d677c00693842e582e82d13169",
-		"size" : 2660
+		"md5" : "e26cad4acd7de90a9b223c86be4e2ee3",
+		"size" : 2647
 	},
 	"zz_framework/core/utils/ShaderUtil.lua" : {
 		"md5" : "062999a6af70f86043daa1fb4cdd10a9",
 		"size" : 4331
 	},
 	"zz_framework/core/utils/Extends.lua" : {
-		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
-		"size" : 0
+		"md5" : "732ce8072d941ed76507276afcafb257",
+		"size" : 497
 	},
 	"zz_framework/core/utils/UIHelper.lua" : {
 		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
@@ -155,15 +151,7 @@
 		"md5" : "d18864403208771c64ad67796e095c6a",
 		"size" : 8615
 	},
-	"zz_framework/core/const/ConfigBase.lua" : {
-		"md5" : "d58a5ecd3eecae824f22234f521c3c34",
-		"size" : 563
-	},
 	"zz_framework/core/manager/UserDataMgr.lua" : {
-		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
-		"size" : 0
-	},
-	"zz_framework/core/manager/SceneMgr.lua" : {
 		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
 		"size" : 0
 	},
@@ -191,13 +179,9 @@
 		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
 		"size" : 0
 	},
-	"zz_framework/core/manager/TimerMgr.lua" : {
-		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
-		"size" : 0
-	},
-	"zz_framework/core/manager/LayerMgr.lua" : {
-		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
-		"size" : 0
+	"zz_framework/core/manager/UIMgr.lua" : {
+		"md5" : "8068e07c7453c97e48f33f9fac68e230",
+		"size" : 1903
 	},
 	"zz_framework/core/manager/DbMgr.lua" : {
 		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
@@ -206,6 +190,10 @@
 	"zz_framework/core/manager/JsonWriter.lua" : {
 		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
 		"size" : 0
+	},
+	"zz_framework/core/manager/Manager.lua" : {
+		"md5" : "443fefa9ccf16a8d59efb8d3ea57e4e6",
+		"size" : 72
 	},
 	"zz_framework/core/manager/NetworkMgr.lua" : {
 		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
@@ -227,17 +215,13 @@
 		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
 		"size" : 0
 	},
-	"zz_framework/core/manager/EventMgr.lua" : {
-		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
-		"size" : 0
-	},
 	"zz_framework/core/manager/JsonReader.lua" : {
 		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
 		"size" : 0
 	},
 	"zz_framework/core/system/Event.lua" : {
-		"md5" : "48c82cbc70343de121035ec7fd324e04",
-		"size" : 2033
+		"md5" : "4c897abf03abdd52c6bf3569ddd2cfa4",
+		"size" : 2253
 	},
 	"zz_framework/core/system/Platform.lua" : {
 		"md5" : "8bfe2a1407c18151c32f360283099ee2",
@@ -256,8 +240,8 @@
 		"size" : 563
 	},
 	"zz_framework/core/system/Audio.lua" : {
-		"md5" : "b3e0799d246abd02ab5972eb2a188eec",
-		"size" : 6993
+		"md5" : "b19f86dd4f283f214ec4ff6c18b4b1e4",
+		"size" : 6969
 	},
 	"zz_framework/core/thirds/XmlParser.lua" : {
 		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
@@ -287,6 +271,10 @@
 		"md5" : "e019ec0d9270a610b958e6e41cb776f8",
 		"size" : 536
 	},
+	"zz_framework/core/base/FloatBase.lua" : {
+		"md5" : "9e9d794ee08018bb874c58539b51a201",
+		"size" : 755
+	},
 	"zz_framework/core/base/ManagerBase.lua" : {
 		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
 		"size" : 0
@@ -300,27 +288,35 @@
 		"size" : 0
 	},
 	"zz_framework/core/base/SceneBase.lua" : {
-		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
-		"size" : 0
+		"md5" : "d02ae3a6b49c0c5c355b705a292dc3cb",
+		"size" : 655
 	},
 	"zz_framework/core/base/UserDataBase.lua" : {
 		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
 		"size" : 0
 	},
-	"zz_framework/core/base/ConfigBase.lua" : {
-		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
-		"size" : 0
+	"zz_framework/core/base/UIBase.lua" : {
+		"md5" : "534a002f54dee8396e7b01973f574a6f",
+		"size" : 5635
 	},
-	"zz_framework/core/base/LayerBase.lua" : {
-		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
-		"size" : 0
+	"zz_framework/core/base/WindowBase.lua" : {
+		"md5" : "b5d4e24b83183dd080a616ad7080db9f",
+		"size" : 1197
+	},
+	"zz_framework/core/base/ConfigBase.lua" : {
+		"md5" : "d58a5ecd3eecae824f22234f521c3c34",
+		"size" : 563
+	},
+	"zz_framework/core/base/DialogBase.lua" : {
+		"md5" : "3e84a53cc21436c5f4dc59d08362051f",
+		"size" : 1879
 	},
 	"zz_framework/core/base/ObjectBase.lua" : {
 		"md5" : "d41d8cd98f00b204e9800998ecf8427e",
 		"size" : 0
 	},
 	".DS_Store" : {
-		"md5" : "dd54668bc849b6434ca76a62df0230f3",
+		"md5" : "653b76d00aecb578b66f503fe056355a",
 		"size" : 6148
 	},
 	"HelloWorld.png" : {
@@ -331,13 +327,9 @@
 		"md5" : "dab9085a9c6f831b09f5259b9acd1912",
 		"size" : 35
 	},
-	"HelloWorld-002.png" : {
-		"md5" : "3df84557ce0a92f2ca81a2f67c475aeb",
-		"size" : 197035
-	},
-	"HelloWorld-001.png" : {
-		"md5" : "f620d90fb8312cba5273505629e13dad",
-		"size" : 38264
+	"csb/.DS_Store" : {
+		"md5" : "194577a7e20bdcc7afbb718f502c134c",
+		"size" : 6148
 	},
 	"shader/overrideColor.fsh" : {
 		"md5" : "4762ff39c876bb1c6bee67ef46d4eb4d",
