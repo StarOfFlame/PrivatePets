@@ -9,21 +9,15 @@
 local ConfigBase = class('ConfigBase')
 
 function ConfigBase:ctor()
-    self.data_ = nil
-    
-    if self.init then
-        self:init()
-    end
+    self.content_ = {}
 end
 
 function ConfigBase:query(row, key)
-    if not self.data_ then return nil end
+    if not self.content_ then return nil end
     if not row then return nil end
-    local record = self.data_[row]
+    local record = self.content_[row]
     if not record then return nil end
-    if key then
-        return record[key]
-    end
+    if key then return record[key] end
     return record
 end
 
