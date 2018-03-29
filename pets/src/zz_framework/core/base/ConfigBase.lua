@@ -9,23 +9,22 @@
 local ConfigBase = class('ConfigBase')
 
 function ConfigBase:ctor()
-
+    self.data_ = nil
+    
+    if self.init then
+        self:init()
+    end
 end
 
-function ConfigBase:getId()
-
-end
-
-function ConfigBase:getContent()
-
-end
-
-function ConfigBase:getRow(id)
-
-end
-
-function ConfigBase:getCol(id, key)
-
+function ConfigBase:query(row, key)
+    if not self.data_ then return nil end
+    if not row then return nil end
+    local record = self.data_[row]
+    if not record then return nil end
+    if key then
+        return record[key]
+    end
+    return record
 end
 
 return ConfigBase
