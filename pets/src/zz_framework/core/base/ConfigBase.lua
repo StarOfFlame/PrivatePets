@@ -12,6 +12,12 @@ function ConfigBase:ctor()
     self.content_ = {}
 end
 
+--[[获取配置]]
+function ConfigBase:content()
+    return self.content_
+end
+
+--[[获取配置的特定条目]]
 function ConfigBase:query(row, key)
     if not self.content_ then return nil end
     if not row then return nil end
