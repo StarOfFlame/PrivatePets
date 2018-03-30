@@ -21,7 +21,7 @@ function WindowBase:initData()
 end
 
 --[[进入回调]]
-function DialogBase:onEnterCallback_()
+function WindowBase:onEnterCallback_()
     self.super:onEnterCallback_()
     self:showTitle()
 end

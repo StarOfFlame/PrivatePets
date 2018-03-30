@@ -8,10 +8,10 @@
 
 local System = {}
 
-System.platform = zz:newInstance('Platform')
-System.event    = zz:newInstance('Event')
-System.timer    = zz:newInstance('Timer')
-System.audio    = zz:newInstance('Audio')
-System.net      = zz:newInstance('Net')
+System.platform = newInstance('Platform')
+System.event    = newInstance('Event')
+System.timer    = newInstance('Timer')
+System.audio    = newInstance('Audio')
+System.net      = newInstance('Net')
 
 return System

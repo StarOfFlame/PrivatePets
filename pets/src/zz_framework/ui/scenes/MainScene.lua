@@ -13,7 +13,7 @@ function MainScene:initialize()
 end
 
 function MainScene:onEnter()
-    zz:loadInstance('TestCase'):run()
+    loadInstance('TestCase'):run()
 end
 
 --[[挂载节点]]

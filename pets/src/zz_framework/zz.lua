@@ -8,12 +8,13 @@
 
 --[[源码列表]]
 require('sources')
+cc.exports.SingletonBase = include('SingletonBase')
 
 --[[zz_framework 框架单例]]
-local zz = class('zz_framework', include('SingletonBase'))
+local zz = class('zz_framework', SingletonBase)
 
 --[[获得实例]]
-function zz:loadInstance(modulename, ...)
+cc.exports.loadInstance = function(modulename, ...)
     local base = include(modulename)
     if not base.getInstance then
         return base
@@ -22,7 +23,7 @@ function zz:loadInstance(modulename, ...)
 end
 
 --[[创建实例]]
-function zz:newInstance(modulename, ...)
+cc.exports.newInstance = function(modulename, ...)
     return include(modulename):create(...)
 end
 
@@ -44,6 +45,16 @@ function zz:loadEnvironment()
     end
 end
 
+--[[加载基础基类]]
+function zz:loadBaseClass()
+    cc.exports.ConfigBase    = include('ConfigBase')
+    cc.exports.UIBase        = include('UIBase')
+    cc.exports.SceneBase     = include('SceneBase')
+    cc.exports.WindowBase    = include('WindowBase')
+    cc.exports.DialogBase    = include('DialogBase')
+    cc.exports.FloatBase     = include('FloatBase')
+end
+
 --[[加载全局变量]]
 function zz:loadGlobal()
     include('Global')
@@ -55,17 +66,6 @@ function zz:loadGlobal()
     if system.platform:isAndroid() then
         cc.exports.luaj = require('cocos.cocos2d.luaj')
     end
-end
-
---[[加载基础基类]]
-function zz:loadBaseClass()
-    cc.exports.ConfigBase    = include('ConfigBase')
-    cc.exports.SingletonBase = include('SingletonBase')
-    cc.exports.UIBase        = include('UIBase')
-    cc.exports.SceneBase     = include('SceneBase')
-    cc.exports.WindowBase    = include('WindowBase')
-    cc.exports.DialogBase    = include('DialogBase')
-    cc.exports.FloatBase     = include('FloatBase')
 end
 
 --[[输出游戏相关信息]]
@@ -120,7 +120,7 @@ end
 
 --[[初始化主舞台]]
 function zz:startGame()
-    self.stage = self:newInstance('MainScene')
+    self.stage = newInstance('MainScene')
     display.runScene(self.stage)
 end
 

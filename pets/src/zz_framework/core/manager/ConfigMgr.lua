@@ -6,7 +6,7 @@
 ---- Email  : jl88744653@gmail.com
 ------------------------------------------------------------------------------------------
 
-local ConfigMgr = class('ConfigMgr', zz.Singleton)
+local ConfigMgr = class('ConfigMgr', SingletonBase)
 
 --[[常驻配置列表]]
 local Residents = {

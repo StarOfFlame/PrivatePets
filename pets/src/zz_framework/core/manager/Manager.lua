@@ -1,6 +1,6 @@
 local manager = {}
 
-manager.ui     = zz:getInstance('UIMgr')
-manager.config = zz:getInstance('ConfigMgr')
+manager.ui     = loadInstance('UIMgr')
+manager.config = loadInstance('ConfigMgr')
 
 return manager

@@ -39,7 +39,7 @@ function TestCase:testcase01()
     sp0:setPosition(display.cx-100, display.cy+100)
     sp0:registerTouchEvent(function(sender, event, pos)
         if event == 'moved' then
-            self:tag('touch moved: ', event, pos.x, pos.y)
+            -- self:tag('touch moved: ', event, pos.x, pos.y)
             sp0:setPosition(pos)
         end
     end)
@@ -90,6 +90,10 @@ function TestCase:testcase04()
     self:tag('lfs版本号: ', lfs._VERSION)
     self:tag('当前路径: ', lfs.currentdir(), device.writablePath)
 
+    if system.platform:isMac() then
+        return
+    end
+    
     local function walk(root)
         local result = {dir = {}, file={}}
         local function listdir(rootPath, level)
@@ -128,6 +132,7 @@ function TestCase:testcase04()
 end
 
 function TestCase:testcase05()
+    self:warn('测试用例05-lua表序列化')
     local s = serialize or require "serialize"
 
     local addressbook = {
@@ -139,10 +144,13 @@ function TestCase:testcase05()
         }
     }
 
+    local inpacked = s.pack(addressbook)
+    local unpacked = s.unpack(inpacked)
+    self:tag("addressbook:", addressbook, inpacked, unpacked)
     elapse(function()
-        for i=1,100000 do
-            local u = s.pack(addressbook)
-            local t = s.unpack(u)
+        for i=1,999 do
+            inpacked = s.pack(addressbook)
+            unpacked = s.unpack(inpacked)
         end
     end, 'lua序列化')
 end

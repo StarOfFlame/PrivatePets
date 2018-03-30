@@ -6,7 +6,7 @@
 ---- Email  : jl88744653@gmail.com
 ------------------------------------------------------------------------------------------
 
-local UIMgr = class('UIMgr', zz.Singleton)
+local UIMgr = class('UIMgr', SingletonBase)
 
 function UIMgr:ctor()
     self.openlist_   = {}
@@ -19,7 +19,7 @@ end
 function UIMgr:open(name, ...)
     local ui = self.openlist_[name]
     if not ui then
-        ui = zz:newInstance(name, ...)
+        ui = newInstance(name, ...)
         self.openlist_[name] = ui
         zz.stage:addToMountNode(ui, ui:getUITypeName())
     end
