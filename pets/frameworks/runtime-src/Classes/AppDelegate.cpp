@@ -112,6 +112,7 @@ void AppDelegate::startGameApp()
 bool AppDelegate::applicationDidFinishLaunching()
 {
     Director::getInstance()->setAnimationInterval(1.0 / 60.0f);
+    Director::getInstance()->setContentScaleFactor(1.25f);
     registerSearchPaths();
     registerLuaData();
     startGameApp();

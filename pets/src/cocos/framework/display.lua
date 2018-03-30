@@ -152,8 +152,8 @@ function display.setAutoScale(configs)
 
     setDesignResolution(configs, framesize)
 
-    printInfo(string.format("# design resolution size       = {width = %0.2f, height = %0.2f}", configs.width, configs.height))
-    printInfo(string.format("# design resolution autoscale  = %s", configs.autoscale))
+    print(string.format("# design resolution size       = {width = %0.2f, height = %0.2f}", configs.width, configs.height))
+    print(string.format("# design resolution autoscale  = %s", configs.autoscale))
     setConstants()
 end
 
