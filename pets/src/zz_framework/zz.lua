@@ -34,6 +34,7 @@ function zz:initialize()
     self:registerSystemEvent()
     self:loadEnvironment()
     self:dumpFrameworkInfo()
+    self:loadConfig()
 end
 
 --[[设置环境相关参数]]
@@ -110,6 +111,11 @@ end
 --[[监听游戏收到内存警告事件]]
 function zz:onReveiceMemoryWarning()
     self:tag('收到内存警告')
+end
+
+--[[加载配置]]
+function zz:loadConfig()
+    manager.config:init()
 end
 
 --[[初始化主舞台]]
