@@ -174,29 +174,40 @@ function TestCase:testcase07()
     self:warn('测试用例07-动作')
     
     system.timer:start('timer1', function()    
-        local sheet = include('role102')
-        sheet:loadFrames()
+        -- on MAC : 0.004s
         elapse(function()
-            local curAni, curSp = sheet:newAnimation('a10%02d.png',6,4,0.2)
-            curSp:setPosition(300,350)
-            zz.stage:addChild(curSp, 10)
-            curSp:playAnimationForever(curAni)
+            local sheet = include('role102')
+            sheet:newAnimationAsync('a10%02d.png',6,8,0.1,function(ani, node)
+                node:setPosition(300,350)
+                zz.stage:addChild(node, 10)
+                node:playAnimationForever(ani)
+            end)
 
-            local sprite = sheet:newSprite('a1012.png')
-            sprite:addTo(zz.stage, 10)
-            sprite:setPosition(300,500)
+            sheet:newSpriteAsync('a1012.png', function(node)
+                node:addTo(zz.stage, 10)
+                node:setPosition(300,500)
+            end)
         end)
     end, 1, true)
 
-    -- system.timer:start('timer2', function()
-    --     elapse(function()
-    --         display.addSpriteFrames('anim/role112N0.plist')
-    --         local curAni, curSp = display.newAnimation('r112_10%02d.png',6,4,0.2)
-    --         curSp:setPosition(300,100)
-    --         zz.stage:addChild(curSp, 10)
-    --         curSp:playAnimationForever(curAni)
-    --     end)
-    -- end, 3, true)
+    system.timer:start('timer2', function()    
+        -- on Mac : 0.098s
+        elapse(function()
+            local sheet = include('role102')
+            local function playAni(ani, node)
+                node:setPosition(800,350)
+                zz.stage:addChild(node, 10)
+                node:playAnimationForever(ani)
+            end
+            playAni(sheet:newAnimation('a20%02d.png',6,8,0.1))
+
+            local function addSprite(node)
+                node:addTo(zz.stage, 10)
+                node:setPosition(800,500)
+            end
+            addSprite(sheet:newSprite('a2012.png'))
+        end)
+    end, 2, true)
 
 end
 
