@@ -48,6 +48,7 @@ end
 --[[加载基础基类]]
 function zz:loadBaseClass()
     cc.exports.ConfigBase    = include('ConfigBase')
+    cc.exports.SheetBase     = include('SheetBase')
     cc.exports.UIBase        = include('UIBase')
     cc.exports.SceneBase     = include('SceneBase')
     cc.exports.WindowBase    = include('WindowBase')
