@@ -16,6 +16,7 @@ function TestCase:ctor()
         handler(self, self.testcase04),
         handler(self, self.testcase05),
         handler(self, self.testcase06),
+        handler(self, self.testcase07),
     }
 end
 
@@ -156,6 +157,7 @@ function TestCase:testcase05()
 end
 
 function TestCase:testcase06()
+    self:warn('测试用例06-精灵置灰')
     local sp = zz.stage:getChildByTag(1001)
     sp.idx = 0
     schedule(sp, function()
@@ -166,6 +168,36 @@ function TestCase:testcase06()
             utils.shader.greyShader(sp)
         end
     end, 3)
+end
+
+function TestCase:testcase07()
+    self:warn('测试用例07-动作')
+    
+    system.timer:start('timer1', function()    
+        local sheet = include('role102')
+        sheet:loadFrames()
+        elapse(function()
+            local curAni, curSp = sheet:newAnimation('a10%02d.png',6,4,0.2)
+            curSp:setPosition(300,350)
+            zz.stage:addChild(curSp, 10)
+            curSp:playAnimationForever(curAni)
+
+            local sprite = sheet:newSprite('a1012.png')
+            sprite:addTo(zz.stage, 10)
+            sprite:setPosition(300,500)
+        end)
+    end, 1, true)
+
+    -- system.timer:start('timer2', function()
+    --     elapse(function()
+    --         display.addSpriteFrames('anim/role112N0.plist')
+    --         local curAni, curSp = display.newAnimation('r112_10%02d.png',6,4,0.2)
+    --         curSp:setPosition(300,100)
+    --         zz.stage:addChild(curSp, 10)
+    --         curSp:playAnimationForever(curAni)
+    --     end)
+    -- end, 3, true)
+
 end
 
 return TestCase

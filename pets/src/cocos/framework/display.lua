@@ -456,6 +456,10 @@ local function newAnimation(frames, time)
            cc.Sprite:createWithSpriteFrame(frames[1])
 end
 
+function display.addSpriteFrames(dataFilename)
+    spriteFrameCache:addSpriteFrames(dataFilename)
+end
+
 function display.newAnimation(...)
     local params = {...}
     local c = #params
