@@ -1,15 +1,25 @@
-local SheetBase = {}
-SheetBase.isFramesLoaded = false
+------------------------------------------------------------------------------------------
+---- Name   : SpriteSheetBase
+---- Desc   : 精灵表基类
+---- Date   : 2018/04/02
+---- Author : Reyn 
+---- Email  : jl88744653@gmail.com
+------------------------------------------------------------------------------------------
 
-function SheetBase:getSheet()
+local SpriteSheetBase = {}
+
+--[[获得精灵表列表]]
+function SpriteSheetBase:getSheet()
     return self.frames
 end
 
-function SheetBase:getFrameIndex(name)
+--[[获得精灵表索引]]
+function SpriteSheetBase:getFrameIndex(name)
     return self.frameIndex[name]
 end
 
-function SheetBase:getFrameInfo(name)
+--[[获得精灵表特定帧数据]]
+function SpriteSheetBase:getFrameInfo(name)
 	local index = self:getFrameIndex(name)
 	if not index then 
 		return nil 
@@ -17,39 +27,45 @@ function SheetBase:getFrameInfo(name)
 	return self.frames[index]
 end
 
-function SheetBase:getSheetSize()
+--[[获得精灵表尺寸]]
+function SpriteSheetBase:getSheetSize()
 	return self.contentSize
 end
 
-function SheetBase:enablePremultiply(enable)
+--[[使能精灵表预乘操作]]
+function SpriteSheetBase:enablePremultiply(enable)
     if self.premultiplyAlpha then
         cc.Image:setPVRImagesHavePremultipliedAlpha(enable)
     end
 end
 
-function SheetBase:loadTexture()
+--[[加载精灵表资源]]
+function SpriteSheetBase:loadTexture()
     self:enablePremultiply(true)
     local texture = display.loadImage(self.source)
     self:enablePremultiply(false)
     return texture
 end
 
-function SheetBase:loadFrames()
+--[[加载精灵表]]
+function SpriteSheetBase:loadFrames()
     local texture = self:loadTexture()
     if not texture then return end
     for name, index in pairs(self.frameIndex) do
-        self:addSpriteFrame(name)
+        self:addSpriteFrame(name, texture)
     end
 end
 
-function SheetBase:addSpriteFrame(name, texture)
+--[[添加精灵表到缓存]]
+function SpriteSheetBase:addSpriteFrame(name, texture)
     local index = self.frameIndex[name]
     local info  = self.frames[index]
     local frame = cc.SpriteFrame:createWithTexture(texture, info.rect, info.rotate, info.offset, info.size)
     cc.SpriteFrameCache:getInstance():addSpriteFrame(frame, name)
 end
 
-function SheetBase:newAnimation(fmt, from, span, interval)
+--[[使用精灵表创建动画]]
+function SpriteSheetBase:newAnimation(fmt, from, span, interval)
     local texture = self:loadTexture()
     local to = from + span
     for i = from, to do
@@ -59,13 +75,15 @@ function SheetBase:newAnimation(fmt, from, span, interval)
     return display.newAnimation(fmt, from, span, interval)
 end
 
-function SheetBase:newSprite(frameName)
+--[[使用精灵表创建精灵]]
+function SpriteSheetBase:newSprite(frameName)
     local texture = self:loadTexture()
     self:addSpriteFrame(frameName, texture)
     return cc.Sprite:createWithSpriteFrameName(frameName)
 end
 
-function SheetBase:loadTextureAsync(callfunc)
+--[[异步加载精灵表资源]]
+function SpriteSheetBase:loadTextureAsync(callfunc)
     if not callfunc then return end
     self:enablePremultiply(true)
     display.loadImage(self.source, function(texture)
@@ -74,7 +92,18 @@ function SheetBase:loadTextureAsync(callfunc)
     end)
 end
 
-function SheetBase:newAnimationAsync(fmt, from, span, interval, callfunc)
+--[[异步加载精灵表]]
+function SpriteSheetBase:loadFramesAsync(callfunc)
+    if not callfunc then return end
+    local texture = self:loadTexture(function(texture)    
+        for name, index in pairs(self.frameIndex) do
+            self:addSpriteFrame(name, texture)
+        end
+    end)
+end
+
+--[[使用精灵表异步创建动画]]
+function SpriteSheetBase:newAnimationAsync(fmt, from, span, interval, callfunc)
     if not callfunc then return end
     self:loadTextureAsync(function(texture)    
         local to = from + span
@@ -86,7 +115,8 @@ function SheetBase:newAnimationAsync(fmt, from, span, interval, callfunc)
     end)
 end
 
-function SheetBase:newSpriteAsync(frameName, callfunc)
+--[[使用精灵表异步创建精灵]]
+function SpriteSheetBase:newSpriteAsync(frameName, callfunc)
     if not callfunc then return end
     self:loadTextureAsync(function(texture)
         self:addSpriteFrame(frameName, texture)
@@ -95,4 +125,4 @@ function SheetBase:newSpriteAsync(frameName, callfunc)
     end)
 end
 
-return SheetBase
+return SpriteSheetBase

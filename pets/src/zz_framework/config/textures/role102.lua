@@ -9,7 +9,7 @@
 --
 
 local SheetInfo = {}
-setmetatable(SheetInfo, {__index = SheetBase})
+setmetatable(SheetInfo, {__index = SpriteSheetBase})
 
 SheetInfo.contentSize      = cc.size(4056, 2473)
 SheetInfo.source           = "anim/role102.pvr.ccz"
