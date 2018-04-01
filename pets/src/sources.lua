@@ -65,6 +65,7 @@ local sources = {
 	['ConfigBase'] = 'zz_framework.core.base.ConfigBase',
 	['DialogBase'] = 'zz_framework.core.base.DialogBase',
 	['ObjectBase'] = 'zz_framework.core.base.ObjectBase',
+	['role103'] = 'zz_framework.config.textures.role103',
 	['role102'] = 'zz_framework.config.textures.role102',
 }
 

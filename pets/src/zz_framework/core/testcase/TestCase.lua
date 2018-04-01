@@ -193,19 +193,19 @@ function TestCase:testcase07()
     system.timer:start('timer2', function()    
         -- on Mac : 0.098s
         elapse(function()
-            local sheet = include('role102')
+            local sheet = include('role103')
             local function playAni(ani, node)
                 node:setPosition(800,350)
                 zz.stage:addChild(node, 10)
                 node:playAnimationForever(ani)
             end
-            playAni(sheet:newAnimation('a20%02d.png',6,8,0.1))
+            playAni(sheet:newAnimation('r103_20%02d.png',6,8,0.1))
 
             local function addSprite(node)
                 node:addTo(zz.stage, 10)
                 node:setPosition(800,500)
             end
-            addSprite(sheet:newSprite('a2012.png'))
+            addSprite(sheet:newSprite('r103_2012.png'))
         end)
     end, 2, true)
 
