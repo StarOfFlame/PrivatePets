@@ -1,7 +1,6 @@
 -----------------------------------------------
 -- 精灵表配置文件 role102.pvr.ccz
 -- created with TexturePacker for cocos-lua
--- TODO : 把默认key值替换掉
 -----------------------------------------------
 
 local SheetInfo = {}

@@ -1,7 +1,6 @@
 -----------------------------------------------
 -- 精灵表配置文件 role103.pvr.ccz
 -- created with TexturePacker for cocos-lua
--- TODO : 把默认key值替换掉
 -----------------------------------------------
 
 local SheetInfo = {}
@@ -9,7 +8,7 @@ setmetatable(SheetInfo, {__index = SpriteSheetBase})
 
 SheetInfo.contentSize      = cc.size(4056, 2473)
 SheetInfo.source           = "anim/role103.pvr.ccz"
-SheetInfo.premultiplyAlpha = true
+SheetInfo.premultiplyAlpha = false
 SheetInfo.allowRotation    = false
 SheetInfo.ditherType       = 3
 
