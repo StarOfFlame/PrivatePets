@@ -17,6 +17,7 @@ function TestCase:ctor()
         handler(self, self.testcase05),
         handler(self, self.testcase06),
         handler(self, self.testcase07),
+        handler(self, self.testcase08),
     }
 end
 
@@ -209,6 +210,25 @@ function TestCase:testcase07()
         end)
     end, 0.2, true)
     
+end
+
+function TestCase:testcase08()
+    local sprite = ccui.ImageView:create('HelloWorld.png')
+    sprite:setTouchEnabled(true)
+    sprite:setPosition(800, 400)
+    zz.stage:addChild(sprite)
+    local state = manager.state.new()
+    local function began(statecode)
+        print('began state : ', statecode)
+    end
+    local function ended(statecode)
+        print('ended state : ', statecode)
+    end
+    state:on(0, began)
+    state:on(2, ended)
+    sprite:addTouchEventListener(function(sender, event)
+        state:emit(event, true)
+    end)
 end
 
 return TestCase
