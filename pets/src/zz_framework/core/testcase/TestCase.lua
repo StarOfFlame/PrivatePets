@@ -219,10 +219,10 @@ function TestCase:testcase08()
     zz.stage:addChild(sprite)
     local state = manager.state.new()
     local function began(statecode)
-        print('began state : ', statecode)
+        self:tag('began state : ', statecode)
     end
     local function ended(statecode)
-        print('ended state : ', statecode)
+        self:tag('ended state : ', statecode)
     end
     state:on(0, began)
     state:on(2, ended)
