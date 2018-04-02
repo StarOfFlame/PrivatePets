@@ -12,5 +12,8 @@
 		{
 			"path": "tool"
 		}
-	]
+	],
+	"settings": {
+		"todo-tree.flat": true
+	}
 }

@@ -174,41 +174,41 @@ function TestCase:testcase07()
     self:warn('测试用例07-动作')
     
     system.timer:start('timer1', function()    
-        -- on MAC : 0.004s
-        elapse(function()
-            local sheet = include('role102')
-            sheet:newAnimationAsync('a10%02d.png',6,8,0.1,function(ani, node)
-                node:setPosition(300,350)
-                zz.stage:addChild(node, 10)
-                node:playAnimationForever(ani)
-            end)
-
-            sheet:newSpriteAsync('a1012.png', function(node)
-                node:addTo(zz.stage, 10)
-                node:setPosition(300,500)
-            end)
-        end)
-    end, 1, true)
-
-    system.timer:start('timer2', function()    
-        -- on Mac : 0.098s
+        -- on Mac : 0.091s 同步
         elapse(function()
             local sheet = include('role103')
             local function playAni(ani, node)
-                node:setPosition(800,350)
+                node:setPosition(240,350)
                 zz.stage:addChild(node, 10)
                 node:playAnimationForever(ani)
             end
-            playAni(sheet:newAnimation('r103_20%02d.png',6,8,0.1))
-
+            playAni(sheet:newAnimation('role103_a10%02d',6,8,0.1))
+    
             local function addSprite(node)
                 node:addTo(zz.stage, 10)
-                node:setPosition(800,500)
+                node:setPosition(240,500)
             end
-            addSprite(sheet:newSprite('r103_2012.png'))
+            addSprite(sheet:newSprite('role103_a1012'))
         end)
-    end, 2, true)
-
+    end, 0.1, true)
+    
+    system.timer:start('timer2', function()    
+        -- on MAC : 0.004s 异步
+        elapse(function()
+            local sheet = include('role102')
+            sheet:newAnimationAsync('role102_a10%02d',6,8,0.1,function(ani, node)
+                node:setPosition(100,350)
+                zz.stage:addChild(node, 10)
+                node:playAnimationForever(ani)
+            end)
+    
+            sheet:newSpriteAsync('role102_a1012', function(node)
+                node:addTo(zz.stage, 10)
+                node:setPosition(100,500)
+            end)
+        end)
+    end, 0.2, true)
+    
 end
 
 return TestCase
