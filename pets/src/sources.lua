@@ -40,6 +40,7 @@ local sources = {
 	['CashMgr'] = 'zz_framework.core.manager.CashMgr',
 	['FuncOpenMgr'] = 'zz_framework.core.manager.FuncOpenMgr',
 	['ConfigMgr'] = 'zz_framework.core.manager.ConfigMgr',
+	['StateMgr'] = 'zz_framework.core.manager.StateMgr',
 	['JsonReader'] = 'zz_framework.core.manager.JsonReader',
 	['Event'] = 'zz_framework.core.system.Event',
 	['Platform'] = 'zz_framework.core.system.Platform',

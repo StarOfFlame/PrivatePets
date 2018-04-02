@@ -63,3 +63,48 @@ end
 cc.exports.checkfunc = function (value)
     return type(value) == 'function' and value or pass
 end
+
+--[[是否字符串类型]]
+cc.exports.isstring = function(value)
+    return type(value) == 'string'
+end
+
+--[[是否nil类型]]
+cc.exports.isnil = function(value)
+    return type(value) == 'nil'
+end
+
+--[[是否布尔值类型]]
+cc.exports.isboolean = function(value)
+    return type(value) == 'boolean'
+end
+
+--[[是否数值类型]]
+cc.exports.isnumber = function(value)
+    return type(value) == 'number'
+end
+
+--[[是否整型类型]]
+cc.exports.isint = function(value)
+    return math.floor(value) == value
+end
+
+--[[是否用户数据类型]]
+cc.exports.isuserdata = function(value)
+    return type(value) == 'userdata'
+end
+
+--[[是否线程类型]]
+cc.exports.isthread = function(value)
+    return type(value) == 'thread'
+end
+
+--[[是否函数类型]]
+cc.exports.isfunction = function(value)
+    return type(value) == 'function'
+end
+
+--[[是否表类型]]
+cc.exports.istable = function(value)
+    return type(value) == 'table'
+end
