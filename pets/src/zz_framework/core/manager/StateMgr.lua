@@ -12,6 +12,7 @@ function StateMgr:ctor()
     self:cleanup()
 end
 
+--[[监听状态]]
 function StateMgr:on(key, handle)
     local stateInfo = self.states_[key]
     if stateInfo 
@@ -26,6 +27,7 @@ function StateMgr:on(key, handle)
     }
 end
 
+--[[解除监听状态]]
 function StateMgr:off(key)
     local stateInfo = self.states_[key]
     if not stateInfo then 
@@ -34,6 +36,7 @@ function StateMgr:off(key)
     self.states_[key] = nil
 end
 
+--[[触发监听状态]]
 function StateMgr:emit(key, state)
     local stateInfo = self.states_[key]
     if not stateInfo then 
@@ -43,6 +46,7 @@ function StateMgr:emit(key, state)
     stateInfo['current'] = state
 end
 
+--[[触发监听状态并转发到其他状态]]
 function StateMgr:switch(key, state)
     self:emit(key, state)
     for k, v in pairs(self.states_) do
@@ -52,16 +56,19 @@ function StateMgr:switch(key, state)
     end
 end
 
+--[[获得监听状态]]
 function StateMgr:getState(key)
     return self.states[key]['state']
 end
 
+--[[重置监听状态]]
 function StateMgr:reset()
     for k, v in pairs(self.states_) do
         self.states_[k].state = false
     end
 end
 
+--[[清理监听状态]]
 function StateMgr:cleanup()
     self.states_ = {}
 end
