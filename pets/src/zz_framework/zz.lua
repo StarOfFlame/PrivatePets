@@ -26,9 +26,7 @@ end
 
 --[[设置环境相关参数]]
 function zz_framework:loadEnvironment()
-    if CC_SHOW_FPS then
-        cc.Director:getInstance():setDisplayStats(true)
-    end
+    cc.Director:getInstance():setDisplayStats(CC_SHOW_FPS)
 end
 
 --[[加载全局变量]]
