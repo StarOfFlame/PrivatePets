@@ -17,6 +17,7 @@ end
 --[[主入口]]
 local function entry()
     require('config')
+    require('socket')
     require('cocos.init')
     require('sources')
     

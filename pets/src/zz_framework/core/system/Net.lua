@@ -6,24 +6,30 @@
 ---- Email  : jl88744653@gmail.com
 ------------------------------------------------------------------------------------------
 
-local _M = class('Net')
+local Net = class('Net')
 
-function _M:ctor()
-
-end
-
-------------------------------------------
--- @desc : 核心加载
---
-function _M:load()
+function Net:ctor()
 
 end
 
-------------------------------------------
--- @desc : 核心卸载
---
-function _M:unload()
+function Net:load()
 
 end
 
-return _M
+function Net:unload()
+
+end
+
+
+--[[获取ip地址，hostname 不需要加 "http://" 头]]
+function Net:fetchHostIP(hostname)
+    local ip, resolved = socket.dns.toip(hostname)
+    return ip, resolved.ip
+end
+
+--[[获取本地ip地址]]
+function Net:fetchMineIP()
+    return self:fetchHostIP(socket.dns.gethostname())
+end
+
+return Net
