@@ -20,7 +20,7 @@ local function entry()
     require('cocos.init')
     require('sources')
     
-    cc.exports.zz = require('zz_framework.zz')
+    require('zz_framework.zz')
     zz:initialize()
     zz:startGame()
 end

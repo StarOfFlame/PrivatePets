@@ -5,18 +5,16 @@
 ---- Author : Reyn 
 ---- Email  : jl88744653@gmail.com
 ------------------------------------------------------------------------------------------
-
-local zz = class('zz')
-setmetatable(zz, {__index = zz})
+local zz_framework = class('zz')
 
 --[[zz框架初始化]]
-function zz:initialize()
+function zz_framework:initialize()
     math.randomseed(os.time())
     self:loadFramework()
     self:dumpFrameworkInfo()
 end
 
-function zz:loadFramework()
+function zz_framework:loadFramework()
     include('Global')
     include('Extends')
     include('Base')
@@ -27,14 +25,14 @@ function zz:loadFramework()
 end
 
 --[[设置环境相关参数]]
-function zz:loadEnvironment()
+function zz_framework:loadEnvironment()
     if CC_SHOW_FPS then
         cc.Director:getInstance():setDisplayStats(true)
     end
 end
 
 --[[加载全局变量]]
-function zz:loadGlobal()
+function zz_framework:loadGlobal()
     cc.exports.CONST   = include('Const')
     cc.exports.utils   = include('Utils')
     cc.exports.system  = include('System')
@@ -42,7 +40,7 @@ function zz:loadGlobal()
 end
 
 --[[注册系统事件]]
-function zz:registerSystemEvent()
+function zz_framework:registerSystemEvent()
     system.event:add(CONST.EVENT.APP_ENTER_BG, handler(self, self.onEnterBackground))
     system.event:add(CONST.EVENT.APP_ENTER_FG, handler(self, self.onEnterForeground))
     system.event:add(CONST.EVENT.APP_RECV_MEM_WARNING, handler(self, self.onReveiceMemoryWarning))
@@ -50,7 +48,7 @@ function zz:registerSystemEvent()
 end
 
 --[[注册安卓返回键按下事件]]
-function zz:registerBackKeyForAndroid()
+function zz_framework:registerBackKeyForAndroid()
     if system.platform:isAndroid() then
         local listener  = cc.EventListenerKeyboard:create()
         listener:registerScriptHandler(function()
@@ -63,41 +61,41 @@ function zz:registerBackKeyForAndroid()
 end
 
 --[[监听游戏退到后台事件]]
-function zz:onEnterBackground()
+function zz_framework:onEnterBackground()
     self:tag('游戏退到后台')
 end
 
 --[[监听游戏回到前台事件]]
-function zz:onEnterForeground()
+function zz_framework:onEnterForeground()
     self:tag('游戏回到前台')
     self:tag('从后台回到前台过去了' .. GetElapseTime() .. 's')
 end
 
 --[[监听游戏收到内存警告事件]]
-function zz:onReveiceMemoryWarning()
+function zz_framework:onReveiceMemoryWarning()
     self:tag('收到内存警告')
 end
 
 --[[输出游戏相关信息]]
-function zz:dumpFrameworkInfo()
+function zz_framework:dumpFrameworkInfo()
     self:tag('操作系统: ' .. system.platform:getTargetOSname())
     self:tag('系统语言: ' .. system.platform:getLanguageName())
     self:tag('可写路径: ' .. device.writablePath)
 end
 
 --[[加载配置]]
-function zz:loadConfig()
+function zz_framework:loadConfig()
     manager.config:init()
 end
 
 --[[初始化主舞台]]
-function zz:startGame()
+function zz_framework:startGame()
     self.stage = newInstance('MainScene')
     display.runScene(self.stage)
 end
 
 --[[lua错误处理]]
-function zz:handleLuaError()
+function zz_framework:handleLuaError()
     ----------------------------------------------------------------------
     -- debug.getinfo()
     -- 'n'   获取name和namewhat
@@ -131,4 +129,4 @@ function zz:handleLuaError()
     self:tag('LUA_ERROR:\n'..errstr)
 end
 
-return zz
+cc.exports.zz = zz_framework.new()
