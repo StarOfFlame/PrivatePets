@@ -52,8 +52,8 @@ cc.exports.min = function(a,b,...)
 end
 
 --[[执行方法所需时间]]
-cc.exports.elapse = function(fn, tag)
-    tag = tag or 'elapse'
+cc.exports.elapsed = function(fn, tag)
+    tag = tag or 'elapsed'
     local t = 0
     if fn then 
         local t1 = GetCurrentUsec()
@@ -61,16 +61,6 @@ cc.exports.elapse = function(fn, tag)
         t = GetCurrentUsec() - t1
     end
     print(string.format('(%s) 耗时: %.3fs', tag, t))
-end
-
---[[截取全屏并保存]]
-cc.exports.captureFullScreen = function (filename)
-    cc.utils:captureScreen(function(successed, outputFile)
-        if successed then
-            return outputFile
-        end
-        return nil
-    end, filename..".png")
 end
 
 --[[检查值是否为函数类型]]

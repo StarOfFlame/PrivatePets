@@ -6,7 +6,7 @@
 ---- Email  : jl88744653@gmail.com
 ------------------------------------------------------------------------------------------
 
-local TestCase = class('TestCase', SingletonBase)
+local TestCase = class('TestCase', Singleton)
 
 function TestCase:ctor()
     self.testcases_ = {
@@ -70,7 +70,7 @@ end
 
 function TestCase:testcase02()
     self:warn('测试用例02-运行计时')
-    elapse(function()
+    elapsed(function()
         for i=1, 5000 do
             for j=1, 5000 do
                 pass(i+j)
@@ -149,7 +149,7 @@ function TestCase:testcase05()
     local inpacked = s.pack(addressbook)
     local unpacked = s.unpack(inpacked)
     self:tag("addressbook:", addressbook, inpacked, unpacked)
-    elapse(function()
+    elapsed(function()
         for i=1,999 do
             inpacked = s.pack(addressbook)
             unpacked = s.unpack(inpacked)
@@ -176,7 +176,7 @@ function TestCase:testcase07()
     
     system.timer:start('timer1', function()    
         -- on Mac : 0.091s 同步
-        elapse(function()
+        elapsed(function()
             local sheet = include('role103')
             local function playAni(ani, node)
                 node:setPosition(240,350)
@@ -195,7 +195,7 @@ function TestCase:testcase07()
     
     system.timer:start('timer2', function()    
         -- on MAC : 0.004s 异步
-        elapse(function()
+        elapsed(function()
             local sheet = include('role102')
             sheet:newAnimationAsync('role102_a10%02d',6,8,0.1,function(ani, node)
                 node:setPosition(100,350)

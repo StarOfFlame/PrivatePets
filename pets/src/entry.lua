@@ -8,6 +8,12 @@
 
 cc.FileUtils:getInstance():setPopupNotify(false)
 
+safecall = function(obj, callfn, ...)
+    if obj and obj[callfn] and type(obj[callfn] == 'function') then
+        obj[callfn](obj, ...)
+    end
+end
+
 --[[主入口]]
 local function entry()
     require('config')
@@ -25,8 +31,6 @@ xpcall(entry, function(msg)
     print('\n-> ERROR TRACE BEGAN <-')
     print(msg)
     print('<- ERROR TRACE ENDED ->\n')
-    if zz then
-        zz:handleLuaError()
-    end
+    safecall(zz, 'handleLuaError')
     return msg
 end)

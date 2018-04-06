@@ -107,7 +107,6 @@ function zz:handleLuaError()
     -- 'L'   获取活动行
     -- 'u'   获取nup (upvalue的个数) 
     ----------------------------------------------------------------------
-    
     local err = {}
     for level = 3, math.huge do
         local info = debug.getinfo(level, 'lnuS')
@@ -118,8 +117,9 @@ function zz:handleLuaError()
         end
         info.source = table.concat(arr, '/')
         if info.source ~= '' then
-            err[#err+1] = CONST.UNICODE.ERROR .. string.format(' 类型:%s 定位:%s 行号:%s 方法:%s upvalue:%s', 
+            local content = string.format(' 类型:%s 定位:%s 行号:%s 方法:%s upvalue:%s', 
                 info.what, info.source, info.currentline, info.name, info.nups)
+            err[#err+1] = CONST.UNICODE.ERROR .. content
         end
     end
     local errstr = table.concat(err, '\n')
