@@ -13,7 +13,7 @@ local function entry()
     require('config')
     require('cocos.init')
     
-    cc.exports.zz = require('zz_framework.zz'):getInstance()
+    cc.exports.zz = require('zz_framework.zz')
     zz:initialize()
     zz:startGame()
 end

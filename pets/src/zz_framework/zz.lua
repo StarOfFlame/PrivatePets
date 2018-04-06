@@ -8,33 +8,25 @@
 
 --[[源码列表]]
 require('sources')
-cc.exports.SingletonBase = include('SingletonBase')
 
---[[zz_framework 框架单例]]
-local zz = class('zz_framework', SingletonBase)
-
---[[获得实例]]
-cc.exports.loadInstance = function(modulename, ...)
-    local base = include(modulename)
-    if not base.getInstance then
-        return base
-    end
-    return base:getInstance(...)
-end
-
---[[创建实例]]
-cc.exports.newInstance = function(modulename, ...)
-    return include(modulename):create(...)
-end
+--[[zz_framework 框架]]
+local zz = class('zz')
+setmetatable(zz, {__index = zz})
 
 --[[zz框架初始化]]
 function zz:initialize()
     math.randomseed(os.time())
+    self:loadFramework()
+    self:dumpFrameworkInfo()
+end
+
+function zz:loadFramework()
+    include('Global')
+    include('Extends')
     self:loadBaseClass()
     self:loadGlobal()
     self:registerSystemEvent()
     self:loadEnvironment()
-    self:dumpFrameworkInfo()
     self:loadConfig()
 end
 
@@ -58,8 +50,6 @@ end
 
 --[[加载全局变量]]
 function zz:loadGlobal()
-    include('Global')
-    include('Extends')
     cc.exports.CONST   = include('Const')
     cc.exports.utils   = include('Utils')
     cc.exports.system  = include('System')
@@ -67,13 +57,6 @@ function zz:loadGlobal()
     if system.platform:isAndroid() then
         cc.exports.luaj = require('cocos.cocos2d.luaj')
     end
-end
-
---[[输出游戏相关信息]]
-function zz:dumpFrameworkInfo()
-    self:tag('操作系统: ' .. system.platform:getTargetOSname())
-    self:tag('系统语言: ' .. system.platform:getLanguageName())
-    self:tag('可写路径: ' .. device.writablePath)
 end
 
 --[[注册系统事件]]
@@ -112,6 +95,13 @@ end
 --[[监听游戏收到内存警告事件]]
 function zz:onReveiceMemoryWarning()
     self:tag('收到内存警告')
+end
+
+--[[输出游戏相关信息]]
+function zz:dumpFrameworkInfo()
+    self:tag('操作系统: ' .. system.platform:getTargetOSname())
+    self:tag('系统语言: ' .. system.platform:getLanguageName())
+    self:tag('可写路径: ' .. device.writablePath)
 end
 
 --[[加载配置]]

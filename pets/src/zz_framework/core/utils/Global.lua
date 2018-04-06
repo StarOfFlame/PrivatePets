@@ -16,6 +16,20 @@ printInfo     = CC_OPEN_OUT and printInfo     or pass
 printError    = CC_OPEN_OUT and printError    or pass
 release_print = CC_OPEN_OUT and release_print or pass
 
+--[[获得实例]]
+cc.exports.loadInstance = function(modulename, ...)
+    local base = include(modulename)
+    if not base.getInstance then
+        return base
+    end
+    return base:getInstance(...)
+end
+
+--[[创建实例]]
+cc.exports.newInstance = function(modulename, ...)
+    return include(modulename):create(...)
+end
+
 --[[解表]]
 cc.exports.unpack = unpack or table.unpack
 
