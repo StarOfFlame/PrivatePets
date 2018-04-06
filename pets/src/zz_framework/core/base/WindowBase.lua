@@ -6,11 +6,11 @@
 ---- Email  : jl88744653@gmail.com
 ------------------------------------------------------------------------------------------
 
-local WindowBase = class('WindowBase', UIBase)
+local WindowBase = class('WindowBase', Base.UI)
 
 --[[初始化窗口数据]]
 function WindowBase:initData()
-    self.UItype_    = UIBase.UIType.Window
+    self.UItype_    = Base.UI.UIType.Window
     self.maskTouch_ = true 
     self.title_     = ''
     self.titleNode_ = nil

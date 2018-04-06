@@ -6,7 +6,7 @@
 ---- Email  : jl88744653@gmail.com
 ------------------------------------------------------------------------------------------
 
-local MainScene = class('MainScene', SceneBase)
+local MainScene = class('MainScene', Base.Scene)
 
 function MainScene:initialize()
     self:mountNodes()
@@ -18,7 +18,7 @@ end
 
 --[[挂载节点]]
 function MainScene:mountNodes()
-    for name, zorder in pairs(UIBase.UIType) do
+    for name, zorder in pairs(Base.UI.UIType) do
         local node = cc.Node:create()
         node:setName(name)
         self:addChild(node, zorder)
@@ -59,7 +59,7 @@ function MainScene:cleanAllNodes()
     if UIMgr then
         UIMgr:closeAll(true)
     end
-    for name in pairs(UIBase.UIType) do
+    for name in pairs(Base.UI.UIType) do
         self:cleanNode(name)
     end
 end

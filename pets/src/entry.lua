@@ -12,6 +12,7 @@ cc.FileUtils:getInstance():setPopupNotify(false)
 local function entry()
     require('config')
     require('cocos.init')
+    require('sources')
     
     cc.exports.zz = require('zz_framework.zz')
     zz:initialize()

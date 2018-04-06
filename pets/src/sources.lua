@@ -59,6 +59,7 @@ local sources = {
 	['PropBase'] = 'zz_framework.core.base.PropBase',
 	['RoleBase'] = 'zz_framework.core.base.RoleBase',
 	['SceneBase'] = 'zz_framework.core.base.SceneBase',
+	['Base'] = 'zz_framework.core.base.Base',
 	['UserDataBase'] = 'zz_framework.core.base.UserDataBase',
 	['UIBase'] = 'zz_framework.core.base.UIBase',
 	['WindowBase'] = 'zz_framework.core.base.WindowBase',

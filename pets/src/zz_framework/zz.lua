@@ -6,10 +6,6 @@
 ---- Email  : jl88744653@gmail.com
 ------------------------------------------------------------------------------------------
 
---[[源码列表]]
-require('sources')
-
---[[zz_framework 框架]]
 local zz = class('zz')
 setmetatable(zz, {__index = zz})
 
@@ -23,7 +19,7 @@ end
 function zz:loadFramework()
     include('Global')
     include('Extends')
-    self:loadBaseClass()
+    include('Base')
     self:loadGlobal()
     self:registerSystemEvent()
     self:loadEnvironment()
@@ -37,26 +33,12 @@ function zz:loadEnvironment()
     end
 end
 
---[[加载基础基类]]
-function zz:loadBaseClass()
-    cc.exports.ConfigBase      = include('ConfigBase')
-    cc.exports.UIBase          = include('UIBase')
-    cc.exports.SceneBase       = include('SceneBase')
-    cc.exports.WindowBase      = include('WindowBase')
-    cc.exports.DialogBase      = include('DialogBase')
-    cc.exports.FloatBase       = include('FloatBase')
-    cc.exports.SpriteSheetBase = include('SpriteSheetBase')
-end
-
 --[[加载全局变量]]
 function zz:loadGlobal()
     cc.exports.CONST   = include('Const')
     cc.exports.utils   = include('Utils')
     cc.exports.system  = include('System')
     cc.exports.manager = include('Manager')
-    if system.platform:isAndroid() then
-        cc.exports.luaj = require('cocos.cocos2d.luaj')
-    end
 end
 
 --[[注册系统事件]]
@@ -64,20 +46,19 @@ function zz:registerSystemEvent()
     system.event:add(CONST.EVENT.APP_ENTER_BG, handler(self, self.onEnterBackground))
     system.event:add(CONST.EVENT.APP_ENTER_FG, handler(self, self.onEnterForeground))
     system.event:add(CONST.EVENT.APP_RECV_MEM_WARNING, handler(self, self.onReveiceMemoryWarning))
-
-    -- 注册安卓返回键按下事件
-    if system.platform:isAndroid() then
-        local listener  = cc.EventListenerKeyboard:create()
-        listener:registerScriptHandler(handler(self, self.onBackBoardReleased), cc.Handler.EVENT_KEYBOARD_RELEASED)
-        system.event:addListener(listener, self.stage)
-    end
+    self:registerBackKeyForAndroid()
 end
 
---[[监听返回键按下事件]]
-function zz:onBackBoardReleased()
+--[[注册安卓返回键按下事件]]
+function zz:registerBackKeyForAndroid()
     if system.platform:isAndroid() then
-        local className = "org/cocos2dx/lua/DeviceHelper"
-        luaj.callStaticMethod(className, "onBackBoardReleased")
+        local listener  = cc.EventListenerKeyboard:create()
+        listener:registerScriptHandler(function()
+            local luaj = require('cocos.cocos2d.luaj')
+            local className = "org/cocos2dx/lua/DeviceHelper"
+            luaj.callStaticMethod(className, "onBackBoardReleased")    
+        end, cc.Handler.EVENT_KEYBOARD_RELEASED)
+        system.event:addListener(listener, self.stage)
     end
 end
 
@@ -146,7 +127,7 @@ function zz:handleLuaError()
         :setAnchorPoint(display.RIGHT_BOTTOM)
         :move(display.width-20, 20)
         :setColor(CONST.COLOR.RED)
-        :addTo(self.stage, UIBase.UIType.Error)
+        :addTo(self.stage, Base.UI.UIType.Error)
     self:tag('LUA_ERROR:\n'..errstr)
 end
 

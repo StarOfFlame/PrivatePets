@@ -4,7 +4,7 @@
 -----------------------------------------------
 
 local SheetInfo = {}
-setmetatable(SheetInfo, {__index = SpriteSheetBase})
+setmetatable(SheetInfo, {__index = Base.SpriteSheet})
 
 SheetInfo.contentSize      = cc.size({{texture.size.width}}, {{texture.size.height}})
 SheetInfo.source           = "anim/{{texture.fullName}}"

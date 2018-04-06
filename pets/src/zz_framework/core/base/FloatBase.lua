@@ -7,11 +7,11 @@
 ---- Email  : jl88744653@gmail.com
 ------------------------------------------------------------------------------------------
 
-local FloatBase = class('FloatBase', UIBase)
+local FloatBase = class('FloatBase', Base.UI)
 
 --[[初始化悬浮节点数据]]
 function FloatBase:initData()
-    self.UItype_ = UIBase.UIType.Float
+    self.UItype_ = Base.UI.UIType.Float
     
     if self.init then
         self:init()

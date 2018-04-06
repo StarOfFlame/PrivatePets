@@ -6,11 +6,11 @@
 ---- Email  : jl88744653@gmail.com
 ------------------------------------------------------------------------------------------
 
-local DialogBase = class('DialogBase', UIBase)
+local DialogBase = class('DialogBase', Base.UI)
 
 --[[初始化悬浮窗数据]]
 function DialogBase:initData()
-    self.UItype_     = UIBase.UIType.Dialog
+    self.UItype_     = Base.UI.UIType.Dialog
     self.maskTouch_  = true 
     self.blinkTip_   = ''
     self.blinkNode_  = nil
