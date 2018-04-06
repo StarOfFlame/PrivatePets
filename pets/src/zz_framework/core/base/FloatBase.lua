@@ -12,10 +12,7 @@ local FloatBase = class('FloatBase', Base.UI)
 --[[初始化悬浮节点数据]]
 function FloatBase:initData()
     self.UItype_ = Base.UI.UIType.Float
-    
-    if self.init then
-        self:init()
-    end
+    safecall(self, 'init')
 end
 
 --[[悬浮窗进入回调]]

@@ -15,9 +15,7 @@ function WindowBase:initData()
     self.title_     = ''
     self.titleNode_ = nil
     
-    if self.init then
-        self:init()
-    end
+    safecall(self, 'init')
 end
 
 --[[进入回调]]

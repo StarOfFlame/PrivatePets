@@ -19,12 +19,14 @@ end
 
 --[[获取配置的特定条目]]
 function ConfigBase:query(row, key)
-    if not self.content_ then return nil end
-    if not row then return nil end
-    local record = self.content_[row]
-    if not record then return nil end
-    if key then return record[key] end
-    return record
+    if row then 
+        local record = self.content_[row]
+        if key then
+            return record[key]
+        end
+        return record
+    end
+    return nil
 end
 
 return ConfigBase

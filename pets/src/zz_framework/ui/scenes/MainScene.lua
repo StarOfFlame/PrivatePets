@@ -33,32 +33,24 @@ end
 --[[显示挂载节点]]
 function MainScene:showNode(name)
     local node = self:getNode(name)
-    if node then 
-        node:setVisible(true) 
-    end
+    safecall(node, 'setVisible', true)
 end
 
 --[[隐藏挂载节点]]
 function MainScene:hideNode()
     local node = self:getNode(name)
-    if node then 
-        node:setVisible(false) 
-    end
+    safecall(node, 'setVisible', false)
 end
 
 --[[清理挂载节点]]
 function MainScene:cleanNode(name)
     local node = getNode(name)
-    if node then
-        node:removeAllChildren()
-    end
+    safecall(node, 'removeAllChildren')
 end
 
 --[[清理所有挂载节点]]
 function MainScene:cleanAllNodes()
-    if UIMgr then
-        UIMgr:closeAll(true)
-    end
+    safecall(UIMgr, 'closeAll', true)
     for name in pairs(Base.UI.UIType) do
         self:cleanNode(name)
     end

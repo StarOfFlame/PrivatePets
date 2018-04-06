@@ -16,9 +16,7 @@ function DialogBase:initData()
     self.blinkNode_  = nil
     self.touchClose_ = true
     
-    if self.init then
-        self:init()
-    end
+    safecall(self, 'init')
 end
 
 --[[悬浮窗进入回调]]

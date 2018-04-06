@@ -34,9 +34,7 @@ end
 --[[重载UI]]
 function UIMgr:reload(name, ...)
     local ui = self.openlist_[name]
-    if ui and ui.reload then
-        ui:reload(...)
-    end
+    safecall(ui, 'reload', ...)
 end
 
 --[[关闭UI]]
