@@ -18,6 +18,7 @@ function TestCase:ctor()
         handler(self, self.testcase06),
         handler(self, self.testcase07),
         handler(self, self.testcase08),
+        handler(self, self.testcase09),
     }
 end
 
@@ -229,6 +230,32 @@ function TestCase:testcase08()
     sprite:addTouchEventListener(function(sender, event)
         state:emit(event, true)
     end)
+end
+
+function TestCase:testcase09()
+    utils.format:numberToChinese(20)
+    utils.format:numberToChinese(200)
+    utils.format:numberToChinese(2000)
+    utils.format:numberToChinese(20000)
+    utils.format:numberToChinese(200000)
+    utils.format:numberToChinese(2000000)
+    utils.format:numberToChinese(20000000)
+    utils.format:numberToChinese(201000000)
+    utils.format:numberToChinese(2010010000)
+    utils.format:numberToChinese(2010001000)
+    utils.format:numberToChinese(2010001001)
+    utils.format:numberToChinese(2010101010)
+    
+    utils.format:numberToChinese(0.901)
+    utils.format:numberToChinese(1.203)
+    utils.format:numberToChinese(10.2)
+    utils.format:numberToChinese(102.2)
+    utils.format:numberToChinese(1023.2)
+    utils.format:numberToChinese(10200.2)
+    utils.format:numberToChinese(-3.1415926)
+    utils.format:numberToChinese(-1024)
+    utils.format:numberToChinese(-10086)
+    utils.format:numberToChinese(1208820)
 end
 
 return TestCase

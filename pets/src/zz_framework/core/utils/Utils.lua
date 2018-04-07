@@ -11,11 +11,14 @@ local Utils = {}
 Utils.colorify       = include('Colorify')
 Utils.securityNumber = include('SecurityNumber')
 Utils.shader         = include('ShaderUtil')
+Utils.format         = include('FormatUtil')
 
+--[[截取节点并保存到本地]]
 function Utils:grabNodeToFile(node, where)
     cc.utils:captureNodeToFile(node, where)
 end
 
+--[[截取屏幕并保存到本地]]
 function Utils:grabScreenToFile(okfn, nofn, where)
     okfn = checkfunc(okfn)
     nofn = checkfunc(nofn)
@@ -27,5 +30,7 @@ function Utils:grabScreenToFile(okfn, nofn, where)
         end
     end, where)
 end
+
+
 
 return Utils

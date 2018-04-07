@@ -16,3 +16,24 @@ function table.contains(t, val)
     return false
 end
 
+--[[倒置表]]
+table.reverse = function(t)
+    local r = {}
+    local l = #t
+    for i=l, 1, -1 do
+        table.insert(r, t[i])
+    end
+    for i=1, l do
+        t[i] = r[i]
+    end
+    r = nil
+end
+
+--[[将ansi字符串拆解为表]]
+string.unpack = function(str)
+    local unpacked = {}
+    for i=1, string.len(str) do
+        unpacked[i]= string.sub(str, i, i)
+    end
+    return unpacked
+end

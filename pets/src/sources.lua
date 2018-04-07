@@ -14,6 +14,7 @@ local sources = {
 	['Player'] = 'zz_framework.core.nodes.Player',
 	['Global'] = 'zz_framework.core.utils.Global',
 	['SecurityNumber'] = 'zz_framework.core.utils.SecurityNumber',
+	['FormatUtil'] = 'zz_framework.core.utils.FormatUtil',
 	['Colorify'] = 'zz_framework.core.utils.Colorify',
 	['ShaderUtil'] = 'zz_framework.core.utils.ShaderUtil',
 	['Extends'] = 'zz_framework.core.utils.Extends',
