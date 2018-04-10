@@ -64,7 +64,7 @@ function UIMgr:closeAll(ignores)
 end
 
 --[[执行UI方法]]
-function UIMgr:excute(name, func, ...)
+function UIMgr:callMethod(name, func, ...)
     local ui = self.openlist_[name]
     if ui and ui[func] then
         ui[func](...)
@@ -73,12 +73,12 @@ end
 
 --[[显示UI]]
 function UIMgr:show(name)
-    self:excute(name, 'show')
+    self:callMethod(name, 'show')
 end
 
 --[[隐藏UI]]
 function UIMgr:hide(name)
-    self:excute(name, 'hide')
+    self:callMethod(name, 'hide')
 end
 
 return UIMgr
