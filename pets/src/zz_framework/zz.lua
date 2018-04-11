@@ -79,6 +79,8 @@ function zz_framework:dumpFrameworkInfo()
     self:tag('操作系统: ' .. system.platform:getTargetOSname())
     self:tag('系统语言: ' .. system.platform:getLanguageName())
     self:tag('可写路径: ' .. device.writablePath)
+    self:tag('WIFI连接: ' .. tostring(isLocalWifiAvailable()))
+    self:tag('WWAN连接: ' .. tostring(isInternetAvailable()))
     -- self:tag('本地地址: ' .. system.net:fetchMineIP())
 end
 

@@ -30,6 +30,11 @@ namespace Thirds {
         const char* getKey();
         const char* getSign();
     }
+    
+    namespace NetStatus {
+        void register_islocalwifiavalable_lua(lua_State* L);
+        void register_isinternetavalable_lua(lua_State* L);
+    }
 }
 
 #endif //__THIRDS_H__

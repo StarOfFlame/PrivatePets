@@ -3,6 +3,7 @@
 #include "thirds/lfs/lfs.h"
 #include <sys/time.h>
 #include "thirds/serialize/serialize.h"
+#include "thirds/netstate/NetState.h"
 
 namespace Thirds {
     // proto buffer
@@ -79,5 +80,29 @@ namespace Thirds {
         }
     }
 
+    //网络状态
+    namespace NetStatus {
+        static NetState* state = new NetState();
+        
+        int islocalwifiavalable_(lua_State* L) {
+            bool available = state->isLocalWifiAvailable();
+            lua_pushboolean(L, available);
+            return 1;
+        }
+        
+        int isinternetavalable_(lua_State* L) {
+            bool available = state->isInternetAvailable();
+            lua_pushboolean(L, available);
+            return 1;
+        }
+        
+        void register_islocalwifiavalable_lua(lua_State* L) {
+            lua_register(L, "isLocalWifiAvailable", islocalwifiavalable_);
+        }
+        
+        void register_isinternetavalable_lua(lua_State* L) {
+            lua_register(L, "isInternetAvailable", isinternetavalable_);
+        }
+    }
     
 }

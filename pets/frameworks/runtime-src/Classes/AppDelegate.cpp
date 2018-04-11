@@ -85,6 +85,8 @@ static void registerLuaData()
     //register custom function
     Thirds::TimeUtils::register_getelapsetime_lua(L);
     Thirds::TimeUtils::register_getcurrentusec_lua(L);
+    Thirds::NetStatus::register_isinternetavalable_lua(L);
+    Thirds::NetStatus::register_islocalwifiavalable_lua(L);
 }
 
 // register search paths
