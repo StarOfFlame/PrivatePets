@@ -13,7 +13,7 @@
 
 USING_NS_CC;
 
-static std::string HELPER_CLASS_NAME = "org/cocos2dx/lua/DeviceHelper";
+static std::string HELPER_CLASS_NAME = "org/cocos2dx/lua/NetState";
 
 extern "C"
 {
