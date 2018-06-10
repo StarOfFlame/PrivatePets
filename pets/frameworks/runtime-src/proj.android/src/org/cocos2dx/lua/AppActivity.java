@@ -27,7 +27,8 @@ package org.cocos2dx.lua;
 
 import android.os.Bundle;
 import org.cocos2dx.lib.Cocos2dxActivity;
-import org.cocos2dx.lua.*;
+import org.cocos2dx.lua.NetState;
+import org.cocos2dx.lua.DeviceHelper;
 
 public class AppActivity extends Cocos2dxActivity{
     @Override
@@ -50,4 +51,7 @@ public class AppActivity extends Cocos2dxActivity{
         // DO OTHER INITIALIZATION BELOW
         
     }
+ 
+
+    
 }
